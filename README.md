@@ -1,4 +1,4 @@
-# Sharon Wangari — Portfolio
+# Sharon Wangari — UX and Researcher Portfolio
 
 Personal portfolio website for Sharon Wangari, a product designer and UX researcher working across fintech, logistics, and FMCG.
 
