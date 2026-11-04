@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agribusiness Finance Case Study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="How Sharon Wangari designed a farmer outreach strategy to grow digital banking among cashew farmers in Southern Tanzania.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: full-bleed brand hero, then a left-aligned reading column with mono section labels; figures break wider than the text. */
+:root {
+  --terracotta: #B4492A; --teal: #0F5257; --sunrise: #F2A541;
+  --white: #FFFFFF; --offwhite: #FAFAF8; --ink: #22201E;
+
+  --bg: var(--white); --surface: var(--offwhite); --fg: var(--ink);
+  --muted: #66625D; --line: #E7E5E0;
+  --primary: var(--terracotta); --secondary: var(--teal); --accent: var(--sunrise);
+  --label: var(--teal);
+  --hero-bg: var(--terracotta); --hero-fg: var(--white);
+  --panel-teal: #E3EEEE; --panel-sun: #FCEFD9;
+  --frame: var(--ink);
+
+  --display: "Bricolage Grotesque", "Plus Jakarta Sans", system-ui, sans-serif;
+  --body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --max: 1120px; --text: 760px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
+    --primary: #D0603E; --secondary: #4FA3A8; --label: #6CC0C4;
+    --hero-bg: #9E3F24; --hero-fg: #FFFFFF; --panel-teal: #1C2B2C; --panel-sun: #2E2619; --frame: #000000;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
+  --primary: #D0603E; --secondary: #4FA3A8; --label: #6CC0C4;
+  --hero-bg: #9E3F24; --hero-fg: #FFFFFF; --panel-teal: #1C2B2C; --panel-sun: #2E2619; --frame: #000000;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+@media (max-width: 480px) { .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); } }
+
+/* Nav */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
+.back { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem; padding: 8px 16px 8px 12px; border-radius: 999px; border: 1.5px solid var(--line); }
+.back:hover { background: var(--surface); }
+.nav-links { display: flex; gap: 22px; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-links a { text-decoration: none; color: var(--muted); }
+.nav-links a:hover { color: var(--fg); }
+@media (max-width: 560px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); overflow: hidden; position: relative; }
+.hero-inner { position: relative; min-height: clamp(380px, 52vw, 620px); display: grid; align-items: center; }
+.hero-word { font-family: var(--display); font-weight: 700; letter-spacing: -0.045em; line-height: 0.85; font-size: clamp(4rem, 14vw, 12rem); margin: 0; position: relative; z-index: 1; transform: rotate(-6deg); transform-origin: left center; padding-block: 40px; }
+.hero-word span { display: block; }
+.hero-word span:last-child { padding-left: 0.6em; color: var(--sunrise); }
+.phones { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: flex; gap: 18px; z-index: 2; }
+.phone { width: clamp(120px, 15vw, 190px); border-radius: 26px; background: var(--frame); padding: 7px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+.phone img { border-radius: 20px; width: 100%; aspect-ratio: 9 / 19; object-fit: cover; object-position: top; background: #fff; }
+.phone:nth-child(1) { transform: rotate(-8deg) translateY(30px); }
+.phone:nth-child(2) { transform: rotate(4deg) translateY(-20px); }
+.phone:nth-child(3) { transform: rotate(12deg) translateY(40px); }
+.phone.wide { position: absolute; right: -8px; bottom: -28%; width: clamp(230px, 27vw, 350px); border-radius: 18px; padding: 6px; transform: rotate(7deg); }
+.phone.wide img { aspect-ratio: auto; object-fit: contain; border-radius: 13px; }
+.chip { position: absolute; z-index: 3; font-weight: 700; font-size: 0.92rem; padding: 10px 18px; border-radius: 999px; background: var(--white); color: var(--ink); box-shadow: 0 12px 30px -10px rgba(0,0,0,.35); white-space: nowrap; }
+.chip.c1 { left: 46%; bottom: 14%; transform: rotate(-5deg); }
+.chip.c1::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #25D366; margin-right: 8px; vertical-align: 1px; }
+.chip.c2 { left: 38%; top: 12%; transform: rotate(6deg); background: var(--sunrise); }
+@media (max-width: 860px) {
+  .hero-inner { min-height: 0; padding-block: 36px 52px; gap: 28px; }
+  .phones { position: static; transform: none; justify-content: center; }
+  .phone { width: 28vw; max-width: 160px; }
+  .phone.wide { position: static; width: 46vw; max-width: 260px; align-self: center; transform: rotate(7deg); margin-left: -6vw; }
+  .hero-word { padding-block: 8px 0; }
+  .chip.c2 { display: none; }
+  .chip.c1 { left: auto; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 22px; }
+}
+
+/* Intro + meta */
+.intro { padding-block: 56px 16px; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 36px; max-width: 22ch; text-wrap: balance; }
+.meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-bottom: 8px; }
+@media (max-width: 720px) { .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.label { font-family: var(--mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin: 0 0 6px; }
+.meta p:not(.label) { margin: 0; color: var(--muted); line-height: 1.55; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.tag { font-size: 0.85rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; background: var(--surface); border: 1.5px solid var(--line); }
+
+/* Sections */
+section.block { padding-block: 44px; }
+.text { max-width: var(--text); }
+h2 { font-family: var(--display); font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; margin: 0 0 6px; }
+.text p { color: var(--muted); margin: 0 0 14px; }
+.text p.lead { color: var(--fg); }
+.divider { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+.chapter { padding-block: 72px 8px; }
+.chapter .num { font-family: var(--mono); color: var(--primary); font-size: 0.85rem; letter-spacing: 0.08em; }
+.chapter h2 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.035em; margin-top: 6px; }
+
+/* Panels / figures */
+.panel { border-radius: 24px; padding: clamp(20px, 4vw, 48px); margin-top: 28px; }
+.panel.sand { background: var(--surface); border: 1px solid var(--line); }
+.panel.teal { background: var(--panel-teal); }
+.panel.sun { background: var(--panel-sun); }
+figure { margin: 0; }
+figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 12px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.stat { background: var(--bg); border-radius: 18px; padding: 22px; border: 1px solid var(--line); min-width: 0; }
+.stat b { display: block; font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; letter-spacing: -0.04em; color: var(--primary); font-variant-numeric: tabular-nums; }
+.stat span { display: block; margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
+.split { display: flex; height: 14px; border-radius: 999px; overflow: hidden; margin-top: 22px; }
+.split i:first-child { width: 20%; background: var(--secondary); }
+.split i:last-child { width: 80%; background: var(--primary); }
+.split-legend { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 0.92rem; color: var(--muted); }
+.split-legend b { color: var(--fg); }
+@media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+/* Platform diagram */
+.flow3 { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 12px; }
+.node { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 18px; text-align: center; min-width: 0; }
+.node.hub { background: var(--secondary); color: var(--white); border-color: transparent; }
+.node.hub small { color: rgba(255,255,255,.8); }
+.node strong { display: block; font-family: var(--display); font-size: 1.15rem; }
+.node small { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.4; margin-top: 4px; }
+.arrow { color: var(--muted); font-size: 1.4rem; }
+@media (max-width: 640px) { .flow3 { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); justify-self: center; } }
+
+/* Personas */
+.personas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 720px) { .personas { grid-template-columns: 1fr; } }
+.persona { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 26px; display: grid; gap: 14px; min-width: 0; }
+.persona-head { display: flex; align-items: center; gap: 14px; }
+.avatar { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--white); flex: none; }
+.persona-head small { display: block; color: var(--muted); font-size: 0.88rem; }
+.persona p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+.persona blockquote { margin: 0; font-family: var(--display); font-size: 1.15rem; line-height: 1.35; padding-left: 14px; border-left: 3px solid var(--accent); }
+.scale { display: grid; gap: 8px; font-size: 0.85rem; }
+.scale div { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 10px; }
+.track { position: relative; height: 6px; border-radius: 999px; background: var(--line); }
+.track i { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); transform: translate(-50%, -50%); }
+.track-ends { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding-left: 120px; }
+
+/* Journey */
+.journey { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: s; }
+.journey li { background: var(--bg); border-radius: 16px; padding: 16px; border: 1px solid var(--line); font-size: 0.93rem; min-width: 0; }
+.journey li::before { counter-increment: s; content: "Step " counter(s); display: block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin-bottom: 6px; }
+.journey.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .journey, .journey.three { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .journey, .journey.three { grid-template-columns: 1fr; } }
+.why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+.why p { margin: 0; font-size: 0.93rem; color: var(--muted); }
+@media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
+
+/* Photos */
+.photos { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; margin-top: 28px; }
+.photos img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; }
+@media (max-width: 640px) { .photos { grid-template-columns: 1fr; } }
+
+/* Big statement band (ref style) */
+.statement { background: var(--panel-sun); border-radius: 28px; padding: clamp(40px, 8vw, 96px) clamp(20px, 6vw, 64px); text-align: center; position: relative; overflow: hidden; margin-top: 28px; }
+.statement p { font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 4.4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.025em; margin: 0 auto; max-width: 20ch; text-wrap: balance; color: var(--fg); }
+.statement cite { display: block; margin-top: 18px; font-style: normal; font-family: var(--mono); font-size: 0.8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--label); }
+.blob { position: absolute; border-radius: 50%; }
+.blob.b1 { width: 120px; height: 120px; background: var(--primary); left: -30px; top: -30px; }
+.blob.b2 { width: 70px; height: 70px; background: var(--secondary); right: 8%; bottom: -20px; }
+.blob.b3 { width: 22px; height: 22px; background: var(--primary); right: 20%; top: 18%; }
+@media (max-width: 640px) { .statement { padding-top: 112px; padding-bottom: 96px; } .blob.b1 { width: 96px; height: 96px; left: -32px; top: -32px; } .blob.b3 { top: 40px; } }
+
+/* Needs */
+.needs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 760px) { .needs { grid-template-columns: 1fr; } }
+.need { border-top: 3px solid var(--primary); padding-top: 16px; min-width: 0; }
+.need:nth-child(2) { border-color: var(--secondary); }
+.need:nth-child(3) { border-color: var(--accent); }
+.need p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* Screens row */
+.screens { display: flex; flex-wrap: wrap; gap: clamp(14px, 3vw, 32px); justify-content: center; align-items: flex-start; }
+.screens figure { width: clamp(150px, 22vw, 220px); text-align: center; }
+.screens .phone { width: 100%; transform: none; box-shadow: 0 20px 40px -24px rgba(0,0,0,.4); }
+.screens .phone img { aspect-ratio: auto; object-fit: contain; }
+.wide-img { border-radius: 16px; background: var(--white); border: 1px solid var(--line); width: 100%; }
+
+/* Drivers + metrics */
+.drivers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.drivers.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) { .drivers, .drivers.two { grid-template-columns: 1fr; } }
+.driver { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.driver .label { color: var(--primary); }
+.driver p { margin: 0; font-size: 0.95rem; }
+.metrics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.metric { display: inline-flex; align-items: baseline; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--secondary); color: var(--white); font-size: 0.9rem; }
+.metric b { font-family: var(--display); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Stock allocation conversation */
+.convo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .convo { grid-template-columns: 1fr; } }
+.bubble { background: var(--bg); border-radius: 20px 20px 20px 6px; padding: 20px; border: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.bubble .big { font-family: var(--display); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; color: var(--primary); line-height: 1.1; }
+.bubble .btn { justify-self: start; padding: 8px 16px; border-radius: 999px; background: var(--primary); color: var(--white); font-weight: 700; font-size: 0.88rem; }
+.bubble .input { border: 1.5px solid var(--line); border-radius: 12px; padding: 8px 12px; color: var(--muted); font-size: 0.88rem; }
+.bubble .step { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); }
+
+/* Ideas table */
+.ideas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .ideas { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .ideas { grid-template-columns: 1fr; } }
+.idea { background: var(--bg); border-radius: 18px; padding: 18px; min-width: 0; }
+.idea h3 { font-size: 1.05rem; }
+.idea p { margin: 0; font-style: italic; color: var(--muted); font-size: 0.93rem; }
+
+/* Next */
+.next { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-block: 64px; }
+.next h2 { margin: 0; }
+.pill { display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; font-weight: 700; text-decoration: none; background: var(--primary); color: var(--white); }
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Photo hero variant */
+.hero.photo .hero-inner { min-height: clamp(380px, 48vw, 600px); }
+.hero.photo .hero-word { font-size: clamp(3.4rem, 11vw, 9.5rem); }
+.collage { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); width: min(48%, 560px); aspect-ratio: 5 / 4; z-index: 2; }
+.collage img { position: absolute; background: #fff; padding: 8px; border-radius: 6px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); object-fit: cover; }
+.collage img:nth-child(1) { width: 72%; aspect-ratio: 4 / 3; left: 0; top: 4%; transform: rotate(-5deg); }
+.collage img:nth-child(2) { width: 52%; aspect-ratio: 1; right: 0; bottom: 0; transform: rotate(6deg); }
+@media (max-width: 860px) { .collage { position: relative; right: auto; top: auto; transform: none; width: 100%; max-width: 520px; justify-self: center; } }
+.hero.sun { --hero-bg: #F2A541; --hero-fg: #22201E; }
+.hero.sun .hero-word span:last-child { color: var(--terracotta); }
+.hero.sand { --hero-bg: #FCEFD9; --hero-fg: #22201E; }
+.hero.sand .hero-word span:last-child { color: var(--terracotta); }
+.hero.sand .collage img { object-fit: contain; }
+.hero.teal { --hero-bg: #0F5257; }
+.hero.ink { --hero-bg: #22201E; }
+.hero.terra { --hero-bg: #B4492A; }
+.hero.zmb .collage img:nth-child(1) { object-fit: contain; background: #fff; }
+.hero.fit .collage img { object-fit: contain; }
+.hero.fit .collage img:only-child { width: 64%; aspect-ratio: 1; left: 18%; top: 0; }
+.hero.sunc { --hero-bg: #F2A541; --hero-fg: #22201E; }
+.hero.sunc .hero-word span:last-child { color: var(--terracotta); }
+.hero.sunc .collage img { object-fit: contain; }
+.hero.terra .collage img { object-fit: contain; }
+
+/* Findings grid */
+.findings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+@media (max-width: 860px) { .findings { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .findings { grid-template-columns: 1fr; } }
+.finding { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.finding::before { content: "\201C"; display: block; font-family: var(--display); font-weight: 700; font-size: 2.2rem; line-height: .7; color: var(--primary); margin-bottom: 6px; }
+.finding p { margin: 0; font-size: 0.97rem; }
+.bullets { margin: 0; padding-left: 1.1em; color: var(--muted); }
+.bullets li { margin-bottom: 6px; }
+.bullets li::marker { color: var(--primary); }
+.photo-full { width: 100%; border-radius: 20px; aspect-ratio: 16 / 9; object-fit: cover; }
+.slide-img { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #fff; }
+.roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 720px) { .roles { grid-template-columns: 1fr; } }
+.role-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; min-width: 0; display: grid; gap: 10px; align-content: start; }
+.role-card .label { color: var(--primary); }
+.role-card p, .role-card li { font-size: 0.95rem; }
+.role-card p { margin: 0; color: var(--muted); }
+.journey.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 860px) { .journey.five { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .journey.five { grid-template-columns: 1fr; } }
+.persona-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.persona-block.flip > figure { order: -1; }
+.persona-block .text { display: grid; gap: 14px; }
+.persona-block .text h2, .persona-block .text p { margin: 0; }
+.persona-block figure { margin: 0; min-width: 0; }
+.pquote { margin: 0; font-family: var(--display); font-size: 1.25rem; line-height: 1.4; color: var(--ink, inherit); border-left: 3px solid var(--primary); padding-left: 16px; }
+@media (max-width: 860px) { .persona-block { grid-template-columns: 1fr; } .persona-block.flip > figure { order: 0; } }
+.persona-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; align-items: start; }
+.persona-grid figure { margin: 0; min-width: 0; }
+.persona-grid img { display: block; }
+@media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; max-width: 560px; } }
+@media (max-width: 760px) { .two-col.three { grid-template-columns: 1fr !important; } }
+.sub { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin: 6px 0 0; }
+</style>
+</head>
+<body>
+
+<header class="wrap nav">
+  <a class="back" href="index.html"><span aria-hidden="true">←</span> Sharon Wangari</a>
+  <nav class="nav-links" aria-label="Case study sections">
+    <a href="#research">Research</a>
+    <a href="#insights">Insights</a>
+    <a href="#solutions">Solutions</a>
+  </nav>
+</header>
+
+<div class="hero photo terra">
+  <div class="wrap hero-inner">
+    <p class="hero-word" aria-hidden="true"><span>Built on</span><span>trust.</span></p>
+    <div class="collage" aria-hidden="true"><img src="img/nmb-prototypes.jpg" alt=""><img src="img/nmb-season.jpg" alt=""></div>
+  </div>
+</div>
+
+<main>
+
+  <section class="wrap intro">
+    <h1>Designing a digital finance services roadmap for small agribusinesses</h1>
+    <div class="meta"><div><p class="label">Client</p><p>NMB Bank<br>Tanzania</p></div><div><p class="label">Partners</p><p>Mercy Corps AgriFin Accelerate<br>Dalberg Design</p></div><div><p class="label">Role</p><p>Design research<br>Experience design</p></div><div><p class="label">Methods</p><p>Contextual interviews<br>Participatory design<br>Prototype testing<br>Synthesis sessions</p></div></div>
+    <div class="tags"><span class="tag">Fintech</span><span class="tag">Agriculture</span><span class="tag">Banking</span></div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">The goal</p>
+      <h2>Help NMB grow digital customer acquisition and keep farmers engaged all year.</h2>
+      <p>Tanzania’s Cashew Nut Act requires every cashew farmer to be paid through a bank account. NMB responded with Chap Chap, a quick, low-KYC account for farmers, but beyond that one payment a year it offered farmers little reason to stay. We set out to deepen engagement with NMB’s products, and to spot the risks of expanding into other value chains.</p>
+      <p>Over two research sprints, we built on insights from the first to develop and test new product, messaging and channel prototypes, and wrote them up as a playbook of recommendations for NMB.</p>
+      <p class="label" style="margin-top: 22px">My role</p>
+      <p>I used design research and experience design skills: building prototypes for field testing, running in-depth interviews and synthesis sessions, and designing and documenting the recommendations.</p>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="research">
+    <p class="num">01 · Research</p>
+    <h2>Two sprints in Southern Tanzania’s cashew regions</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">What we did</p>
+      <h2>We spoke to farmers and stakeholders across the cashew value chain</h2>
+      <p>We wanted to understand their context, processes and challenges, so our recommendations would improve both their financial processes and their wider farming needs. We spent two to three hours with each person, combining observation with interviews, and used participatory design to map their year, their income and spending, and how they prioritise their needs.</p>
+    </div>
+    <div class="panel teal">
+      <div class="stats">
+        <div class="stat"><b>64</b><span>farmers across Mtwara (Tandahimba, Masasi, Newala) and Lindi (Lindi, Nachingwea)</span></div>
+        <div class="stat"><b>12</b><span>cooperatives (AMCOS) and farmer groups</span></div>
+        <div class="stat"><b>20</b><span>NMB agents, wakalas and branch employees</span></div>
+      </div>
+    </div>
+    <div class="photos">
+      <figure><img src="img/ag-group.jpg" alt="A participatory design session with farmers seated in a room"></figure>
+      <figure><img src="img/ag-interview.jpg" alt="A researcher interviewing a man at a market stall"></figure>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Stakeholders we spoke to</p>
+      <h2>Three groups shape how farmers use the bank</h2>
+    </div>
+    <div class="needs">
+      <div class="need"><h3>The farmer</h3><p>Incomes are diverse, but everyone faces the same cash-strapped months when inputs are the main need. Low financial literacy and low income make budgeting and saving hard.</p></div>
+      <div class="need"><h3>The wakala</h3><p>Agents who handle cash deposits and withdrawals for NMB customers, usually as a side business. Farmers still prefer visiting a branch.</p></div>
+      <div class="need"><h3>The local branch</h3><p>The main channel to farmers and the main support for wakalas and agents. Each branch has its own priorities and staff incentives.</p></div>
+    </div>
+    <figure class="panel sun"><img class="slide-img" src="img/ag-year.jpg" alt="Circular year map of farmer and stakeholder activities across the seasons"><figcaption>We mapped farmers' and stakeholders' activities across the year to find their needs and challenges at key moments.</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="two-col">
+      <div class="text">
+        <p class="label">Sprint II prototypes</p>
+        <h2>Rough prototypes, taken back to the field</h2>
+        <p>To test our first recommendations on channels, messaging and products, we made low-fidelity prototypes in Swahili and tested them with farmers, cooperative leaders, wakalas and branch staff.</p>
+        <ul class="bullets"><li>USSD wireframes</li><li>Messaging channels and language</li><li>A product card sort</li><li>System walkthroughs</li><li>Daily and seasonal maps</li></ul>
+      </div>
+      <figure><img class="slide-img" src="img/ag-prototypes.jpg" alt="Prototype materials: a seasonal map, icon cards, Swahili product cards, a paper USSD phone, and handwritten SMS messages"></figure>
+    </div>
+  </section>
+
+  <section class="wrap block" id="insights">
+    <div class="text">
+      <p class="label">What we learned</p>
+      <h2>Trust and timing matter as much as the products</h2>
+    </div>
+    <div class="panel teal">
+      <div class="findings"><div class="finding"><p>Low literacy, including agricultural literacy, leads to poor use of the products on offer.</p></div><div class="finding"><p>Farmers most need input loans of around TZS 500,000 in May and June, but today’s loans are too big and too hard to apply for.</p></div><div class="finding"><p>Many don’t understand the current products.</p></div><div class="finding"><p>The customer experience is inconsistent.</p></div><div class="finding"><p>Incentives and KPIs need to be seasonal and not conflict with each other.</p></div><div class="finding"><p>A lack of float, network and support from NMB hurts efficiency and service.</p></div><div class="finding"><p>Unclear communication leads to misconceptions and distrust of products.</p></div></div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="solutions">
+    <p class="num">02 · Recommendations</p>
+    <h2>A multi-level farmer outreach strategy</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">System overview</p>
+      <h2>Clear roles and incentives for everyone between the bank and the farmer</h2>
+      <p>The strategy improved processes inside the bank and mapped how the farmer interacts with the branch, wakalas and community.</p>
+    </div>
+    <figure class="panel sand"><img class="slide-img" src="img/ag-system.jpg" alt="System diagram connecting the farmer, wakala and branch"></figure>
+    <div class="roles">
+      <div class="role-card"><p class="label">The loan officer</p><p>With brand ambassadors collecting verification data, loan officers have more time to process and verify loans.</p><p class="sub">Responsibilities</p><ul class="bullets"><li>Verify information for loans over 1M before sending to HQ</li><li>For loans under 1M, check eligibility from past income, up to 25% of last year's income</li><li>Send the list to agents for data collection</li></ul><p class="sub">Incentives</p><ul class="bullets"><li>Commission on loans verified, processed and repaid</li></ul></div>
+      <div class="role-card"><p class="label">The community champion</p><p>A trusted, respected community member with leadership skills, trained by brand ambassadors.</p><p class="sub">Responsibilities</p><ul class="bullets"><li>Offer support, training and product information</li><li>Add to the ambassadors' financial literacy training day to day</li></ul><p class="sub">Incentives</p><ul class="bullets"><li>A twice-yearly prize for the community with the strongest deposit retention</li></ul></div>
+      <div class="role-card"><p class="label">The wakala</p><p class="sub">Responsibilities</p><ul class="bullets"><li>Serve customers with deposits, withdrawals and enquiries</li><li>Open personal accounts and share basic product information</li><li>Potentially upgrade accounts in future</li></ul><p class="sub">Incentives</p><ul class="bullets"><li>Year-round: opening personal accounts</li></ul></div>
+      <div class="role-card"><p class="label">The farmer</p><p>More and stronger touchpoints build awareness and regular use, backed by digital and face-to-face education.</p><p class="sub">Benefits</p><ul class="bullets"><li>Seasonal financial literacy training from brand ambassadors</li><li>Year-round basic training from the community champion</li><li>Digital support on finance and farming</li></ul><p class="sub">Value</p><ul class="bullets"><li>Better budgeting and planning for the farm and household</li><li>A clearer grasp of banking products and why saving matters</li></ul></div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Highlights</p>
+      <h2>Recommendations across the farmer, the wakala and the branch</h2>
+    </div>
+    <div class="roles">
+      <div class="role-card"><p class="label">Small, input-only loans</p><p>Inputs go straight from a supplier, capped at a third of last season’s cashew income and repaid automatically from the next cashew payment.</p></div>
+      <div class="role-card"><p class="label">Seasonal SMS education</p><p>Opt-in finance and farming tips timed to the farming calendar, backed by face-to-face sessions from brand ambassadors.</p></div>
+      <div class="role-card"><p class="label">A stronger wakala network</p><p>A local wakala map to build trust, instant float credit for remote wakalas, and letting them open Chap Chap accounts.</p></div>
+      <div class="role-card"><p class="label">One simple account</p><p>Keep Chap Chap for sign-up, then move farmers into a single Kilimo account with a card, loans and a fixed savings wallet.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="two-col">
+      <div class="text">
+        <p class="label">Simplify the products</p>
+        <h2>Chap Chap to sign up, Kilimo to stay</h2>
+        <p>Farmers and staff alike were confused by four overlapping accounts. We recommended keeping Chap Chap as the easy way in, then moving farmers into a single Kilimo account: a current account with a card, access to loans, and a savings wallet that locks money away for three or six months.</p>
+        <p>Branch targets would become seasonal, with commission for opening any account and for upgrades, so staff are rewarded for the right account rather than any account.</p>
+      </div>
+      <figure><img class="slide-img" src="img/nmb-kilimo.jpg" alt="Diagram of the current model with four accounts under Chap Chap, and the proposed model with one Kilimo account offering current, loans and savings"></figure>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter">
+    <p class="num">03 · Roadmap</p>
+    <h2>From quick wins to bigger bets</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p>We started with physical touchpoints, because trust comes first, and planned for digital ones to grow as farmers used digital financial services more.</p>
+    </div>
+    <div class="two-col three" style="grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; margin-top: 24px">
+      <div class="driver"><p class="label">Quick wins</p><p class="sub">Use existing infrastructure</p><ul class="bullets" style="margin-top: 8px"><li>Wakala map and awareness</li><li>Wakala engagement guidelines</li><li>SMS financial literacy and farming tips</li><li>Clearer, more transparent communication</li></ul></div>
+      <div class="driver"><p class="label">Medium</p><p class="sub">Change current infrastructure</p><ul class="bullets" style="margin-top: 8px"><li>Wakalas open Chap Chap accounts</li><li>Standardised staff training</li><li>SME loans for wakalas</li><li>Grow the wakala network close to farmers</li></ul></div>
+      <div class="driver"><p class="label">Big projects</p><p class="sub">Deeper engagement and resources</p><ul class="bullets" style="margin-top: 8px"><li>Face-to-face financial literacy education</li><li>Small, direct input loans</li><li>Simplify Chap Chap into Kilimo</li><li>Seasonal, non-conflicting KPIs</li></ul></div>
+    </div>
+  </section>
+
+
+  <div class="wrap"><hr class="divider"></div>
+  <section class="wrap next">
+    <div>
+      <p class="label">Next project</p>
+      <h2>Redesigning Watchtower’s navigation</h2>
+    </div>
+    <a class="pill" href="watchtower-navigation.html">Read next case study</a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Sharon Wangari</span><span>Product design &amp; UX research</span></div>
+</footer>
+</body>
+</html>

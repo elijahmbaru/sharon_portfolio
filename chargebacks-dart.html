@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DART Chargebacks Case Study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="How Sharon Wangari mapped Paystack’s disputes journey and designed DART, one tool to resolve chargebacks in bulk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: full-bleed brand hero, then a left-aligned reading column with mono section labels; figures break wider than the text. */
+:root {
+  --terracotta: #B4492A; --teal: #0F5257; --sunrise: #F2A541;
+  --white: #FFFFFF; --offwhite: #FAFAF8; --ink: #22201E;
+
+  --bg: var(--white); --surface: var(--offwhite); --fg: var(--ink);
+  --muted: #66625D; --line: #E7E5E0;
+  --primary: var(--terracotta); --secondary: var(--teal); --accent: var(--sunrise);
+  --label: var(--teal);
+  --hero-bg: var(--terracotta); --hero-fg: var(--white);
+  --panel-teal: #E3EEEE; --panel-sun: #FCEFD9;
+  --frame: var(--ink);
+
+  --display: "Bricolage Grotesque", "Plus Jakarta Sans", system-ui, sans-serif;
+  --body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --max: 1120px; --text: 760px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
+    --primary: #D0603E; --secondary: #4FA3A8; --label: #6CC0C4;
+    --hero-bg: #9E3F24; --hero-fg: #FFFFFF; --panel-teal: #1C2B2C; --panel-sun: #2E2619; --frame: #000000;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
+  --primary: #D0603E; --secondary: #4FA3A8; --label: #6CC0C4;
+  --hero-bg: #9E3F24; --hero-fg: #FFFFFF; --panel-teal: #1C2B2C; --panel-sun: #2E2619; --frame: #000000;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+@media (max-width: 480px) { .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); } }
+
+/* Nav */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
+.back { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem; padding: 8px 16px 8px 12px; border-radius: 999px; border: 1.5px solid var(--line); }
+.back:hover { background: var(--surface); }
+.nav-links { display: flex; gap: 22px; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-links a { text-decoration: none; color: var(--muted); }
+.nav-links a:hover { color: var(--fg); }
+@media (max-width: 560px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); overflow: hidden; position: relative; }
+.hero-inner { position: relative; min-height: clamp(380px, 52vw, 620px); display: grid; align-items: center; }
+.hero-word { font-family: var(--display); font-weight: 700; letter-spacing: -0.045em; line-height: 0.85; font-size: clamp(4rem, 14vw, 12rem); margin: 0; position: relative; z-index: 1; transform: rotate(-6deg); transform-origin: left center; padding-block: 40px; }
+.hero-word span { display: block; }
+.hero-word span:last-child { padding-left: 0.6em; color: var(--sunrise); }
+.phones { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: flex; gap: 18px; z-index: 2; }
+.phone { width: clamp(120px, 15vw, 190px); border-radius: 26px; background: var(--frame); padding: 7px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+.phone img { border-radius: 20px; width: 100%; aspect-ratio: 9 / 19; object-fit: cover; object-position: top; background: #fff; }
+.phone:nth-child(1) { transform: rotate(-8deg) translateY(30px); }
+.phone:nth-child(2) { transform: rotate(4deg) translateY(-20px); }
+.phone:nth-child(3) { transform: rotate(12deg) translateY(40px); }
+.phone.wide { position: absolute; right: -8px; bottom: -28%; width: clamp(230px, 27vw, 350px); border-radius: 18px; padding: 6px; transform: rotate(7deg); }
+.phone.wide img { aspect-ratio: auto; object-fit: contain; border-radius: 13px; }
+.chip { position: absolute; z-index: 3; font-weight: 700; font-size: 0.92rem; padding: 10px 18px; border-radius: 999px; background: var(--white); color: var(--ink); box-shadow: 0 12px 30px -10px rgba(0,0,0,.35); white-space: nowrap; }
+.chip.c1 { left: 46%; bottom: 14%; transform: rotate(-5deg); }
+.chip.c1::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #25D366; margin-right: 8px; vertical-align: 1px; }
+.chip.c2 { left: 38%; top: 12%; transform: rotate(6deg); background: var(--sunrise); }
+@media (max-width: 860px) {
+  .hero-inner { min-height: 0; padding-block: 36px 52px; gap: 28px; }
+  .phones { position: static; transform: none; justify-content: center; }
+  .phone { width: 28vw; max-width: 160px; }
+  .phone.wide { position: static; width: 46vw; max-width: 260px; align-self: center; transform: rotate(7deg); margin-left: -6vw; }
+  .hero-word { padding-block: 8px 0; }
+  .chip.c2 { display: none; }
+  .chip.c1 { left: auto; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 22px; }
+}
+
+/* Intro + meta */
+.intro { padding-block: 56px 16px; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 36px; max-width: 22ch; text-wrap: balance; }
+.meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-bottom: 8px; }
+@media (max-width: 720px) { .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.label { font-family: var(--mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin: 0 0 6px; }
+.meta p:not(.label) { margin: 0; color: var(--muted); line-height: 1.55; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.tag { font-size: 0.85rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; background: var(--surface); border: 1.5px solid var(--line); }
+
+/* Sections */
+section.block { padding-block: 44px; }
+.text { max-width: var(--text); }
+h2 { font-family: var(--display); font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; margin: 0 0 6px; }
+.text p { color: var(--muted); margin: 0 0 14px; }
+.text p.lead { color: var(--fg); }
+.divider { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+.chapter { padding-block: 72px 8px; }
+.chapter .num { font-family: var(--mono); color: var(--primary); font-size: 0.85rem; letter-spacing: 0.08em; }
+.chapter h2 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.035em; margin-top: 6px; }
+
+/* Panels / figures */
+.panel { border-radius: 24px; padding: clamp(20px, 4vw, 48px); margin-top: 28px; }
+.panel.sand { background: var(--surface); border: 1px solid var(--line); }
+.panel.teal { background: var(--panel-teal); }
+.panel.sun { background: var(--panel-sun); }
+figure { margin: 0; }
+figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 12px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.stat { background: var(--bg); border-radius: 18px; padding: 22px; border: 1px solid var(--line); min-width: 0; }
+.stat b { display: block; font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; letter-spacing: -0.04em; color: var(--primary); font-variant-numeric: tabular-nums; }
+.stat span { display: block; margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
+.split { display: flex; height: 14px; border-radius: 999px; overflow: hidden; margin-top: 22px; }
+.split i:first-child { width: 20%; background: var(--secondary); }
+.split i:last-child { width: 80%; background: var(--primary); }
+.split-legend { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 0.92rem; color: var(--muted); }
+.split-legend b { color: var(--fg); }
+@media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+/* Platform diagram */
+.flow3 { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 12px; }
+.node { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 18px; text-align: center; min-width: 0; }
+.node.hub { background: var(--secondary); color: var(--white); border-color: transparent; }
+.node.hub small { color: rgba(255,255,255,.8); }
+.node strong { display: block; font-family: var(--display); font-size: 1.15rem; }
+.node small { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.4; margin-top: 4px; }
+.arrow { color: var(--muted); font-size: 1.4rem; }
+@media (max-width: 640px) { .flow3 { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); justify-self: center; } }
+
+/* Personas */
+.personas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 720px) { .personas { grid-template-columns: 1fr; } }
+.persona { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 26px; display: grid; gap: 14px; min-width: 0; }
+.persona-head { display: flex; align-items: center; gap: 14px; }
+.avatar { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--white); flex: none; }
+.persona-head small { display: block; color: var(--muted); font-size: 0.88rem; }
+.persona p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+.persona blockquote { margin: 0; font-family: var(--display); font-size: 1.15rem; line-height: 1.35; padding-left: 14px; border-left: 3px solid var(--accent); }
+.scale { display: grid; gap: 8px; font-size: 0.85rem; }
+.scale div { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 10px; }
+.track { position: relative; height: 6px; border-radius: 999px; background: var(--line); }
+.track i { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); transform: translate(-50%, -50%); }
+.track-ends { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding-left: 120px; }
+
+/* Journey */
+.journey { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: s; }
+.journey li { background: var(--bg); border-radius: 16px; padding: 16px; border: 1px solid var(--line); font-size: 0.93rem; min-width: 0; }
+.journey li::before { counter-increment: s; content: "Step " counter(s); display: block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin-bottom: 6px; }
+.journey.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .journey, .journey.three { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .journey, .journey.three { grid-template-columns: 1fr; } }
+.why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+.why p { margin: 0; font-size: 0.93rem; color: var(--muted); }
+@media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
+
+/* Photos */
+.photos { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; margin-top: 28px; }
+.photos img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; }
+@media (max-width: 640px) { .photos { grid-template-columns: 1fr; } }
+
+/* Big statement band (ref style) */
+.statement { background: var(--panel-sun); border-radius: 28px; padding: clamp(40px, 8vw, 96px) clamp(20px, 6vw, 64px); text-align: center; position: relative; overflow: hidden; margin-top: 28px; }
+.statement p { font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 4.4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.025em; margin: 0 auto; max-width: 20ch; text-wrap: balance; color: var(--fg); }
+.statement cite { display: block; margin-top: 18px; font-style: normal; font-family: var(--mono); font-size: 0.8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--label); }
+.blob { position: absolute; border-radius: 50%; }
+.blob.b1 { width: 120px; height: 120px; background: var(--primary); left: -30px; top: -30px; }
+.blob.b2 { width: 70px; height: 70px; background: var(--secondary); right: 8%; bottom: -20px; }
+.blob.b3 { width: 22px; height: 22px; background: var(--primary); right: 20%; top: 18%; }
+@media (max-width: 640px) { .statement { padding-top: 112px; padding-bottom: 96px; } .blob.b1 { width: 96px; height: 96px; left: -32px; top: -32px; } .blob.b3 { top: 40px; } }
+
+/* Needs */
+.needs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 760px) { .needs { grid-template-columns: 1fr; } }
+.need { border-top: 3px solid var(--primary); padding-top: 16px; min-width: 0; }
+.need:nth-child(2) { border-color: var(--secondary); }
+.need:nth-child(3) { border-color: var(--accent); }
+.need p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* Screens row */
+.screens { display: flex; flex-wrap: wrap; gap: clamp(14px, 3vw, 32px); justify-content: center; align-items: flex-start; }
+.screens figure { width: clamp(150px, 22vw, 220px); text-align: center; }
+.screens .phone { width: 100%; transform: none; box-shadow: 0 20px 40px -24px rgba(0,0,0,.4); }
+.screens .phone img { aspect-ratio: auto; object-fit: contain; }
+.wide-img { border-radius: 16px; background: var(--white); border: 1px solid var(--line); width: 100%; }
+
+/* Drivers + metrics */
+.drivers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.drivers.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) { .drivers, .drivers.two { grid-template-columns: 1fr; } }
+.driver { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.driver .label { color: var(--primary); }
+.driver p { margin: 0; font-size: 0.95rem; }
+.metrics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.metric { display: inline-flex; align-items: baseline; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--secondary); color: var(--white); font-size: 0.9rem; }
+.metric b { font-family: var(--display); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Stock allocation conversation */
+.convo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .convo { grid-template-columns: 1fr; } }
+.bubble { background: var(--bg); border-radius: 20px 20px 20px 6px; padding: 20px; border: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.bubble .big { font-family: var(--display); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; color: var(--primary); line-height: 1.1; }
+.bubble .btn { justify-self: start; padding: 8px 16px; border-radius: 999px; background: var(--primary); color: var(--white); font-weight: 700; font-size: 0.88rem; }
+.bubble .input { border: 1.5px solid var(--line); border-radius: 12px; padding: 8px 12px; color: var(--muted); font-size: 0.88rem; }
+.bubble .step { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); }
+
+/* Ideas table */
+.ideas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .ideas { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .ideas { grid-template-columns: 1fr; } }
+.idea { background: var(--bg); border-radius: 18px; padding: 18px; min-width: 0; }
+.idea h3 { font-size: 1.05rem; }
+.idea p { margin: 0; font-style: italic; color: var(--muted); font-size: 0.93rem; }
+
+/* Next */
+.next { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-block: 64px; }
+.next h2 { margin: 0; }
+.pill { display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; font-weight: 700; text-decoration: none; background: var(--primary); color: var(--white); }
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Photo hero variant */
+.hero.photo .hero-inner { min-height: clamp(380px, 48vw, 600px); }
+.hero.photo .hero-word { font-size: clamp(3.4rem, 11vw, 9.5rem); }
+.collage { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); width: min(48%, 560px); aspect-ratio: 5 / 4; z-index: 2; }
+.collage img { position: absolute; background: #fff; padding: 8px; border-radius: 6px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); object-fit: cover; }
+.collage img:nth-child(1) { width: 72%; aspect-ratio: 4 / 3; left: 0; top: 4%; transform: rotate(-5deg); }
+.collage img:nth-child(2) { width: 52%; aspect-ratio: 1; right: 0; bottom: 0; transform: rotate(6deg); }
+@media (max-width: 860px) { .collage { position: relative; right: auto; top: auto; transform: none; width: 100%; max-width: 520px; justify-self: center; } }
+.hero.sun { --hero-bg: #F2A541; --hero-fg: #22201E; }
+.hero.sun .hero-word span:last-child { color: var(--terracotta); }
+.hero.sand { --hero-bg: #FCEFD9; --hero-fg: #22201E; }
+.hero.sand .hero-word span:last-child { color: var(--terracotta); }
+.hero.sand .collage img { object-fit: contain; }
+.hero.teal { --hero-bg: #0F5257; }
+.hero.ink { --hero-bg: #22201E; }
+.hero.terra { --hero-bg: #B4492A; }
+.hero.zmb .collage img:nth-child(1) { object-fit: contain; background: #fff; }
+.hero.fit .collage img { object-fit: contain; }
+.hero.fit .collage img:only-child { width: 64%; aspect-ratio: 1; left: 18%; top: 0; }
+.hero.sunc { --hero-bg: #F2A541; --hero-fg: #22201E; }
+.hero.sunc .hero-word span:last-child { color: var(--terracotta); }
+.hero.sunc .collage img { object-fit: contain; }
+.hero.terra .collage img { object-fit: contain; }
+
+/* Findings grid */
+.findings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+@media (max-width: 860px) { .findings { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .findings { grid-template-columns: 1fr; } }
+.finding { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.finding::before { content: "\201C"; display: block; font-family: var(--display); font-weight: 700; font-size: 2.2rem; line-height: .7; color: var(--primary); margin-bottom: 6px; }
+.finding p { margin: 0; font-size: 0.97rem; }
+.bullets { margin: 0; padding-left: 1.1em; color: var(--muted); }
+.bullets li { margin-bottom: 6px; }
+.bullets li::marker { color: var(--primary); }
+.photo-full { width: 100%; border-radius: 20px; aspect-ratio: 16 / 9; object-fit: cover; }
+.slide-img { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #fff; }
+.roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 720px) { .roles { grid-template-columns: 1fr; } }
+.role-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; min-width: 0; display: grid; gap: 10px; align-content: start; }
+.role-card .label { color: var(--primary); }
+.role-card p, .role-card li { font-size: 0.95rem; }
+.role-card p { margin: 0; color: var(--muted); }
+.journey.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 860px) { .journey.five { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .journey.five { grid-template-columns: 1fr; } }
+.persona-block { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+.persona-block > figure { order: -1; margin: 0; min-width: 0; }
+.persona-block .text { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px 24px; align-items: stretch; max-width: none; }
+.persona-block .text .pquote { max-width: 60ch; }
+.persona-block .text > :not(.driver) { grid-column: 1 / -1; }
+.persona-block .text h2, .persona-block .text p { margin: 0; }
+.persona-block .text .driver { margin: 6px 0 0; }
+@media (max-width: 760px) { .persona-block .text { grid-template-columns: minmax(0, 1fr); } }
+.pquote { margin: 0; font-family: var(--display); font-size: 1.25rem; line-height: 1.4; color: var(--ink, inherit); border-left: 3px solid var(--primary); padding-left: 16px; }
+.persona-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; align-items: start; }
+.persona-grid figure { margin: 0; min-width: 0; }
+.persona-grid img { display: block; }
+@media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; max-width: 560px; } }
+@media (max-width: 760px) { .two-col.three { grid-template-columns: 1fr !important; } }
+.sub { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin: 6px 0 0; }
+.route-fig { margin: 28px 0 0; }
+.route-fig figcaption { margin-top: 10px; }
+.route-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 760px) { .route-scroll .slide-img, .route-scroll img { min-width: 1000px; } }
+.journey-fig { margin: 28px 0 0; }
+.journey-scroll { overflow-x: auto; border-radius: 20px; border: 1px solid var(--line); background: #F7FAFD; -webkit-overflow-scrolling: touch; }
+.journey-scroll img { height: 640px; width: auto !important; max-width: none !important; display: block; border-radius: 0; }
+.journey-fig figcaption a { color: inherit; font-weight: 600; }
+@media (max-width: 760px) { .journey-scroll img { height: 440px; } }
+</style>
+</head>
+<body>
+
+<header class="wrap nav">
+  <a class="back" href="index.html"><span aria-hidden="true">←</span> Sharon Wangari</a>
+  <nav class="nav-links" aria-label="Case study sections">
+    <a href="#research">Research</a>
+    <a href="#insights">Insights</a>
+    <a href="#solutions">Solutions</a>
+  </nav>
+</header>
+
+<div class="hero photo ink fit">
+  <div class="wrap hero-inner">
+    <p class="hero-word" aria-hidden="true"><span>Fewer</span><span>steps.</span></p>
+    <div class="collage" aria-hidden="true"><img src="img/cb-hero-respond.jpg" alt=""><img src="img/cb-hero-question.jpg" alt=""></div>
+  </div>
+</div>
+
+<main>
+
+  <section class="wrap intro">
+    <h1>Building DART: one tool to resolve chargebacks in bulk, without the risk of costly errors</h1>
+    <div class="meta"><div><p class="label">Company</p><p>Paystack<br>with the Disputes team</p></div><div><p class="label">Role</p><p>Product design lead<br>with a PM, engineers &amp; Operations</p></div><div><p class="label">Users</p><p>Disputes team<br>Banks &amp; card schemes</p></div><div><p class="label">Methods</p><p>Shadowing &amp; interviews<br>Journey mapping<br>Ideation workshop<br>Prototype &amp; test</p></div></div>
+    <div class="tags"><span class="tag">Fintech</span><span class="tag">Payments</span><span class="tag">Internal tools</span></div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">The goal</p>
+      <h2>Take the risk of financial loss out of handling chargebacks in bulk.</h2>
+      <p>When a customer disputes a card payment, their bank raises a chargeback and Paystack has a short window to respond with the merchant’s evidence. Banks send these in bulk files. Handling them meant hopping between a VPN, an old chargebacks tool, Zendesk, Google Sheets, Slack and Watchtower. As volumes grew, so did the chance of a human or tooling error, and every error could cost money.</p>
+    </div>
+    <div class="panel teal" style="margin-top: 28px">
+      <div class="stats">
+        <div class="stat"><b>9</b><span>manual steps just to log a bulk file of disputes</span></div>
+        <div class="stat"><b>14</b><span>steps to respond to regular chargebacks</span></div>
+        <div class="stat"><b>16</b><span>steps to respond to fraud chargebacks</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Where Paystack fits</p>
+      <h2>The part of the process Paystack can change</h2>
+      <p>A chargeback starts with the cardholder’s issuing bank, which raises a claim with the acquiring bank through tools like MCOM and VROL. The acquiring bank then raises it with Paystack, mostly over Excel files and email. That last hand-off is the part Paystack can improve without much friction, so that is where we focused.</p>
+    </div>
+    <figure class="panel sand"><img class="slide-img" src="img/cb-claims.jpg" alt="Diagram: the issuing bank raises a claim with the acquiring bank using MCOM, VROL and partner tools; the acquiring bank raises the claim with Paystack over Excel and email, which is the part Paystack can affect without much friction"></figure>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="research">
+    <p class="num">01 · Research</p>
+    <h2>Mapping the disputes journey, end to end</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Process</p>
+      <h2>Sitting with the team as they worked</h2>
+      <p>I spent time chatting with and shadowing the operations team as they logged and answered real bulk files, noting every tool, hand-off and workaround. We then mapped the full journey on one board, from the moment a bank or card scheme raises a dispute to the moment a response goes back.</p>
+    </div>
+    <figure class="panel sand"><img class="slide-img" src="img/cb-today.jpg" alt="Today’s process step by step. Logging bulk disputes takes eight steps across Zendesk, Google Sheets and Watchtower. Responding starts with eight shared steps in the VPN, chargeback tool and Watchtower, then splits: fraud chargebacks take seven more steps and other chargebacks six, across Sheets, Watchtower, Slack and Zendesk."><figcaption>Today’s process, with each step tagged by the tool it happens in.</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">The journey</p>
+      <h2>Four routes a chargeback can take</h2>
+      <p>Disputes move between Paystack, merchants, acquiring banks and issuing banks. We mapped each route step by step, with who is involved, the tools they use, and the challenges and open questions at each stage.</p>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="persona-block">
+      <div class="text">
+        <p class="label">Route 01 · Accepted</p>
+        <h2>Dispute accepted</h2>
+        <p class="sub">Disputes team · Issuing bank · Merchant</p>
+        <blockquote class="pquote">Keeping track of requests is tedious, and communication gets drowned in the inbox.</blockquote>
+        <div class="driver"><p class="label">How it works</p><ul class="bullets" style="margin-top: 8px"><li>The chargeback is accepted and logged in the chargeback tool</li><li>An Excel file of accepted and declined chargebacks is shared with the issuing bank</li><li>The issuing bank refunds the customer and debits Paystack</li><li>Paystack debits the merchant to recover the funds</li></ul></div>
+        <div class="driver"><p class="label">Challenges and open questions</p><ul class="bullets" style="margin-top: 8px"><li>Dedicated teams handle chargebacks end to end, usually more than one person</li><li>Can one person handle a batch, or should cases be graduated to others?</li><li>Requests are tracked over email, so they get lost</li></ul></div>
+      </div>
+      <figure><div class="route-scroll"><a href="img/cb-route-accepted.jpg" target="_blank" rel="noopener"><img class="slide-img" src="img/cb-route-accepted.jpg" alt="Journey map of an accepted dispute, with who is involved, the tools they use, and insights and challenges"></a></div><figcaption>Select to open the full map.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="persona-block">
+      <div class="text">
+        <p class="label">Route 02 · Declined</p>
+        <h2>Dispute declined</h2>
+        <p class="sub">Disputes team · Merchant · Issuing bank</p>
+        <blockquote class="pquote">The bank is typically looking for a reason the customer is right, so the evidence has to be compelling.</blockquote>
+        <div class="driver"><p class="label">How it works</p><ul class="bullets" style="margin-top: 8px"><li>Watchtower matches the chargeback and asks the merchant to respond</li><li>The merchant has 16 hours to decline the claim and share evidence</li><li>The team uploads the evidence and shares the response with the bank</li><li>If the evidence holds up, the bank declines the chargeback and tells the customer</li></ul></div>
+        <div class="driver"><p class="label">Challenges and open questions</p><ul class="bullets" style="margin-top: 8px"><li>Resolution time is hard to track, and keeping merchants accountable depends on email</li><li>How should merchant responses reach us, and through which channel?</li><li>Banks don’t nudge merchants; each has its own turnaround times</li><li>Standard evidence such as amount, date and proof of delivery is what wins</li></ul></div>
+      </div>
+      <figure><div class="route-scroll"><a href="img/cb-route-declined.jpg" target="_blank" rel="noopener"><img class="slide-img" src="img/cb-route-declined.jpg" alt="Journey map of a declined dispute, with who is involved, the tools they use, and insights and challenges"></a></div><figcaption>Select to open the full map.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="persona-block">
+      <div class="text">
+        <p class="label">Route 03 · Pre-arbitration</p>
+        <h2>Pre-arbitration</h2>
+        <p class="sub">Issuing bank · Paystack · Merchant</p>
+        <blockquote class="pquote">There’s no resolution timeline, so banks can come back months later with a pre-arbitration claim.</blockquote>
+        <div class="driver"><p class="label">How it works</p><ul class="bullets" style="margin-top: 8px"><li>The customer, bank or card scheme re-raises a declined chargeback</li><li>Paystack receives the pre-arbitration request</li><li>If the evidence isn’t compelling, Paystack accepts the claim and bears liability</li><li>The issuing bank debits Paystack, and Paystack recovers funds from the merchant</li></ul></div>
+        <div class="driver"><p class="label">Challenges and open questions</p><ul class="bullets" style="margin-top: 8px"><li>A claim’s history is spread across files and email threads</li><li>The bank’s decision isn’t shared with the merchant</li><li>Some bank evidence must be converted from PDF to JPG under 200KB by hand</li></ul></div>
+      </div>
+      <figure><div class="route-scroll"><a href="img/cb-route-prearb.jpg" target="_blank" rel="noopener"><img class="slide-img" src="img/cb-route-prearb.jpg" alt="Journey map of pre-arbitration, with who is involved, the tools they use, and insights and challenges"></a></div><figcaption>Select to open the full map.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="persona-block">
+      <div class="text">
+        <p class="label">Route 04 · Fraud</p>
+        <h2>Raising fraud claims</h2>
+        <p class="sub">Disputes team · Issuing bank · Merchant</p>
+        <blockquote class="pquote">Banks sometimes send fraud claims in bulk through the wrong channel, which makes them hard to handle.</blockquote>
+        <div class="driver"><p class="label">How it works</p><ul class="bullets" style="margin-top: 8px"><li>Fraud claims are checked one by one on Watchtower, since there’s no bulk upload</li><li>The team decides whether each claim is accepted or declined</li><li>Bulk claims from banks are uploaded together instead of case by case</li><li>A response is generated for each claim</li></ul></div>
+        <div class="driver"><p class="label">Challenges and open questions</p><ul class="bullets" style="margin-top: 8px"><li>Bulk fraud files arrive as zip folders attached to emails</li><li>A claim’s history is hard to piece together across files and threads</li><li>Merchants need enough evidence to show the customer isn’t right</li></ul></div>
+      </div>
+      <figure><div class="route-scroll"><a href="img/cb-route-fraud.jpg" target="_blank" rel="noopener"><img class="slide-img" src="img/cb-route-fraud.jpg" alt="Journey map of raising fraud claims, with who is involved, the tools they use, and insights and challenges"></a></div><figcaption>Select to open the full map.</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="insights">
+    <p class="num">02 · Insights</p>
+    <h2>Where things went wrong</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">What we learned</p>
+      <h2>Too many tools, too little visibility</h2>
+    </div>
+    <div class="findings"><div class="finding"><p>Disputes arrive through many channels and pass through at least six tools before they are resolved.</p></div><div class="finding"><p>Some banks email individual team members directly, so the rest of the team can’t see what has come in.</p></div><div class="finding"><p>The same chargeback can be filed twice, once as regular and once as fraud.</p></div><div class="finding"><p>Deciding who is liable depends on the experience of whoever picks it up, which puts money at risk.</p></div><div class="finding"><p>A bulk fraud file takes about six hours to process and can’t be split between people.</p></div><div class="finding"><p>Nothing tracks how long a dispute takes, so pre-arbitration claims can come back months later.</p></div></div>
+  </section>
+
+  <section class="wrap block">
+    <div class="two-col" style="align-items: start">
+      <div class="driver"><p class="label">Deadlines</p><p>Merchants have just 16 hours to send their evidence before Paystack responds to the bank.</p></div>
+      <div class="driver"><p class="label">Formatting</p><p>Some banks only accept evidence as JPGs under 200KB, so PDFs had to be converted and compressed by hand.</p></div>
+      <div class="driver"><p class="label">Card schemes</p><p>Mastercard separates fraud chargebacks but Visa doesn’t, so the team sorts them by chargeback code.</p></div>
+      <div class="driver"><p class="label">Matching</p><p>Bank files rarely match Watchtower’s format, so columns are cleaned up in Sheets before every upload.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Framing the problem</p>
+      <h2>From one big risk to problems we could design for</h2>
+    </div>
+    <figure class="panel sun"><img class="slide-img" src="img/cb-problem.jpg" alt="Problem tree: eliminate the risk of errors when resolving chargebacks in bulk. Three ways to solve it, each with what DART would do: minimise Excel changes by auto-formatting bank files for Watchtower; manage the whole process in one place by fetching receipts for declined chargebacks in the right format; and accurately match disputes to transactions automatically, fixing failed matches in DART."></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="statement">
+      <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
+      <p>What if the team could log, match, collect evidence and respond, all in one place?</p>
+      <cite>The question we designed around</cite>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="solutions">
+    <p class="num">03 · Solution</p>
+    <h2>DART, the Disputes Aggregation and Resolution Tool</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Ideation</p>
+      <h2>Three themes, one priority</h2>
+      <p>In an ideation workshop with the disputes team, ideas clustered into three themes: automate formatting, automate evidence collection, and build one tool for the whole process. We prioritised the last, a central platform that would connect to Zendesk, the internal dashboard and partner disputes APIs, and resend pending disputes automatically.</p>
+      <p>The most impactful features were the ones that cut manual work by automating three things: matching claims to transactions, making dispute responses visible to the whole team, and generating and matching responses to declined disputes.</p>
+    </div>
+    <ol class="journey" style="margin-top: 24px">
+      <li><b>Upload bulk disputes.</b> DART formats the bank’s file for Watchtower and keeps the original.</li>
+      <li><b>Match to transactions.</b> Disputes are matched automatically, and failed matches are fixed in DART.</li>
+      <li><b>Get responses.</b> Merchant responses come in, can be edited, and are marked good to go.</li>
+      <li><b>Generate and send.</b> Evidence is converted to the bank’s format and sent through Zendesk, or downloaded to send by hand.</li>
+    </ol>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Flows</p>
+      <h2>Logging disputes</h2>
+      <p>Uploading a bank file is one step. If it fails, DART explains why so the file can be fixed and uploaded again.</p>
+    </div>
+    <figure class="panel sand"><img class="slide-img" src="img/cb-flow-upload.jpg" alt="Flowchart: log in, choose Log disputes and upload a file. If the upload succeeds, the original file is saved, a batch is created and the file is formatted automatically, then the user starts matching disputes to transactions. If it fails, the user sees why, fixes the file and uploads again."></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <h2>Sending responses</h2>
+      <p>Evidence is generated, matched to the original file and sent to the bank, either through a Zendesk ticket or a bank’s own portal.</p>
+    </div>
+    <figure class="panel sand"><img class="slide-img" src="img/cb-flow-send.jpg" alt="Flowchart: DART generates evidence as PDFs and matches responses to the original file, with optional downloads. The team then either downloads the files and emails them or uploads them to the ISW portal, or sends through Zendesk by pasting a ticket ID so DART writes the email with the file and evidence zip attached. Both paths end with the response sent to the bank."></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Prototype</p>
+      <h2>Respond to the bank in one click</h2>
+      <p>Each bulk file becomes a batch in DART, with every dispute’s status in one table. When the team is ready, Respond to bank generates the evidence, updates the bank’s original file and sends the response, with progress shown at each step.</p>
+    </div>
+    <figure class="route-fig"><div class="route-scroll"><img src="img/cb-respond-flow.jpg" alt="Three steps of the Respond to bank dialog: start, generating evidence with progress, then entering a Zendesk ID and email body to send the response via Zendesk or download a zip" style="width: 100%; display: block; border-radius: 20px"></div><figcaption>Generating responses: start, watch the evidence generate, then send through Zendesk or download the zip to send by hand.</figcaption></figure>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter">
+    <p class="num">04 · Outcome</p>
+    <h2>Fully adopted by the disputes team</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p>DART rolled out in phases through the first half of 2023, and by September the disputes team had moved onto it completely. Evidence is now formatted to each bank’s and card scheme’s rules, with PDFs merged and Paystack receipts pulled from Watchtower. Failed evidence generation can be retried, Interswitch fraud chargebacks are sorted with no manual work, and proof of authentication is shown alongside each dispute.</p>
+    </div>
+    <div class="panel teal" style="margin-top: 28px">
+      <p class="label" style="margin-bottom: 14px">Success metrics we set</p>
+      <div class="stats">
+        <div class="stat"><b>50%</b><span>less time spent responding to bulk disputes</span></div>
+        <div class="stat"><b>70%</b><span>of chargebacks processed through DART</span></div>
+        <div class="stat"><b>&lt;$500</b><span>lost per quarter to tooling downtime</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+  <section class="wrap next">
+    <div>
+      <p class="label">Next project</p>
+      <h2>Sendy Supply seller experience</h2>
+    </div>
+    <a class="pill" href="sendy-supply.html">Read next case study</a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Sharon Wangari</span><span>Product design &amp; UX research</span></div>
+</footer>
+</body>
+</html>

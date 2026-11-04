@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rural Zambia Case Study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="How Sharon Wangari researched village savings groups in rural Zambia to bring a mobile money provider's savings and loan products to market.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: full-bleed brand hero, then a left-aligned reading column with mono section labels; figures break wider than the text. */
+:root {
+  --terracotta: #B4492A; --teal: #0F5257; --sunrise: #F2A541;
+  --white: #FFFFFF; --offwhite: #FAFAF8; --ink: #22201E;
+
+  --bg: var(--white); --surface: var(--offwhite); --fg: var(--ink);
+  --muted: #66625D; --line: #E7E5E0;
+  --primary: var(--terracotta); --secondary: var(--teal); --accent: var(--sunrise);
+  --label: var(--teal);
+  --hero-bg: var(--terracotta); --hero-fg: var(--white);
+  --panel-teal: #E3EEEE; --panel-sun: #FCEFD9;
+  --frame: var(--ink);
+
+  --display: "Bricolage Grotesque", "Plus Jakarta Sans", system-ui, sans-serif;
+  --body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --max: 1120px; --text: 760px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
+    --primary: #D0603E; --secondary: #4FA3A8; --label: #6CC0C4;
+    --hero-bg: #9E3F24; --hero-fg: #FFFFFF; --panel-teal: #1C2B2C; --panel-sun: #2E2619; --frame: #000000;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
+  --primary: #D0603E; --secondary: #4FA3A8; --label: #6CC0C4;
+  --hero-bg: #9E3F24; --hero-fg: #FFFFFF; --panel-teal: #1C2B2C; --panel-sun: #2E2619; --frame: #000000;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+@media (max-width: 480px) { .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); } }
+
+/* Nav */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
+.back { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem; padding: 8px 16px 8px 12px; border-radius: 999px; border: 1.5px solid var(--line); }
+.back:hover { background: var(--surface); }
+.nav-links { display: flex; gap: 22px; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-links a { text-decoration: none; color: var(--muted); }
+.nav-links a:hover { color: var(--fg); }
+@media (max-width: 560px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); overflow: hidden; position: relative; }
+.hero-inner { position: relative; min-height: clamp(380px, 52vw, 620px); display: grid; align-items: center; }
+.hero-word { font-family: var(--display); font-weight: 700; letter-spacing: -0.045em; line-height: 0.85; font-size: clamp(4rem, 14vw, 12rem); margin: 0; position: relative; z-index: 1; transform: rotate(-6deg); transform-origin: left center; padding-block: 40px; }
+.hero-word span { display: block; }
+.hero-word span:last-child { padding-left: 0.6em; color: var(--sunrise); }
+.phones { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: flex; gap: 18px; z-index: 2; }
+.phone { width: clamp(120px, 15vw, 190px); border-radius: 26px; background: var(--frame); padding: 7px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+.phone img { border-radius: 20px; width: 100%; aspect-ratio: 9 / 19; object-fit: cover; object-position: top; background: #fff; }
+.phone:nth-child(1) { transform: rotate(-8deg) translateY(30px); }
+.phone:nth-child(2) { transform: rotate(4deg) translateY(-20px); }
+.phone:nth-child(3) { transform: rotate(12deg) translateY(40px); }
+.phone.wide { position: absolute; right: -8px; bottom: -28%; width: clamp(230px, 27vw, 350px); border-radius: 18px; padding: 6px; transform: rotate(7deg); }
+.phone.wide img { aspect-ratio: auto; object-fit: contain; border-radius: 13px; }
+.chip { position: absolute; z-index: 3; font-weight: 700; font-size: 0.92rem; padding: 10px 18px; border-radius: 999px; background: var(--white); color: var(--ink); box-shadow: 0 12px 30px -10px rgba(0,0,0,.35); white-space: nowrap; }
+.chip.c1 { left: 46%; bottom: 14%; transform: rotate(-5deg); }
+.chip.c1::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #25D366; margin-right: 8px; vertical-align: 1px; }
+.chip.c2 { left: 38%; top: 12%; transform: rotate(6deg); background: var(--sunrise); }
+@media (max-width: 860px) {
+  .hero-inner { min-height: 0; padding-block: 36px 52px; gap: 28px; }
+  .phones { position: static; transform: none; justify-content: center; }
+  .phone { width: 28vw; max-width: 160px; }
+  .phone.wide { position: static; width: 46vw; max-width: 260px; align-self: center; transform: rotate(7deg); margin-left: -6vw; }
+  .hero-word { padding-block: 8px 0; }
+  .chip.c2 { display: none; }
+  .chip.c1 { left: auto; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 22px; }
+}
+
+/* Intro + meta */
+.intro { padding-block: 56px 16px; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 36px; max-width: 22ch; text-wrap: balance; }
+.meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-bottom: 8px; }
+@media (max-width: 720px) { .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.label { font-family: var(--mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin: 0 0 6px; }
+.meta p:not(.label) { margin: 0; color: var(--muted); line-height: 1.55; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.tag { font-size: 0.85rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; background: var(--surface); border: 1.5px solid var(--line); }
+
+/* Sections */
+section.block { padding-block: 44px; }
+.text { max-width: var(--text); }
+h2 { font-family: var(--display); font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; margin: 0 0 6px; }
+.text p { color: var(--muted); margin: 0 0 14px; }
+.text p.lead { color: var(--fg); }
+.divider { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+.chapter { padding-block: 72px 8px; }
+.chapter .num { font-family: var(--mono); color: var(--primary); font-size: 0.85rem; letter-spacing: 0.08em; }
+.chapter h2 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.035em; margin-top: 6px; }
+
+/* Panels / figures */
+.panel { border-radius: 24px; padding: clamp(20px, 4vw, 48px); margin-top: 28px; }
+.panel.sand { background: var(--surface); border: 1px solid var(--line); }
+.panel.teal { background: var(--panel-teal); }
+.panel.sun { background: var(--panel-sun); }
+figure { margin: 0; }
+figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 12px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.stat { background: var(--bg); border-radius: 18px; padding: 22px; border: 1px solid var(--line); min-width: 0; }
+.stat b { display: block; font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; letter-spacing: -0.04em; color: var(--primary); font-variant-numeric: tabular-nums; }
+.stat span { display: block; margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
+.split { display: flex; height: 14px; border-radius: 999px; overflow: hidden; margin-top: 22px; }
+.split i:first-child { width: 20%; background: var(--secondary); }
+.split i:last-child { width: 80%; background: var(--primary); }
+.split-legend { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 0.92rem; color: var(--muted); }
+.split-legend b { color: var(--fg); }
+@media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+/* Platform diagram */
+.flow3 { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 12px; }
+.node { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 18px; text-align: center; min-width: 0; }
+.node.hub { background: var(--secondary); color: var(--white); border-color: transparent; }
+.node.hub small { color: rgba(255,255,255,.8); }
+.node strong { display: block; font-family: var(--display); font-size: 1.15rem; }
+.node small { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.4; margin-top: 4px; }
+.arrow { color: var(--muted); font-size: 1.4rem; }
+@media (max-width: 640px) { .flow3 { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); justify-self: center; } }
+
+/* Personas */
+.personas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 720px) { .personas { grid-template-columns: 1fr; } }
+.persona { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 26px; display: grid; gap: 14px; min-width: 0; }
+.persona-head { display: flex; align-items: center; gap: 14px; }
+.avatar { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--white); flex: none; }
+.persona-head small { display: block; color: var(--muted); font-size: 0.88rem; }
+.persona p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+.persona blockquote { margin: 0; font-family: var(--display); font-size: 1.15rem; line-height: 1.35; padding-left: 14px; border-left: 3px solid var(--accent); }
+.scale { display: grid; gap: 8px; font-size: 0.85rem; }
+.scale div { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 10px; }
+.track { position: relative; height: 6px; border-radius: 999px; background: var(--line); }
+.track i { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); transform: translate(-50%, -50%); }
+.track-ends { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding-left: 120px; }
+
+/* Journey */
+.journey { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: s; }
+.journey li { background: var(--bg); border-radius: 16px; padding: 16px; border: 1px solid var(--line); font-size: 0.93rem; min-width: 0; }
+.journey li::before { counter-increment: s; content: "Step " counter(s); display: block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin-bottom: 6px; }
+.journey.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .journey, .journey.three { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .journey, .journey.three { grid-template-columns: 1fr; } }
+.why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+.why p { margin: 0; font-size: 0.93rem; color: var(--muted); }
+@media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
+
+/* Photos */
+.photos { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; margin-top: 28px; }
+.photos img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; }
+@media (max-width: 640px) { .photos { grid-template-columns: 1fr; } }
+
+/* Big statement band (ref style) */
+.statement { background: var(--panel-sun); border-radius: 28px; padding: clamp(40px, 8vw, 96px) clamp(20px, 6vw, 64px); text-align: center; position: relative; overflow: hidden; margin-top: 28px; }
+.statement p { font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 4.4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.025em; margin: 0 auto; max-width: 20ch; text-wrap: balance; color: var(--fg); }
+.statement cite { display: block; margin-top: 18px; font-style: normal; font-family: var(--mono); font-size: 0.8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--label); }
+.blob { position: absolute; border-radius: 50%; }
+.blob.b1 { width: 120px; height: 120px; background: var(--primary); left: -30px; top: -30px; }
+.blob.b2 { width: 70px; height: 70px; background: var(--secondary); right: 8%; bottom: -20px; }
+.blob.b3 { width: 22px; height: 22px; background: var(--primary); right: 20%; top: 18%; }
+@media (max-width: 640px) { .statement { padding-top: 112px; padding-bottom: 96px; } .blob.b1 { width: 96px; height: 96px; left: -32px; top: -32px; } .blob.b3 { top: 40px; } }
+
+/* Needs */
+.needs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 760px) { .needs { grid-template-columns: 1fr; } }
+.need { border-top: 3px solid var(--primary); padding-top: 16px; min-width: 0; }
+.need:nth-child(2) { border-color: var(--secondary); }
+.need:nth-child(3) { border-color: var(--accent); }
+.need p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* Screens row */
+.screens { display: flex; flex-wrap: wrap; gap: clamp(14px, 3vw, 32px); justify-content: center; align-items: flex-start; }
+.screens figure { width: clamp(150px, 22vw, 220px); text-align: center; }
+.screens .phone { width: 100%; transform: none; box-shadow: 0 20px 40px -24px rgba(0,0,0,.4); }
+.screens .phone img { aspect-ratio: auto; object-fit: contain; }
+.wide-img { border-radius: 16px; background: var(--white); border: 1px solid var(--line); width: 100%; }
+
+/* Drivers + metrics */
+.drivers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.drivers.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) { .drivers, .drivers.two { grid-template-columns: 1fr; } }
+.driver { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.driver .label { color: var(--primary); }
+.driver p { margin: 0; font-size: 0.95rem; }
+.metrics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.metric { display: inline-flex; align-items: baseline; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--secondary); color: var(--white); font-size: 0.9rem; }
+.metric b { font-family: var(--display); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Stock allocation conversation */
+.convo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .convo { grid-template-columns: 1fr; } }
+.bubble { background: var(--bg); border-radius: 20px 20px 20px 6px; padding: 20px; border: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.bubble .big { font-family: var(--display); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; color: var(--primary); line-height: 1.1; }
+.bubble .btn { justify-self: start; padding: 8px 16px; border-radius: 999px; background: var(--primary); color: var(--white); font-weight: 700; font-size: 0.88rem; }
+.bubble .input { border: 1.5px solid var(--line); border-radius: 12px; padding: 8px 12px; color: var(--muted); font-size: 0.88rem; }
+.bubble .step { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); }
+
+/* Ideas table */
+.ideas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .ideas { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .ideas { grid-template-columns: 1fr; } }
+.idea { background: var(--bg); border-radius: 18px; padding: 18px; min-width: 0; }
+.idea h3 { font-size: 1.05rem; }
+.idea p { margin: 0; font-style: italic; color: var(--muted); font-size: 0.93rem; }
+
+/* Next */
+.next { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-block: 64px; }
+.next h2 { margin: 0; }
+.pill { display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; font-weight: 700; text-decoration: none; background: var(--primary); color: var(--white); }
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Photo hero variant */
+.hero.photo .hero-inner { min-height: clamp(380px, 48vw, 600px); }
+.hero.photo .hero-word { font-size: clamp(3.4rem, 11vw, 9.5rem); }
+.collage { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); width: min(48%, 560px); aspect-ratio: 5 / 4; z-index: 2; }
+.collage img { position: absolute; background: #fff; padding: 8px; border-radius: 6px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); object-fit: cover; }
+.collage img:nth-child(1) { width: 72%; aspect-ratio: 4 / 3; left: 0; top: 4%; transform: rotate(-5deg); }
+.collage img:nth-child(2) { width: 52%; aspect-ratio: 1; right: 0; bottom: 0; transform: rotate(6deg); }
+@media (max-width: 860px) { .collage { position: relative; right: auto; top: auto; transform: none; width: 100%; max-width: 520px; justify-self: center; } }
+.hero.sun { --hero-bg: #F2A541; --hero-fg: #22201E; }
+.hero.sun .hero-word span:last-child { color: var(--terracotta); }
+.hero.sand { --hero-bg: #FCEFD9; --hero-fg: #22201E; }
+.hero.sand .hero-word span:last-child { color: var(--terracotta); }
+.hero.sand .collage img { object-fit: contain; }
+.hero.teal { --hero-bg: #0F5257; }
+.hero.ink { --hero-bg: #22201E; }
+.hero.terra { --hero-bg: #B4492A; }
+.hero.zmb .collage img:nth-child(1) { object-fit: contain; background: #fff; }
+.hero.fit .collage img { object-fit: contain; }
+.hero.fit .collage img:only-child { width: 64%; aspect-ratio: 1; left: 18%; top: 0; }
+.hero.sunc { --hero-bg: #F2A541; --hero-fg: #22201E; }
+.hero.sunc .hero-word span:last-child { color: var(--terracotta); }
+.hero.sunc .collage img { object-fit: contain; }
+.hero.terra .collage img { object-fit: contain; }
+
+/* Findings grid */
+.findings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+@media (max-width: 860px) { .findings { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .findings { grid-template-columns: 1fr; } }
+.finding { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.finding::before { content: "\201C"; display: block; font-family: var(--display); font-weight: 700; font-size: 2.2rem; line-height: .7; color: var(--primary); margin-bottom: 6px; }
+.finding p { margin: 0; font-size: 0.97rem; }
+.bullets { margin: 0; padding-left: 1.1em; color: var(--muted); }
+.bullets li { margin-bottom: 6px; }
+.bullets li::marker { color: var(--primary); }
+.photo-full { width: 100%; border-radius: 20px; aspect-ratio: 16 / 9; object-fit: cover; }
+.slide-img { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #fff; }
+.roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 720px) { .roles { grid-template-columns: 1fr; } }
+.role-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; min-width: 0; display: grid; gap: 10px; align-content: start; }
+.role-card .label { color: var(--primary); }
+.role-card p, .role-card li { font-size: 0.95rem; }
+.role-card p { margin: 0; color: var(--muted); }
+.journey.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 860px) { .journey.five { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .journey.five { grid-template-columns: 1fr; } }
+.persona-block { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+.persona-block > figure { order: -1; margin: 0; min-width: 0; }
+.persona-block .text { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px 24px; align-items: stretch; max-width: none; }
+.persona-block .text .pquote { max-width: 60ch; }
+.persona-block .text > :not(.driver) { grid-column: 1 / -1; }
+.persona-block .text h2, .persona-block .text p { margin: 0; }
+.persona-block .text .driver { margin: 6px 0 0; }
+@media (max-width: 760px) { .persona-block .text { grid-template-columns: minmax(0, 1fr); } }
+.pquote { margin: 0; font-family: var(--display); font-size: 1.25rem; line-height: 1.4; color: var(--ink, inherit); border-left: 3px solid var(--primary); padding-left: 16px; }
+.persona-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; align-items: start; }
+.persona-grid figure { margin: 0; min-width: 0; }
+.persona-grid img { display: block; }
+@media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; max-width: 560px; } }
+@media (max-width: 760px) { .two-col.three { grid-template-columns: 1fr !important; } }
+.sub { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin: 6px 0 0; }
+.journey-fig { margin: 28px 0 0; }
+.journey-scroll { overflow-x: auto; border-radius: 20px; border: 1px solid var(--line); background: #F7FAFD; -webkit-overflow-scrolling: touch; }
+.journey-scroll img { height: 640px; width: auto !important; max-width: none !important; display: block; border-radius: 0; }
+.journey-fig figcaption a { color: inherit; font-weight: 600; }
+@media (max-width: 760px) { .journey-scroll img { height: 440px; } }
+</style>
+</head>
+<body>
+
+<header class="wrap nav">
+  <a class="back" href="index.html"><span aria-hidden="true">←</span> Sharon Wangari</a>
+  <nav class="nav-links" aria-label="Case study sections">
+    <a href="#research">Research</a>
+    <a href="#insights">Insights</a>
+    <a href="#solutions">Solutions</a>
+  </nav>
+</header>
+
+<div class="hero photo teal zmb">
+  <div class="wrap hero-inner">
+    <p class="hero-word" aria-hidden="true"><span>Village</span><span>first.</span></p>
+    <div class="collage" aria-hidden="true"><img src="img/zm-hero-boost.jpg" alt=""><img src="img/zm-interview.jpg" alt=""></div>
+  </div>
+</div>
+
+<main>
+
+  <section class="wrap intro">
+    <h1>Extending the footprint of a digital service provider in rural Zambia</h1>
+    <div class="meta"><div><p class="label">Project partner</p><p>Mercy Corps AgriFin Accelerate</p></div><div><p class="label">Design partner</p><p>Dalberg Design</p></div><div><p class="label">Role</p><p>Design fellow<br>Field assets, interviews, frameworks, prototypes</p></div><div><p class="label">Methods</p><p>Contextual &amp; group interviews<br>Participatory design<br>Client co-design workshops</p></div></div>
+    <div class="tags"><span class="tag">Fintech</span><span class="tag">Mobile money</span><span class="tag">Impact design</span></div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">The goal</p>
+      <h2>Understand village savings groups, and validate new savings and loan products for them.</h2>
+      <p>Our client offers mobile money that makes it easy to send money across Zambia. To reach the rural market, they built new savings and loan products.</p>
+      <p>Our objective was to understand the challenges, needs and preferences of village savings and loan associations (VSLAs), find new opportunities for the client, and validate the products.</p>
+      <p>Mature VSLAs looked like the right way in. Their members are selected for good financial behaviour, trained to follow procedure and already save regularly, yet their groups can’t lend them as much as they need. We turned what we learned into a playbook for taking the products from a first pilot to the rural mass market.</p>
+      <p class="label" style="margin-top: 22px">My role</p>
+      <p>I worked as a design fellow with the Dalberg Design team. I developed assets for the field, ran user interviews, built frameworks and designed prototypes.</p>
+    </div>
+    <div class="panel sand">
+      <p class="label">Who's who</p>
+      <div class="flow3">
+        <div class="node"><strong>VSLA members</strong><small>Community groups that save together and lend to each other</small></div>
+        <span class="arrow" aria-hidden="true">↔</span>
+        <div class="node hub"><strong>Village agents</strong><small>The closest and most trusted touchpoint</small></div>
+        <span class="arrow" aria-hidden="true">↔</span>
+        <div class="node"><strong>Mobile money provider</strong><small>Launching savings and loan products</small></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="research">
+    <p class="num">01 · Research</p>
+    <h2>Two weeks in rural Livingstone</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">What we did</p>
+      <h2>We explored what works for savings groups, and why</h2>
+      <p>We looked at the needs and challenges VSLAs face, what makes the model work, and why each of their activities matters. This showed us their key motivators and values, and how to build a market entry strategy around them.</p>
+    </div>
+    <div class="panel teal">
+      <div class="stats">
+        <div class="stat"><b>2,500</b><span>mature savings groups, active for two years or more</span></div>
+        <div class="stat"><b>64,200</b><span>members in those groups, a ready entry point</span></div>
+        <div class="stat"><b>1.1m</b><span>target users in the wider rural mass market</span></div>
+      </div>
+    </div>
+    <div class="photos">
+      <figure><img src="img/zm-hero.jpg" alt="Researchers sitting on a mat with VSLA members reviewing materials"></figure>
+      <figure><img src="img/zm-member.jpg" alt="A VSLA member pointing at prototype cards laid on the ground"></figure>
+    </div>
+  </section>
+
+  <section class="wrap block" id="insights">
+    <div class="text">
+      <p class="label">What we learned</p>
+      <h2>Trust and procedure hold the groups together</h2>
+    </div>
+    <div class="panel teal">
+      <div class="findings"><div class="finding"><p>Village agents are the closest touchpoint and the most trusted by VSLAs.</p></div><div class="finding"><p>VSLAs are trained to follow procedures.</p></div><div class="finding"><p>VSLAs choose members with good, similar behaviour, and prefer members with a source of income.</p></div><div class="finding"><p>VSLAs have a limited lending capacity.</p></div><div class="finding"><p>Women embraced the first VSLAs. Men joined once the groups proved successful.</p></div><div class="finding"><p>Members want longer loan periods and are not very sensitive to higher interest.</p></div></div>
+    </div>
+    <div class="statement">
+      <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
+      <p>“30 days to repay the loan would be too short for me. It depends on how business goes.”</p>
+      <cite>VSLA member</cite>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Use cases</p>
+      <h2>Four reasons members would borrow</h2>
+      <p>Income around Livingstone swings with the tourism and farming seasons. That pointed to four first use cases for the loan.</p>
+    </div>
+    <div class="roles">
+      <div class="role-card"><p class="label">Household expenses</p><p>Food, school fees, house repairs and emergencies. Some are seasonal, but emergencies can come at any time.</p></div>
+      <div class="role-card"><p class="label">Business working capital</p><p>Shop owners need more cash for stock in the May to August peak season, when turnover is highest.</p></div>
+      <div class="role-card"><p class="label">Farm inputs</p><p>Farmers are short of cash before planting and around harvest, after months without income.</p></div>
+      <div class="role-card"><p class="label">Group top-up</p><p>Groups use their pooled savings to unlock a larger loan, which they lend on to members over 90 days.</p></div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="solutions">
+    <p class="num">02 · Recommendations</p>
+    <h2>Using VSLAs as the entry point to the rural market</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="two-col">
+      <div class="text">
+        <p class="label">Recommendation 01</p>
+        <h2>Refine the product offer so it fits how members earn and repay</h2>
+        <p class="sub">Loan terms</p>
+        <ul class="bullets">
+          <li>Offer longer and more flexible repayment, in instalments</li>
+          <li>Give cash back into the savings wallet for repaying on time</li>
+          <li>A 30-day loan that can stretch to 90 days, for ZMK 2,000 to 8,000 (up to three times savings), at 15% interest with 5% cash back</li>
+        </ul>
+        <p class="sub">Marketing materials</p>
+        <ul class="bullets">
+          <li>Frame the loan as a step towards a business loan</li>
+          <li>Highlight security-free loan sizes and secure savings</li>
+          <li>Lead with loan amount, repayment period and interest</li>
+          <li>Explain where and how to repay, and what happens if you don't</li>
+          <li>Use the groups’ own words, like “constitution” and “security-free”, and keep the brochure to a single front and back</li>
+        </ul>
+      </div>
+      <figure class="panel sun" style="margin-top: 0"><img src="img/zm-boost.jpg" alt="Prototype marketing flyer and terms sheet for the Boost savings and loan product" style="margin: 0 auto; border-radius: 10px; max-height: 520px; width: auto"></figure>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Recommendation 02</p>
+      <h2>Brand ambassadors and roving agents to bring the service to the village</h2>
+      <p>Recruit village agents and other trusted community members as brand ambassadors to lead awareness, education and performance inside VSLAs. Alongside them, roving agents on bicycles or motorbikes give members a place to deposit and withdraw cash, so they don’t have to make an expensive trip to town.</p>
+    </div>
+    <div class="panel sand">
+      <p class="label">The brand ambassador's role</p>
+      <ol class="journey five">
+        <li>Act as brand ambassadors</li>
+        <li>Identify group members</li>
+        <li>Register and onboard new members</li>
+        <li>Drive retention and usage</li>
+        <li>Support users to hit targets like loan repayment</li>
+      </ol>
+    </div>
+  </section>
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Recommendation 03</p>
+      <h2>A virtual brand ambassador to carry the relationship at scale</h2>
+      <p>Ambassadors can’t visit every group forever. As the service grows, a simple chat assistant takes on more of their work. It helps members find the nearest agent, answers product questions, encourages them to save towards a goal and offers larger loans as they build a repayment record. Ambassadors stay on in the places that still need face-to-face support, and they introduce members to the assistant with a live demo.</p>
+    </div>
+    <figure class="panel sand"><img class="slide-img" src="img/zm-vba.jpg" alt="Four feature phone chats with a virtual brand ambassador: finding an agent, checking a loan limit, setting a savings goal and unlocking a larger loan"></figure>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter">
+    <p class="num">03 · Roadmap</p>
+    <h2>From one pilot to the rural mass market</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="two-col three" style="grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start">
+      <div class="driver"><p class="label">Pilot 1</p><p class="sub">VSLAs in Livingstone and Choma</p><ul class="bullets" style="margin-top: 8px"><li>Flexible repayment and new cost options</li><li>Local language and real use cases in messaging</li><li>Introduce brand ambassadors and roving agents</li></ul></div>
+      <div class="driver"><p class="label">Pilot 2</p><p class="sub">More VSLAs across four provinces</p><ul class="bullets" style="margin-top: 8px"><li>Larger loans based on repayment history</li><li>A savings product modelled on the VSLA cycle</li><li>Test the virtual brand ambassador</li><li>Recruit ambassadors through NGO partners</li></ul></div>
+      <div class="driver"><p class="label">Scale</p><p class="sub">Rural users across Zambia</p><ul class="bullets" style="margin-top: 8px"><li>Keep tailoring the product to new markets</li><li>Make the virtual ambassador the main channel</li><li>Keep ambassadors where face-to-face matters most</li></ul></div>
+    </div>
+  </section>
+
+
+  <div class="wrap"><hr class="divider"></div>
+  <section class="wrap next">
+    <div>
+      <p class="label">Next project</p>
+      <h2>Building DART to resolve chargebacks in bulk</h2>
+    </div>
+    <a class="pill" href="chargebacks-dart.html">Read next case study</a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Sharon Wangari</span><span>Product design &amp; UX research</span></div>
+</footer>
+</body>
+</html>

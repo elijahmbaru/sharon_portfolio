@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paystack Settlements Case Study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="How Sharon Wangari helped Paystack’s User Ops team resolve payout and settlement issues in Nigeria without waiting on engineers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: full-bleed brand hero, then a left-aligned reading column with mono section labels; figures break wider than the text. */
+:root {
+  --terracotta: #B4492A; --teal: #0F5257; --sunrise: #F2A541;
+  --white: #FFFFFF; --offwhite: #FAFAF8; --ink: #22201E;
+
+  --bg: var(--white); --surface: var(--offwhite); --fg: var(--ink);
+  --muted: #66625D; --line: #E7E5E0;
+  --primary: var(--terracotta); --secondary: var(--teal); --accent: var(--sunrise);
+  --label: var(--teal);
+  --hero-bg: var(--terracotta); --hero-fg: var(--white);
+  --panel-teal: #E3EEEE; --panel-sun: #FCEFD9;
+  --frame: var(--ink);
+
+  --display: "Bricolage Grotesque", "Plus Jakarta Sans", system-ui, sans-serif;
+  --body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --max: 1120px; --text: 760px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
+    --primary: #D0603E; --secondary: #4FA3A8; --label: #6CC0C4;
+    --hero-bg: #9E3F24; --hero-fg: #FFFFFF; --panel-teal: #1C2B2C; --panel-sun: #2E2619; --frame: #000000;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
+  --primary: #D0603E; --secondary: #4FA3A8; --label: #6CC0C4;
+  --hero-bg: #9E3F24; --hero-fg: #FFFFFF; --panel-teal: #1C2B2C; --panel-sun: #2E2619; --frame: #000000;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+@media (max-width: 480px) { .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); } }
+
+/* Nav */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
+.back { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem; padding: 8px 16px 8px 12px; border-radius: 999px; border: 1.5px solid var(--line); }
+.back:hover { background: var(--surface); }
+.nav-links { display: flex; gap: 22px; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-links a { text-decoration: none; color: var(--muted); }
+.nav-links a:hover { color: var(--fg); }
+@media (max-width: 560px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); overflow: hidden; position: relative; }
+.hero-inner { position: relative; min-height: clamp(380px, 52vw, 620px); display: grid; align-items: center; }
+.hero-word { font-family: var(--display); font-weight: 700; letter-spacing: -0.045em; line-height: 0.85; font-size: clamp(4rem, 14vw, 12rem); margin: 0; position: relative; z-index: 1; transform: rotate(-6deg); transform-origin: left center; padding-block: 40px; }
+.hero-word span { display: block; }
+.hero-word span:last-child { padding-left: 0.6em; color: var(--sunrise); }
+.phones { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: flex; gap: 18px; z-index: 2; }
+.phone { width: clamp(120px, 15vw, 190px); border-radius: 26px; background: var(--frame); padding: 7px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+.phone img { border-radius: 20px; width: 100%; aspect-ratio: 9 / 19; object-fit: cover; object-position: top; background: #fff; }
+.phone:nth-child(1) { transform: rotate(-8deg) translateY(30px); }
+.phone:nth-child(2) { transform: rotate(4deg) translateY(-20px); }
+.phone:nth-child(3) { transform: rotate(12deg) translateY(40px); }
+.phone.wide { position: absolute; right: -8px; bottom: -28%; width: clamp(230px, 27vw, 350px); border-radius: 18px; padding: 6px; transform: rotate(7deg); }
+.phone.wide img { aspect-ratio: auto; object-fit: contain; border-radius: 13px; }
+.chip { position: absolute; z-index: 3; font-weight: 700; font-size: 0.92rem; padding: 10px 18px; border-radius: 999px; background: var(--white); color: var(--ink); box-shadow: 0 12px 30px -10px rgba(0,0,0,.35); white-space: nowrap; }
+.chip.c1 { left: 46%; bottom: 14%; transform: rotate(-5deg); }
+.chip.c1::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #25D366; margin-right: 8px; vertical-align: 1px; }
+.chip.c2 { left: 38%; top: 12%; transform: rotate(6deg); background: var(--sunrise); }
+@media (max-width: 860px) {
+  .hero-inner { min-height: 0; padding-block: 36px 52px; gap: 28px; }
+  .phones { position: static; transform: none; justify-content: center; }
+  .phone { width: 28vw; max-width: 160px; }
+  .phone.wide { position: static; width: 46vw; max-width: 260px; align-self: center; transform: rotate(7deg); margin-left: -6vw; }
+  .hero-word { padding-block: 8px 0; }
+  .chip.c2 { display: none; }
+  .chip.c1 { left: auto; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 22px; }
+}
+
+/* Intro + meta */
+.intro { padding-block: 56px 16px; }
+h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 36px; max-width: 22ch; text-wrap: balance; }
+.meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-bottom: 8px; }
+@media (max-width: 720px) { .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.label { font-family: var(--mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin: 0 0 6px; }
+.meta p:not(.label) { margin: 0; color: var(--muted); line-height: 1.55; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.tag { font-size: 0.85rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; background: var(--surface); border: 1.5px solid var(--line); }
+
+/* Sections */
+section.block { padding-block: 44px; }
+.text { max-width: var(--text); }
+h2 { font-family: var(--display); font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; margin: 0 0 6px; }
+.text p { color: var(--muted); margin: 0 0 14px; }
+.text p.lead { color: var(--fg); }
+.divider { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+.chapter { padding-block: 72px 8px; }
+.chapter .num { font-family: var(--mono); color: var(--primary); font-size: 0.85rem; letter-spacing: 0.08em; }
+.chapter h2 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.035em; margin-top: 6px; }
+
+/* Panels / figures */
+.panel { border-radius: 24px; padding: clamp(20px, 4vw, 48px); margin-top: 28px; }
+.panel.sand { background: var(--surface); border: 1px solid var(--line); }
+.panel.teal { background: var(--panel-teal); }
+.panel.sun { background: var(--panel-sun); }
+figure { margin: 0; }
+figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 12px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.stat { background: var(--bg); border-radius: 18px; padding: 22px; border: 1px solid var(--line); min-width: 0; }
+.stat b { display: block; font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; letter-spacing: -0.04em; color: var(--primary); font-variant-numeric: tabular-nums; }
+.stat span { display: block; margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
+.split { display: flex; height: 14px; border-radius: 999px; overflow: hidden; margin-top: 22px; }
+.split i:first-child { width: 20%; background: var(--secondary); }
+.split i:last-child { width: 80%; background: var(--primary); }
+.split-legend { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 0.92rem; color: var(--muted); }
+.split-legend b { color: var(--fg); }
+@media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+/* Platform diagram */
+.flow3 { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 12px; }
+.node { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 18px; text-align: center; min-width: 0; }
+.node.hub { background: var(--secondary); color: var(--white); border-color: transparent; }
+.node.hub small { color: rgba(255,255,255,.8); }
+.node strong { display: block; font-family: var(--display); font-size: 1.15rem; }
+.node small { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.4; margin-top: 4px; }
+.arrow { color: var(--muted); font-size: 1.4rem; }
+@media (max-width: 640px) { .flow3 { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); justify-self: center; } }
+
+/* Personas */
+.personas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 720px) { .personas { grid-template-columns: 1fr; } }
+.persona { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 26px; display: grid; gap: 14px; min-width: 0; }
+.persona-head { display: flex; align-items: center; gap: 14px; }
+.avatar { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--white); flex: none; }
+.persona-head small { display: block; color: var(--muted); font-size: 0.88rem; }
+.persona p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+.persona blockquote { margin: 0; font-family: var(--display); font-size: 1.15rem; line-height: 1.35; padding-left: 14px; border-left: 3px solid var(--accent); }
+.scale { display: grid; gap: 8px; font-size: 0.85rem; }
+.scale div { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 10px; }
+.track { position: relative; height: 6px; border-radius: 999px; background: var(--line); }
+.track i { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); transform: translate(-50%, -50%); }
+.track-ends { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding-left: 120px; }
+
+/* Journey */
+.journey { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: s; }
+.journey li { background: var(--bg); border-radius: 16px; padding: 16px; border: 1px solid var(--line); font-size: 0.93rem; min-width: 0; }
+.journey li::before { counter-increment: s; content: "Step " counter(s); display: block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin-bottom: 6px; }
+.journey.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .journey, .journey.three { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .journey, .journey.three { grid-template-columns: 1fr; } }
+.why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+.why p { margin: 0; font-size: 0.93rem; color: var(--muted); }
+@media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
+
+/* Photos */
+.photos { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; margin-top: 28px; }
+.photos img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; }
+@media (max-width: 640px) { .photos { grid-template-columns: 1fr; } }
+
+/* Big statement band (ref style) */
+.statement { background: var(--panel-sun); border-radius: 28px; padding: clamp(40px, 8vw, 96px) clamp(20px, 6vw, 64px); text-align: center; position: relative; overflow: hidden; margin-top: 28px; }
+.statement p { font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 4.4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.025em; margin: 0 auto; max-width: 20ch; text-wrap: balance; color: var(--fg); }
+.statement cite { display: block; margin-top: 18px; font-style: normal; font-family: var(--mono); font-size: 0.8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--label); }
+.blob { position: absolute; border-radius: 50%; }
+.blob.b1 { width: 120px; height: 120px; background: var(--primary); left: -30px; top: -30px; }
+.blob.b2 { width: 70px; height: 70px; background: var(--secondary); right: 8%; bottom: -20px; }
+.blob.b3 { width: 22px; height: 22px; background: var(--primary); right: 20%; top: 18%; }
+@media (max-width: 640px) { .statement { padding-top: 112px; padding-bottom: 96px; } .blob.b1 { width: 96px; height: 96px; left: -32px; top: -32px; } .blob.b3 { top: 40px; } }
+
+/* Needs */
+.needs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 760px) { .needs { grid-template-columns: 1fr; } }
+.need { border-top: 3px solid var(--primary); padding-top: 16px; min-width: 0; }
+.need:nth-child(2) { border-color: var(--secondary); }
+.need:nth-child(3) { border-color: var(--accent); }
+.need p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* Screens row */
+.screens { display: flex; flex-wrap: wrap; gap: clamp(14px, 3vw, 32px); justify-content: center; align-items: flex-start; }
+.screens figure { width: clamp(150px, 22vw, 220px); text-align: center; }
+.screens .phone { width: 100%; transform: none; box-shadow: 0 20px 40px -24px rgba(0,0,0,.4); }
+.screens .phone img { aspect-ratio: auto; object-fit: contain; }
+.wide-img { border-radius: 16px; background: var(--white); border: 1px solid var(--line); width: 100%; }
+
+/* Drivers + metrics */
+.drivers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.drivers.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) { .drivers, .drivers.two { grid-template-columns: 1fr; } }
+.driver { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.driver .label { color: var(--primary); }
+.driver p { margin: 0; font-size: 0.95rem; }
+.metrics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.metric { display: inline-flex; align-items: baseline; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--secondary); color: var(--white); font-size: 0.9rem; }
+.metric b { font-family: var(--display); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Stock allocation conversation */
+.convo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .convo { grid-template-columns: 1fr; } }
+.bubble { background: var(--bg); border-radius: 20px 20px 20px 6px; padding: 20px; border: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.bubble .big { font-family: var(--display); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; color: var(--primary); line-height: 1.1; }
+.bubble .btn { justify-self: start; padding: 8px 16px; border-radius: 999px; background: var(--primary); color: var(--white); font-weight: 700; font-size: 0.88rem; }
+.bubble .input { border: 1.5px solid var(--line); border-radius: 12px; padding: 8px 12px; color: var(--muted); font-size: 0.88rem; }
+.bubble .step { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); }
+
+/* Ideas table */
+.ideas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .ideas { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .ideas { grid-template-columns: 1fr; } }
+.idea { background: var(--bg); border-radius: 18px; padding: 18px; min-width: 0; }
+.idea h3 { font-size: 1.05rem; }
+.idea p { margin: 0; font-style: italic; color: var(--muted); font-size: 0.93rem; }
+
+/* Next */
+.next { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-block: 64px; }
+.next h2 { margin: 0; }
+.pill { display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; font-weight: 700; text-decoration: none; background: var(--primary); color: var(--white); }
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Photo hero variant */
+.hero.photo .hero-inner { min-height: clamp(380px, 48vw, 600px); }
+.hero.photo .hero-word { font-size: clamp(3.4rem, 11vw, 9.5rem); }
+.collage { position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); width: min(48%, 560px); aspect-ratio: 5 / 4; z-index: 2; }
+.collage img { position: absolute; background: #fff; padding: 8px; border-radius: 6px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); object-fit: cover; }
+.collage img:nth-child(1) { width: 72%; aspect-ratio: 4 / 3; left: 0; top: 4%; transform: rotate(-5deg); }
+.collage img:nth-child(2) { width: 52%; aspect-ratio: 1; right: 0; bottom: 0; transform: rotate(6deg); }
+@media (max-width: 860px) { .collage { position: relative; right: auto; top: auto; transform: none; width: 100%; max-width: 520px; justify-self: center; } }
+.hero.sun { --hero-bg: #F2A541; --hero-fg: #22201E; }
+.hero.sun .hero-word span:last-child { color: var(--terracotta); }
+.hero.sand { --hero-bg: #FCEFD9; --hero-fg: #22201E; }
+.hero.sand .hero-word span:last-child { color: var(--terracotta); }
+.hero.sand .collage img { object-fit: contain; }
+.hero.teal { --hero-bg: #0F5257; }
+.hero.ink { --hero-bg: #22201E; }
+.hero.terra { --hero-bg: #B4492A; }
+.hero.zmb .collage img:nth-child(1) { object-fit: contain; background: #fff; }
+.hero.fit .collage img { object-fit: contain; }
+.hero.fit .collage img:only-child { width: 64%; aspect-ratio: 1; left: 18%; top: 0; }
+.hero.sunc { --hero-bg: #F2A541; --hero-fg: #22201E; }
+.hero.sunc .hero-word span:last-child { color: var(--terracotta); }
+.hero.sunc .collage img { object-fit: contain; }
+.hero.terra .collage img { object-fit: contain; }
+
+/* Findings grid */
+.findings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+@media (max-width: 860px) { .findings { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .findings { grid-template-columns: 1fr; } }
+.finding { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.finding::before { content: "\201C"; display: block; font-family: var(--display); font-weight: 700; font-size: 2.2rem; line-height: .7; color: var(--primary); margin-bottom: 6px; }
+.finding p { margin: 0; font-size: 0.97rem; }
+.bullets { margin: 0; padding-left: 1.1em; color: var(--muted); }
+.bullets li { margin-bottom: 6px; }
+.bullets li::marker { color: var(--primary); }
+.photo-full { width: 100%; border-radius: 20px; aspect-ratio: 16 / 9; object-fit: cover; }
+.slide-img { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #fff; }
+.roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 720px) { .roles { grid-template-columns: 1fr; } }
+.role-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; min-width: 0; display: grid; gap: 10px; align-content: start; }
+.role-card .label { color: var(--primary); }
+.role-card p, .role-card li { font-size: 0.95rem; }
+.role-card p { margin: 0; color: var(--muted); }
+.journey.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 860px) { .journey.five { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .journey.five { grid-template-columns: 1fr; } }
+.persona-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.persona-block.flip > figure { order: -1; }
+.persona-block .text { display: grid; gap: 14px; }
+.persona-block .text h2, .persona-block .text p { margin: 0; }
+.persona-block figure { margin: 0; min-width: 0; }
+.pquote { margin: 0; font-family: var(--display); font-size: 1.25rem; line-height: 1.4; color: var(--ink, inherit); border-left: 3px solid var(--primary); padding-left: 16px; }
+@media (max-width: 860px) { .persona-block { grid-template-columns: 1fr; } .persona-block.flip > figure { order: 0; } }
+.persona-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; align-items: start; }
+.persona-grid figure { margin: 0; min-width: 0; }
+.persona-grid img { display: block; }
+@media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; max-width: 560px; } }
+@media (max-width: 760px) { .two-col.three { grid-template-columns: 1fr !important; } }
+.sub { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin: 6px 0 0; }
+</style>
+</head>
+<body>
+
+<header class="wrap nav">
+  <a class="back" href="index.html"><span aria-hidden="true">←</span> Sharon Wangari</a>
+  <nav class="nav-links" aria-label="Case study sections">
+    <a href="#research">Research</a>
+    <a href="#insights">Insights</a>
+    <a href="#solutions">Solutions</a>
+  </nav>
+</header>
+
+<div class="hero photo sand">
+  <div class="wrap hero-inner">
+    <p class="hero-word" aria-hidden="true"><span>Self-</span><span>serve.</span></p>
+    <div class="collage" aria-hidden="true"><img src="img/ps-hero-payout.jpg" alt=""><img src="img/ps-hero-notes.jpg" alt=""></div>
+  </div>
+</div>
+
+<main>
+
+  <section class="wrap intro">
+    <h1>Improving the experience of handling settlement issues on Watchtower</h1>
+    <div class="meta"><div><p class="label">Company</p><p>Paystack<br>Nigeria</p></div><div><p class="label">Role</p><p>Product designer<br>UX researcher</p></div><div><p class="label">Users</p><p>User Operations team<br>Engineers</p></div><div><p class="label">Methods</p><p>User Ops interviews<br>Journey mapping<br>Prioritisation workshop<br>Wireframes &amp; user flows</p></div></div>
+    <div class="tags"><span class="tag">Fintech</span><span class="tag">Payments</span><span class="tag">Internal tools</span></div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">The goal</p>
+      <h2>Help User Ops answer merchants with accurate payout information, and send fewer tickets to engineers.</h2>
+      <p>Settlements in Nigeria are operations heavy, and Paystack relies on many partners for collections, settlements and payouts. Resolving a payout issue was slow, and User Ops needed engineers to decode errors, estimate how long a fix would take, and decide whether to contact the bank or the merchant.</p>
+    </div>
+    <div class="drivers two">
+      <div class="driver"><p class="label">Objective 01</p><p>Give the payout operations team accurate payout information, in tools they can reach, so they can respond to merchants.</p></div>
+      <div class="driver"><p class="label">Objective 02</p><p>Reduce tickets escalated to engineers for decoding error codes, updating payout statuses and retrying payouts.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">The problem</p>
+      <h2>Only a few engineers could fix payout issues, and teams found out late</h2>
+    </div>
+    <div class="panel teal">
+      <div class="stats">
+        <div class="stat"><b>~70%</b><span>of all platform requests come from daily settlement operations</span></div>
+        <div class="stat"><b>~15%</b><span>of daily payouts get stuck in processing, are reversed, or fail without an automatic retry</span></div>
+        <div class="stat"><b>1</b><span>way for User Ops to learn about a stuck payout: a merchant complains. Retrying it depended entirely on engineers.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="research">
+    <p class="num">01 · Discovery</p>
+    <h2>How payout issues get resolved today</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Research</p>
+      <h2>We interviewed the User Ops team about how they resolve payout issues</h2>
+      <p>Issues are spotted by merchants, User Ops or engineers. Wherever they start, they pass to engineers to troubleshoot, then back through User Ops to the merchant, and sometimes to the processor or bank. Along the way the work hops between Slack, Jira, Metabase, Zendesk and Watchtower.</p>
+    </div>
+    <figure class="panel sand"><div style="overflow-x: auto"><img class="slide-img" style="min-width: 760px" src="img/ps-escalation.jpg" alt="Escalation flow across five stages: identify issue, escalation, troubleshoot, report and respond, with the tools used at each stage"></div><figcaption>Who is involved at each stage, and the tools they use.</figcaption></figure>
+  </section>
+
+  <section class="wrap block" id="insights">
+    <div class="text">
+      <p class="label">Synthesis</p>
+      <h2>User Ops owned the merchant conversation, but not the information</h2>
+    </div>
+    <div class="two-col" style="align-items: start; margin-top: 24px">
+      <div class="driver"><p class="label">Primary needs</p><ul class="bullets" style="margin-top: 8px"><li>A clear understanding of the problem, so they give the merchant accurate information</li><li>Visibility of a payout's status, for internal escalation and for replying to the merchant</li></ul></div>
+      <div class="driver"><p class="label">Challenges</p><ul class="bullets" style="margin-top: 8px"><li>No visibility of the information needed to decode errors</li><li>Limited access to tools like Metabase that explain why a payout has an issue</li><li>No way to retry failed payouts</li></ul></div>
+    </div>
+    <div class="statement">
+      <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
+      <p>Give User Ops the visibility and the controls to resolve payouts themselves.</p>
+      <cite>The opportunity</cite>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter">
+    <p class="num">02 · Prioritisation</p>
+    <h2>Choosing which requests to tackle first</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="two-col">
+      <div class="text">
+        <p class="label">Prioritisation board</p>
+        <h2>We grouped every request type, then mapped constraints and solution ideas</h2>
+        <p>Error handling came first: payouts stuck in processing, changing processors, NIBSS batch ID requests, retrying failed payouts and Wema error codes. Other groups included acquirer settlement debt, reversed payouts, oversettlement and status updates.</p>
+      </div>
+      <figure><img class="slide-img" src="img/ps-prioritisation.jpg" alt="Prioritisation board with error handling request types, constraints and solution idea sticky notes"></figure>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter" id="solutions">
+    <p class="num">03 · Solutions</p>
+    <h2>Visibility and control, all on Watchtower</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Recommendation 1a · Visibility</p>
+      <h2>Show decoded errors, a timeline of trials, and the account details that matter</h2>
+      <p>Error codes and their meaning now sit in the payout's audit logs. Successful payouts show their session ID. Failed ones show the processor, the error code and the reason.</p>
+    </div>
+    <figure class="panel sand"><img class="slide-img" src="img/ps-log-failed.jpg" alt="Logs tab of a failed payout showing processor NIBSS, error code 038 and reason processor downtime"><figcaption>A failed payout now shows the processor, the error code and a plain reason.</figcaption></figure>
+    <figure class="panel sun"><img class="slide-img" src="img/ps-timeline.jpg" alt="Timeline of a payout's events from calculated to initiated, pending, processing, response and action"><figcaption>A timeline of every trial, automatic or manual, so User Ops can tell the merchant exactly where the payout is.</figcaption></figure>
+    <figure class="panel sand"><img class="slide-img" src="img/ps-info-2.jpg" alt="Account tab showing account details and account status"><figcaption>An Account tab shows the account status and whether payouts are on hold.</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Recommendation 1b · User control</p>
+      <h2>Let User Ops update statuses, retry payouts and apply deductions</h2>
+      <p>Three actions cover the requests that used to go to engineers. Each has clear rules, and every action is written to the logs.</p>
+    </div>
+    <figure class="panel sand"><img class="slide-img" src="img/ps-actions.jpg" alt="Three action panels: Update status, Apply deductions with amount and reason, and Retry payout with a processor choice"></figure>
+    <div class="roles">
+      <div class="role-card"><p class="label">Update payout status</p><p class="sub">When</p><ul class="bullets"><li>Watchtower's status doesn't match Metabase</li><li>A payout shows “success” but was reversed</li><li>A payout is stuck in processing but failed at the processor</li></ul><p class="sub">Rule</p><p>A payout in processing can only be updated once its final state is confirmed with the processor.</p></div>
+      <div class="role-card"><p class="label">Retry payout</p><p class="sub">When</p><ul class="bullets"><li>A payout has failed</li><li>A payout has been reversed</li></ul><p class="sub">Rule</p><p>Only failed payouts can be retried. User Ops can keep the current processor or switch, for example from NIBSS to Wema.</p></div>
+      <div class="role-card"><p class="label">Apply a deduction</p><p class="sub">When</p><ul class="bullets"><li>Paystack refunded a customer for a chargeback or refund</li><li>A merchant received an over-settlement</li></ul><p class="sub">Rule</p><p>The merchant is notified automatically. If their balance is too low, the rest is deducted on the next payout cycle.</p></div>
+      <div class="role-card"><p class="label">Where the actions live</p><p>We explored two placements: a modal opened from an Action button, and a dedicated Action tab beside the logs, shown at the top of this page.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Recommendation 2</p>
+      <h2>Get ahead of merchant complaints</h2>
+    </div>
+    <div class="needs">
+      <div class="need"><h3>Alert User Ops</h3><p>Notify the team when a payout has an issue, so they can reach out first.</p></div>
+      <div class="need"><h3>Tell merchants early</h3><p>Share delays and resolutions on the merchant dashboard or by email.</p></div>
+      <div class="need"><h3>Explain the why</h3><p>Keep a living guide to error codes that the whole team can use.</p></div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap chapter">
+    <p class="num">04 · Outcome</p>
+    <h2>Shipped: NGN payouts can now be retried on Watchtower</h2>
+  </section>
+
+  <section class="wrap block">
+    <div class="two-col" style="align-items: start">
+      <div class="text">
+        <p class="label">What shipped</p>
+        <p class="lead">User Ops can now retry Nigerian payouts stuck in processing directly on Watchtower, and see more detail about each payout trial handled by the settlement engine.</p>
+        <p>Payouts stuck in processing were the biggest payout issue in Nigeria, and the inconclusive state meant a person had to step in. Putting the action on Watchtower lets User Ops handle these without relying on engineering or product.</p>
+      </div>
+      <div class="driver">
+        <p class="label">Expected results</p>
+        <ul class="bullets" style="margin-top: 8px">
+          <li>Fewer payout-related requests to the platform team</li>
+          <li>Faster answers to merchant queries</li>
+          <li>Clearer information on a payout's state and how many times it was retried, for handling disputes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+  <section class="wrap next">
+    <div>
+      <p class="label">Next project</p>
+      <h2>Designing a digital finance services roadmap for small agribusinesses</h2>
+    </div>
+    <a class="pill" href="agri-finance.html">Read next case study</a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Sharon Wangari</span><span>Product design &amp; UX research</span></div>
+</footer>
+</body>
+</html>
