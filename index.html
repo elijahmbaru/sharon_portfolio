@@ -220,6 +220,13 @@ a.tile:hover .tile-img > .art { transform: scale(1.03); }
 .pb-email b { color: var(--pb-fg); font-weight: 600; user-select: all; }
 .pb-linkedin { display: inline-block; color: var(--pb-fg); font-weight: 600; text-decoration: underline; text-decoration-color: var(--sunrise); text-underline-offset: 4px; text-decoration-thickness: 2px; }
 .pb-linkedin:hover { color: var(--sunrise); }
+/* Copy-email fallback beside the mailto buttons, for visitors with no mail app */
+.copy-email { appearance: none; background: none; border: 0; padding: 6px 2px; font: inherit; font-size: 0.92rem; font-weight: 500; color: var(--muted); cursor: pointer; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
+.copy-email:hover { color: var(--fg); text-decoration-color: currentColor; }
+.copy-email b { font-weight: 600; color: var(--fg); }
+.pb-contact .copy-email { color: var(--pb-muted); text-decoration-color: var(--pb-line); }
+.pb-contact .copy-email b, .pb-contact .copy-email:hover { color: var(--pb-fg); }
+.actions { align-items: center; }
 
 /* Footer */
 footer { background: var(--surface); }
@@ -255,6 +262,7 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
     <div class="actions">
       <a class="btn btn-primary" href="#work">View projects</a>
       <a class="btn btn-outline" href="mailto:sharonwangari.w@gmail.com?subject=Hello%20Sharon">Get in touch</a>
+      <button class="copy-email" type="button" data-email="sharonwangari.w@gmail.com">or copy <b>sharonwangari.w@gmail.com</b></button>
     </div>
     </div>
     <div class="board">
@@ -369,7 +377,7 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
           <p class="pb-label">Pro bono work</p>
           <h2 id="pb-title">Design and research for good causes</h2>
           <p class="intro">I love supporting great causes and early ideas. Each year, I dedicate time to a few pro bono projects for nonprofits, community groups and passionate founders. If your team needs a researcher's ear or a designer's eye, let's talk.</p>
-          <div class="pb-contact"><a class="btn btn-sun" href="mailto:sharonwangari.w@gmail.com?subject=Pro%20bono%20project">Get in touch</a><a class="pb-linkedin" href="https://www.linkedin.com/in/sharon-wangari-b3b47591/" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a></div>
+          <div class="pb-contact"><a class="btn btn-sun" href="mailto:sharonwangari.w@gmail.com?subject=Pro%20bono%20project">Get in touch</a><button class="copy-email" type="button" data-email="sharonwangari.w@gmail.com">or copy <b>sharonwangari.w@gmail.com</b></button><a class="pb-linkedin" href="https://www.linkedin.com/in/sharon-wangari-b3b47591/" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a></div>
         </div>
         <ul class="pb-list">
           <li><b>User research</b><span>Interviews, field visits and synthesis to understand who you serve</span></li>
@@ -391,6 +399,24 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
 <script>
   (function () {
     document.getElementById('yr').textContent = new Date().getFullYear();
+  })();
+  (function () {
+    function fallbackCopy(text) {
+      var t = document.createElement('textarea'); t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} document.body.removeChild(t); return ok;
+    }
+    document.querySelectorAll('.copy-email').forEach(function (btn) {
+      var original = btn.innerHTML, email = btn.getAttribute('data-email');
+      function done(ok) {
+        btn.innerHTML = ok ? 'Copied <b>' + email + '</b>' : 'Email <b>' + email + '</b>';
+        setTimeout(function () { btn.innerHTML = original; }, 2200);
+      }
+      btn.addEventListener('click', function () {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(email).then(function () { done(true); }, function () { done(fallbackCopy(email)); });
+        } else { done(fallbackCopy(email)); }
+      });
+    });
   })();
 </script>
 </body>
