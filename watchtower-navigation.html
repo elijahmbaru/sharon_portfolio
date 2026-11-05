@@ -282,19 +282,30 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 .journey.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 860px) { .journey.five { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 460px) { .journey.five { grid-template-columns: 1fr; } }
-.persona-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
-.persona-block.flip > figure { order: -1; }
-.persona-block .text { display: grid; gap: 14px; }
+.persona-block { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+.persona-block > figure { order: -1; margin: 0; min-width: 0; }
+.persona-block .text { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px 24px; align-items: stretch; max-width: none; }
+.persona-block .text .pquote { max-width: 60ch; }
+.persona-block .text > :not(.driver) { grid-column: 1 / -1; }
 .persona-block .text h2, .persona-block .text p { margin: 0; }
-.persona-block figure { margin: 0; min-width: 0; }
+.persona-block .text .driver { margin: 6px 0 0; }
+@media (max-width: 760px) { .persona-block .text { grid-template-columns: minmax(0, 1fr); } }
 .pquote { margin: 0; font-family: var(--display); font-size: 1.25rem; line-height: 1.4; color: var(--ink, inherit); border-left: 3px solid var(--primary); padding-left: 16px; }
-@media (max-width: 860px) { .persona-block { grid-template-columns: 1fr; } .persona-block.flip > figure { order: 0; } }
 .persona-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; align-items: start; }
 .persona-grid figure { margin: 0; min-width: 0; }
 .persona-grid img { display: block; }
 @media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; max-width: 560px; } }
 @media (max-width: 760px) { .two-col.three { grid-template-columns: 1fr !important; } }
 .sub { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin: 6px 0 0; }
+.route-fig { margin: 28px 0 0; }
+.route-fig figcaption { margin-top: 10px; }
+.route-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 760px) { .route-scroll .slide-img, .route-scroll img { min-width: 1000px; } }
+.journey-fig { margin: 28px 0 0; }
+.journey-scroll { overflow-x: auto; border-radius: 20px; border: 1px solid var(--line); background: #F7FAFD; -webkit-overflow-scrolling: touch; }
+.journey-scroll img { height: 640px; width: auto !important; max-width: none !important; display: block; border-radius: 0; }
+.journey-fig figcaption a { color: inherit; font-weight: 600; }
+@media (max-width: 760px) { .journey-scroll img { height: 440px; } }
 </style>
 </head>
 <body>
@@ -319,7 +330,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 
   <section class="wrap intro">
     <h1>Redesigning Watchtower’s navigation so it keeps working as new modules are added</h1>
-    <div class="meta"><div><p class="label">Company</p><p>Paystack<br>Internal admin tool</p></div><div><p class="label">Role</p><p>Product designer<br>UX researcher</p></div><div><p class="label">Users</p><p>Reviews, User Ops,<br>Refunds &amp; Disputes teams</p></div><div><p class="label">Methods</p><p>Discovery research<br>Information architecture<br>Prototype usability tests<br>Survey &amp; moderated interviews</p></div></div>
+    <div class="meta"><div><p class="label">Company</p><p>Paystack<br>Internal admin tool</p></div><div><p class="label">Role</p><p>Product designer<br>UX researcher</p></div><div><p class="label">Users</p><p>Reviews, User Ops,<br>Refunds &amp; Disputes teams</p></div><div><p class="label">Methods</p><p>Discovery research<br>Information architecture<br>Prototype usability tests<br>Moderated interviews</p></div></div>
     <div class="tags"><span class="tag">Fintech</span><span class="tag">Internal tools</span><span class="tag">Information architecture</span></div>
   </section>
 

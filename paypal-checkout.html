@@ -406,6 +406,15 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 
   <section class="wrap block">
     <div class="text">
+      <p class="label">The claims process</p>
+      <h2>How a PayPal dispute moves</h2>
+      <p>A customer raises a dispute with their bank or with PayPal. It lands on the merchant’s dashboard, and the merchant has 48 hours to respond. Some actions close the case straight away. Others wait on the customer, who can accept or escalate. Once a case is escalated, PayPal reviews it and decides the outcome.</p>
+    </div>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-claims.jpg" alt="Flow diagram: the customer raises a dispute, it is logged on the merchant dashboard and the merchant is notified with 48 hours to respond; the merchant can accept and refund, make an offer, add tracking, chat and share documents, or escalate; accepting closes the case, the middle actions wait on the customer, and escalation sends the case to PayPal for review of up to 30 days"><figcaption>Redrawn from the claims process board. Every step is logged on Watchtower for the ops team.</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
       <p class="label">The constraint</p>
       <h2>PayPal sets the rules, so the design had to guide merchants through them</h2>
       <p>PayPal disputes work differently from other disputes on Paystack, and there was little room to change the process. The goal was to help merchants succeed within it, through clear actions, rules and education.</p>
@@ -420,14 +429,48 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
   </section>
 
   <section class="wrap block">
-    <div class="two-col">
-      <div class="text">
+    <div class="text">
+      <p class="label">Accept</p>
+      <h2>Say what a refund costs before it happens</h2>
+      <p>Accepting is the one action that can’t be undone, so the panel states the amount and that it comes out of the next payout. It also points to Make offer for merchants who want to settle for less. Once accepted, the status changes and the timeline records the refund.</p>
+    </div>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-accept.jpg" alt="Accept tab with a note that the refund will be deducted from the next payout and a Process refund button, followed by the dispute marked Chargeback Accepted with the refund on the timeline"><figcaption>The note names the amount and the payout it comes from.</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Tracking information</p>
+      <h2>A one-time action, flagged before it’s used</h2>
+      <p>PayPal accepts tracking details only once, and not after an offer has been made. The form warns merchants up front, and asks for a tracking link only when there is one. After submitting, the details appear on the timeline and the tab explains why it’s locked. Any action other than accepting moves the dispute to In Progress.</p>
+    </div>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-tracking.jpg" alt="Tracking information form with a warning that it can only be captured once, fields for tracking number, carrier, tracking link and shipment status, followed by the timeline showing the tracking details and the tab locked"><figcaption>We designed three versions: delivered with no link, in transit with a link, and in transit without one.</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Escalate to PayPal</p>
+      <h2>Spell out what escalating gives up</h2>
+      <p>Escalating hands the case to PayPal, and the merchant loses the chance to talk to the customer. Before they confirm, the panel lists what changes: chat closes, open offers are cancelled, PayPal reviews what was shared, and a decision can take up to 30 days. Afterwards, every tab shows that the issue is escalated and who escalated it.</p>
+    </div>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-escalate.jpg" alt="Escalate tab listing what happens after escalation with a reason field, followed by the Issue already escalated state explaining that the customer escalated and the merchant should wait for PayPal"><figcaption>The escalated state reads differently depending on whether the customer or the merchant escalated.</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
         <p class="label">Visibility for the team</p>
         <h2>Merchants and customers talk directly. Ops can see it all.</h2>
-        <p>For PayPal disputes, merchants can chat with customers. The conversation, shared documents and history are logged on Watchtower for the operations team, with the resolve action turned off, since PayPal owns the outcome. Emails keep merchants and the support team in the loop when a dispute is raised or escalated.</p>
-      </div>
-      <figure><img class="slide-img" src="img/pp-watchtower.jpg" alt="Watchtower dispute view with the conversation, attachments and history, and the resolve dispute button disabled"></figure>
+        <p>For PayPal disputes, merchants can chat with customers. The conversation, shared documents and history are logged on Watchtower for the operations team, with the resolve action turned off, since PayPal owns the outcome.</p>
     </div>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-chat.jpg" alt="Watchtower dispute view with the conversation, attachments and evidence, and history, with Resolve dispute disabled; below, the merchant dashboard flow of chatting with the customer, uploading documents and seeing them on the chargeback timeline"><figcaption>On the merchant dashboard, merchants reply and upload documents. Watchtower shows the ops team the same conversation, evidence and history.</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Emails</p>
+      <h2>Bring merchants back at the moments that matter</h2>
+      <p>Merchants don’t sit on the dashboard waiting for disputes. An email goes out when a dispute is raised, with the 48 hour deadline and a link to respond. When a customer escalates, a second email tells the merchant that PayPal has the case and nothing more is needed from them.</p>
+    </div>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-emails.jpg" alt="Two Paystack emails: one telling the merchant a dispute was raised and to respond within 48 hours, and one saying the customer escalated and no action is required"><figcaption>One email asks for action. The other says none is needed.</figcaption></figure>
   </section>
 
   <div class="wrap"><hr class="divider"></div>

@@ -282,19 +282,30 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 .journey.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 860px) { .journey.five { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 460px) { .journey.five { grid-template-columns: 1fr; } }
-.persona-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
-.persona-block.flip > figure { order: -1; }
-.persona-block .text { display: grid; gap: 14px; }
+.persona-block { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+.persona-block > figure { order: -1; margin: 0; min-width: 0; }
+.persona-block .text { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px 24px; align-items: stretch; max-width: none; }
+.persona-block .text .pquote { max-width: 60ch; }
+.persona-block .text > :not(.driver) { grid-column: 1 / -1; }
 .persona-block .text h2, .persona-block .text p { margin: 0; }
-.persona-block figure { margin: 0; min-width: 0; }
+.persona-block .text .driver { margin: 6px 0 0; }
+@media (max-width: 760px) { .persona-block .text { grid-template-columns: minmax(0, 1fr); } }
 .pquote { margin: 0; font-family: var(--display); font-size: 1.25rem; line-height: 1.4; color: var(--ink, inherit); border-left: 3px solid var(--primary); padding-left: 16px; }
-@media (max-width: 860px) { .persona-block { grid-template-columns: 1fr; } .persona-block.flip > figure { order: 0; } }
 .persona-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; align-items: start; }
 .persona-grid figure { margin: 0; min-width: 0; }
 .persona-grid img { display: block; }
 @media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; max-width: 560px; } }
 @media (max-width: 760px) { .two-col.three { grid-template-columns: 1fr !important; } }
 .sub { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin: 6px 0 0; }
+.route-fig { margin: 28px 0 0; }
+.route-fig figcaption { margin-top: 10px; }
+.route-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 760px) { .route-scroll .slide-img, .route-scroll img { min-width: 1000px; } }
+.journey-fig { margin: 28px 0 0; }
+.journey-scroll { overflow-x: auto; border-radius: 20px; border: 1px solid var(--line); background: #F7FAFD; -webkit-overflow-scrolling: touch; }
+.journey-scroll img { height: 640px; width: auto !important; max-width: none !important; display: block; border-radius: 0; }
+.journey-fig figcaption a { color: inherit; font-weight: 600; }
+@media (max-width: 760px) { .journey-scroll img { height: 440px; } }
 </style>
 </head>
 <body>
@@ -318,7 +329,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 <main>
 
   <section class="wrap intro">
-    <h1>Improving the experience of handling settlement issues on Watchtower</h1>
+    <h1>Improving the internal team’s experience of handling settlement issues at Paystack</h1>
     <div class="meta"><div><p class="label">Company</p><p>Paystack<br>Nigeria</p></div><div><p class="label">Role</p><p>Product designer<br>UX researcher</p></div><div><p class="label">Users</p><p>User Operations team<br>Engineers</p></div><div><p class="label">Methods</p><p>User Ops interviews<br>Journey mapping<br>Prioritisation workshop<br>Wireframes &amp; user flows</p></div></div>
     <div class="tags"><span class="tag">Fintech</span><span class="tag">Payments</span><span class="tag">Internal tools</span></div>
   </section>
@@ -362,7 +373,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>We interviewed the User Ops team about how they resolve payout issues</h2>
       <p>Issues are spotted by merchants, User Ops or engineers. Wherever they start, they pass to engineers to troubleshoot, then back through User Ops to the merchant, and sometimes to the processor or bank. Along the way the work hops between Slack, Jira, Metabase, Zendesk and Watchtower.</p>
     </div>
-    <figure class="panel sand"><div style="overflow-x: auto"><img class="slide-img" style="min-width: 760px" src="img/ps-escalation.jpg" alt="Escalation flow across five stages: identify issue, escalation, troubleshoot, report and respond, with the tools used at each stage"></div><figcaption>Who is involved at each stage, and the tools they use.</figcaption></figure>
+    <figure class="panel sand"><div style="overflow-x: auto"><img class="slide-img" style="min-width: 760px" src="img/ps-escalation.jpg" alt="Escalation flow across five stages: identify issue, escalation, troubleshoot, report and respond, with the tools used at each stage"></div><figcaption>Redrawn from our research. Who is involved at each stage, and the tools they use.</figcaption></figure>
   </section>
 
   <section class="wrap block" id="insights">
@@ -415,6 +426,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
     <figure class="panel sand"><img class="slide-img" src="img/ps-log-failed.jpg" alt="Logs tab of a failed payout showing processor NIBSS, error code 038 and reason processor downtime"><figcaption>A failed payout now shows the processor, the error code and a plain reason.</figcaption></figure>
     <figure class="panel sun"><img class="slide-img" src="img/ps-timeline.jpg" alt="Timeline of a payout's events from calculated to initiated, pending, processing, response and action"><figcaption>A timeline of every trial, automatic or manual, so User Ops can tell the merchant exactly where the payout is.</figcaption></figure>
     <figure class="panel sand"><img class="slide-img" src="img/ps-info-2.jpg" alt="Account tab showing account details and account status"><figcaption>An Account tab shows the account status and whether payouts are on hold.</figcaption></figure>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/ps-trials.jpg" alt="Watchtower settlement page with a failed Wema trial expanded to show the processor, reference, session ID and response code 051, next to a payout split into four trials, some stuck in processing with an Update status button on each"><figcaption>Opening a trial shows what the processor sent back. When a processor can’t take the full amount, the payout is split, and each trial shows its own state.</figcaption></figure>
   </section>
 
   <section class="wrap block">
@@ -430,6 +442,16 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <div class="role-card"><p class="label">Apply a deduction</p><p class="sub">When</p><ul class="bullets"><li>Paystack refunded a customer for a chargeback or refund</li><li>A merchant received an over-settlement</li></ul><p class="sub">Rule</p><p>The merchant is notified automatically. If their balance is too low, the rest is deducted on the next payout cycle.</p></div>
       <div class="role-card"><p class="label">Where the actions live</p><p>We explored two placements: a modal opened from an Action button, and a dedicated Action tab beside the logs, shown at the top of this page.</p></div>
     </div>
+  </section>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">The flows</p>
+      <h2>Small forms, clear rules, and a record of every change</h2>
+      <p>Updating a status asks only for the new status and a reason. A retry is offered once every trial has failed, after five attempts. If a payout was split, all of its trials must fail first, otherwise it’s escalated. A deduction can’t be applied without a link to the merchant’s consent ticket. It can be cancelled from the audit logs with a reason, unless it has already been processed.</p>
+    </div>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/ps-update.jpg" alt="Update status modal with a new status of Failed and the reason Insufficient funds, followed by the settlement marked Failed with a confirmation that the status was updated"><figcaption>Every update is confirmed on screen and written to the payout’s logs.</figcaption></figure>
+    <figure style="margin-top: 28px"><img class="slide-img" src="img/ps-deduct.jpg" alt="Apply deduction modal with amount, reason and a link to the merchant consent ticket, followed by the email telling the merchant about the excess payout and the deduction from their next payout"><figcaption>The merchant hears about a deduction before it reaches their payout.</figcaption></figure>
   </section>
 
   <section class="wrap block">

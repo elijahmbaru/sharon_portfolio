@@ -297,6 +297,15 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 @media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; max-width: 560px; } }
 @media (max-width: 760px) { .two-col.three { grid-template-columns: 1fr !important; } }
 .sub { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin: 6px 0 0; }
+.route-fig { margin: 28px 0 0; }
+.route-fig figcaption { margin-top: 10px; }
+.route-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 760px) { .route-scroll .slide-img, .route-scroll img { min-width: 1000px; } }
+.journey-fig { margin: 28px 0 0; }
+.journey-scroll { overflow-x: auto; border-radius: 20px; border: 1px solid var(--line); background: #F7FAFD; -webkit-overflow-scrolling: touch; }
+.journey-scroll img { height: 640px; width: auto !important; max-width: none !important; display: block; border-radius: 0; }
+.journey-fig figcaption a { color: inherit; font-weight: 600; }
+@media (max-width: 760px) { .journey-scroll img { height: 440px; } }
 </style>
 </head>
 <body>
@@ -320,7 +329,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 <main>
 
   <section class="wrap intro">
-    <h1>Understanding Paystack’s developers, to shape the developer experience strategy</h1>
+    <h1>Shaping the Paystack Developer Experience: Persona creation</h1>
     <div class="meta"><div><p class="label">Company</p><p>Paystack<br>with the Developer Relations team</p></div><div><p class="label">Role</p><p>UX researcher<br>Interview lead</p></div><div><p class="label">Users</p><p>Developers &amp; hobbyists<br>CTOs, founders &amp; PMs<br>Finance teams</p></div><div><p class="label">Methods</p><p>In-depth interviews<br>Developer survey<br>Synthesis workshop<br>Personas</p></div></div>
     <div class="tags"><span class="tag">Fintech</span><span class="tag">Developer experience</span><span class="tag">Research</span></div>
   </section>
@@ -537,7 +546,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
   <section class="wrap next">
     <div>
       <p class="label">Next project</p>
-      <h2>Improving the experience of handling settlement issues on Watchtower</h2>
+      <h2>Improving the internal team’s experience of handling settlement issues at Paystack</h2>
     </div>
     <a class="pill" href="paystack-settlements.html">Read next case study</a>
   </section>

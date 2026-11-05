@@ -297,6 +297,10 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 @media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; max-width: 560px; } }
 @media (max-width: 760px) { .two-col.three { grid-template-columns: 1fr !important; } }
 .sub { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--label); margin: 6px 0 0; }
+.route-fig { margin: 28px 0 0; }
+.route-fig figcaption { margin-top: 10px; }
+.route-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 760px) { .route-scroll .slide-img, .route-scroll img { min-width: 1000px; } }
 .journey-fig { margin: 28px 0 0; }
 .journey-scroll { overflow-x: auto; border-radius: 20px; border: 1px solid var(--line); background: #F7FAFD; -webkit-overflow-scrolling: touch; }
 .journey-scroll img { height: 640px; width: auto !important; max-width: none !important; display: block; border-radius: 0; }
@@ -326,7 +330,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 
   <section class="wrap intro">
     <h1>Extending the footprint of a digital service provider in rural Zambia</h1>
-    <div class="meta"><div><p class="label">Project partner</p><p>Mercy Corps AgriFin Accelerate</p></div><div><p class="label">Design partner</p><p>Dalberg Design</p></div><div><p class="label">Role</p><p>Design fellow<br>Field assets, interviews, frameworks, prototypes</p></div><div><p class="label">Methods</p><p>Contextual &amp; group interviews<br>Participatory design<br>Client co-design workshops</p></div></div>
+    <div class="meta"><div><p class="label">Project partner</p><p>Mercy Corps AgriFin Accelerate</p></div><div><p class="label">Design partner</p><p>Dalberg Design</p></div><div><p class="label">Role</p><p>Design fellow</p></div><div><p class="label">Methods</p><p>Contextual &amp; group interviews<br>Participatory design<br>Client co-design workshops</p></div></div>
     <div class="tags"><span class="tag">Fintech</span><span class="tag">Mobile money</span><span class="tag">Impact design</span></div>
   </section>
 
@@ -484,7 +488,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
   <section class="wrap next">
     <div>
       <p class="label">Next project</p>
-      <h2>Building DART to resolve chargebacks in bulk</h2>
+      <h2>Building DART: one tool to resolve chargebacks in bulk, without the risk of costly errors</h2>
     </div>
     <a class="pill" href="chargebacks-dart.html">Read next case study</a>
   </section>
