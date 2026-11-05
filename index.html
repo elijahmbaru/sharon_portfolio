@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sharon Wangari</title>
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="description" content="Sharon Wangari, product designer and UX researcher working across fintech, logistics and FMCG.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: one centred column; a warm hero with industry pills, then a staggered two-column work section on an off-white band. */
 :root {
@@ -30,6 +31,7 @@
   --accent: var(--sunrise);
   --accent-fg: #22201E;
   --slot: var(--white);
+  --arch: #FCEFD9;
   --pb-bg: var(--teal); --pb-fg: #FFFFFF; --pb-muted: rgba(255,255,255,.78); --pb-line: rgba(255,255,255,.2);
 
   --display: "Bricolage Grotesque", "Plus Jakarta Sans", system-ui, sans-serif;
@@ -45,13 +47,13 @@
   :root:not([data-theme="light"]) {
     --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
     --primary: #D0603E; --primary-fg: #1A1918; --secondary: #4FA3A8; --secondary-fg: #1A1918;
-    --accent: #F2A541; --accent-fg: #22201E; --slot: #1E1D1B; --pb-bg: #12393C; color-scheme: dark;
+    --accent: #F2A541; --accent-fg: #22201E; --slot: #1E1D1B; --arch: #2C2723; --pb-bg: #12393C; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #1A1918; --surface: #22201E; --fg: #FAFAF8; --muted: #AEABA6; --line: #3A3835;
   --primary: #D0603E; --primary-fg: #1A1918; --secondary: #4FA3A8; --secondary-fg: #1A1918;
-  --accent: #F2A541; --accent-fg: #22201E; --slot: #1E1D1B; --pb-bg: #12393C; color-scheme: dark;
+  --accent: #F2A541; --accent-fg: #22201E; --slot: #1E1D1B; --arch: #2C2723; --pb-bg: #12393C; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -81,15 +83,41 @@ a { color: inherit; }
 @media (max-width: 560px) { .nav ul li:not(:last-child) { display: none; } }
 
 /* Hero */
-.hero { padding-block: clamp(40px, 8vw, 96px) clamp(48px, 8vw, 88px); display: grid; gap: 28px; }
+.hero { padding-block: clamp(32px, 6vw, 72px) clamp(56px, 8vw, 96px); display: grid; gap: 56px; align-items: center; overflow-x: clip; }
+.hero-text { display: grid; gap: 26px; min-width: 0; }
+@media (min-width: 900px) { .hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 40px; } }
 .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary); }
 .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 h1 {
   font-family: var(--display); font-weight: 700; margin: 0;
-  font-size: clamp(2.8rem, 9vw, 6.4rem); line-height: 0.98; letter-spacing: -0.035em;
-  text-wrap: balance;
+  font-size: clamp(3.4rem, 11vw, 8.25rem); font-weight: 800; line-height: 0.9; letter-spacing: -0.045em;
 }
-h1 .role { display: block; color: var(--primary); font-weight: 500; font-size: 0.48em; letter-spacing: -0.02em; line-height: 1.15; margin-top: 0.35em; }
+h1 .name { display: block; }
+h1 .role { display: block; color: var(--primary); font-weight: 700; font-size: clamp(1.6rem, 4.2vw, 2.25rem); letter-spacing: -0.02em; line-height: 1.12; margin-top: 0.5em; }
+
+/* Hero pin-board: three captioned, pinned cards */
+.board { position: relative; width: min(100%, 480px); aspect-ratio: 100 / 132; margin-inline: auto; container-type: inline-size; }
+.board .arch { position: absolute; left: -8cqw; right: -8cqw; top: -8cqw; bottom: -4cqw; border-radius: 50cqw 50cqw 32px 32px; background: var(--arch); }
+.board .dot { position: absolute; border-radius: 50%; }
+.board .dot.t { width: 42cqw; aspect-ratio: 1; left: 64cqw; top: -4cqw; background: var(--terracotta); }
+.board .dot.s { width: 28cqw; aspect-ratio: 1; left: -6cqw; top: 104cqw; background: var(--sunrise); }
+.card { position: absolute; margin: 0; padding: 2.5cqw 2.5cqw 3.3cqw; border-radius: 3.3cqw; background: #FFFFFF; color: #22201E; text-decoration: none; box-shadow: 0 20px 44px rgba(34,32,30,.16), 0 2px 6px rgba(34,32,30,.08); transition: transform .3s ease; }
+.card img { display: block; width: 100%; object-fit: cover; border-radius: 2cqw; background: #fff; }
+.card .k { display: block; margin: 2.5cqw 0.8cqw 0; font-family: var(--mono); font-weight: 500; font-size: max(9px, 2.3cqw); letter-spacing: 0.1em; color: var(--terracotta); }
+.card.c2 .k { color: var(--teal); }
+.card .n { display: block; margin: 0.8cqw 0.8cqw 0; font-family: var(--display); font-weight: 700; font-size: max(13px, 3.75cqw); line-height: 1.2; }
+.card .pin { position: absolute; width: 4.6cqw; aspect-ratio: 1; border-radius: 50%; left: 50%; top: -2.4cqw; margin-left: -2.3cqw; border: 2px solid #FFFFFF; box-shadow: 0 3px 6px rgba(0,0,0,.3); }
+.card.c1 { width: 50cqw; left: 0; top: 3cqw; transform: rotate(-5deg); }
+.card.c1 img { aspect-ratio: 256 / 200; }
+.card.c1 .pin { background: var(--sunrise); border: 0; }
+.card.c2 { width: 50cqw; left: 50cqw; top: 20cqw; transform: rotate(4deg); }
+.card.c2 img { aspect-ratio: 236 / 180; }
+.card.c2 .pin { background: var(--terracotta); }
+.card.c3 { width: 52cqw; left: 12cqw; top: 75cqw; transform: rotate(-2deg); box-shadow: 0 24px 50px rgba(34,32,30,.2), 0 2px 6px rgba(34,32,30,.08); }
+.card.c3 img { aspect-ratio: 246 / 170; }
+.card.c3 .pin { background: var(--teal); }
+@media (hover: hover) { .card:hover { transform: rotate(0deg) translateY(-6px); z-index: 2; } }
+@media (prefers-reduced-motion: reduce) { .card, .btn { transition: none; } }
 .lede { max-width: 38ch; margin: 0; font-size: clamp(1.05rem, 2vw, 1.2rem); color: var(--muted); }
 
 .industries { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
@@ -206,7 +234,6 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
 .t-hero .hc img:nth-child(2) { width: 50%; aspect-ratio: 1; right: 0; bottom: 0; transform: rotate(6deg); }
 @media (hover: hover) { .tile.t-hero:hover .hc img:nth-child(1) { transform: rotate(-3deg) translateY(-4px); } .tile.t-hero:hover .hc img:nth-child(2) { transform: rotate(4deg) translateY(-4px); } }
 </style>
-<link rel="icon" type="image/png" href="/favicon.png">
 </head>
 <body>
 <header class="wrap">
@@ -222,19 +249,49 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
 
 <main id="top">
   <section class="wrap hero" id="about">
-    <span class="eyebrow">Portfolio</span>
-    <h1>Sharon Wangari<span class="role">Product designer &amp; UX researcher</span></h1>
+    <div class="hero-text">
+    <h1><span class="name">Sharon Wangari</span><span class="role">Product designer &amp; UX researcher</span></h1>
     <p class="lede">I research how people really work, then design products that fit. My work spans money, movement and the goods on everyday shelves.</p>
-    <div class="industries" aria-label="Industries">
-      <span class="label">Industries</span>
-      <span class="pill-tag fin"><i aria-hidden="true"></i>Fintech</span>
-      <span class="pill-tag log"><i aria-hidden="true"></i>Logistics</span>
-      <span class="pill-tag fmcg"><i aria-hidden="true"></i>FMCG</span>
-    </div>
     <div class="actions">
       <a class="btn btn-primary" href="#work">View projects</a>
       <a class="btn btn-outline" href="mailto:sharonwangari.w@gmail.com?subject=Hello%20Sharon">Get in touch</a>
     </div>
+    </div>
+    <div class="board">
+      <span class="arch" aria-hidden="true"></span>
+      <span class="dot t" aria-hidden="true"></span>
+      <span class="dot s" aria-hidden="true"></span>
+      <a class="card c1" href="paystack-settlements.html"><span class="pin" aria-hidden="true"></span><img src="img/ps-hero-payout.jpg" style="object-position:center" alt="How a payout issue is escalated today"><span class="k">INTERNAL TOOLS · PAYSTACK</span><span class="n">Handling settlement issues</span></a>
+      <a class="card c2" href="devrel-research.html"><span class="pin" aria-hidden="true"></span><img src="img/dr-learner.jpg" style="object-position:left center" alt="Developer persona card for the Learner"><span class="k">DEVELOPER EXPERIENCE · PAYSTACK</span><span class="n">Developer personas</span></a>
+      <a class="card c3" href="sendy-supply.html"><span class="pin" aria-hidden="true"></span><img src="img/hero-sendy-chart.jpg" style="object-position:center top" alt="Sendy Supply seller dashboard comparing sales with competitors"><span class="k">LOGISTICS · SENDY SUPPLY</span><span class="n">The seller experience</span></a>
+    </div>
+    <script>
+    /* Pick three case-study cards at random on each visit, avoiding the ones shown last time. */
+    (function () {
+      var pool = [
+        ["paystack-settlements.html", "ps-hero-payout.jpg", "center", "How a payout issue is escalated today", "INTERNAL TOOLS · PAYSTACK", "Handling settlement issues"],
+        ["devrel-research.html", "dr-learner.jpg", "left center", "Developer persona card for the Learner", "DEVELOPER EXPERIENCE · PAYSTACK", "Developer personas"],
+        ["sendy-supply.html", "hero-sendy-chart.jpg", "center top", "Sendy Supply seller dashboard comparing sales with competitors", "LOGISTICS · SENDY SUPPLY", "The seller experience"],
+        ["chargebacks-dart.html", "hero-dart-flow.jpg", "12% center", "How responses reach the bank through DART, by email, the ISW portal or Zendesk", "CHARGEBACKS · PAYSTACK", "Building DART"],
+        ["paypal-checkout.html", "pp-hero-enabled.jpg", "center", "PayPal re-enabled confirmation on Paystack", "PAYMENTS · PAYSTACK × PAYPAL", "PayPal on checkout"],
+        ["mhm-kenya.html", "mhm-hero-game.jpg", "center", "The Bursting Myths game guide", "IMPACT DESIGN · KENYA", "Teaching menstrual hygiene"],
+        ["agri-finance.html", "nmb-season.jpg", "62% center", "Seasonal calendar of farmer income and expenses across the year", "DIGITAL FINANCE · TANZANIA", "Agribusiness finance roadmap"]
+      ];
+      var key = "sw-hero-last", last = [];
+      try { last = JSON.parse(localStorage.getItem(key) || "[]"); } catch (e) {}
+      for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
+      pool.sort(function (a, b) { return (last.indexOf(a[0]) > -1) - (last.indexOf(b[0]) > -1); });
+      var cards = document.querySelectorAll(".board .card"), shown = [];
+      for (var c = 0; c < cards.length && c < pool.length; c++) {
+        var d = pool[c], el = cards[c], img = el.querySelector("img");
+        el.href = d[0]; img.src = "img/" + d[1];
+        if (d[2] === "contain") { img.style.objectFit = "contain"; img.style.background = "#FEFDF9"; } else { img.style.objectPosition = d[2]; } img.alt = d[3];
+        el.querySelector(".k").textContent = d[4]; el.querySelector(".n").textContent = d[5];
+        shown.push(d[0]);
+      }
+      try { localStorage.setItem(key, JSON.stringify(shown)); } catch (e) {}
+    })();
+    </script>
   </section>
 
   <section class="projects" id="work" aria-labelledby="work-title">
@@ -266,7 +323,7 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
         <a class="tile t-6 t-hero fit" href="watchtower-navigation.html" style="--o:8">
           <div class="tile-img" style="background:#B4492A"><div class="hc" role="img" aria-label="Watchtower Collections menu flows and the typed search dropdown"><img src="img/wt-hero-nav.jpg" alt=""><img src="img/wt-hero-search.jpg" alt=""></div></div>
           <p class="tile-meta">Paystack · Fintech · Internal tools</p>
-          <h3><span>Redesigning Watchtower’s navigation</span></h3>
+          <h3><span>Redesigning an internal tool’s navigation for scale</span></h3>
           <p>Grouping an overflowing admin nav into mega menus that scale as new modules are added.</p>
         </a>
         <a class="tile t-3 t-hero" href="zambia-vsla.html" style="--o:9">
