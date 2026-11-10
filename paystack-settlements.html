@@ -392,7 +392,39 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>We interviewed the User Ops team about how they resolve payout issues</h2>
       <p>Issues are spotted by merchants, User Ops or engineers. Wherever they start, they pass to engineers to troubleshoot, then back through User Ops to the merchant, and sometimes to the processor or bank. Along the way the work hops between Slack, Jira, Metabase, Zendesk and Watchtower.</p>
     </div>
-    <figure class="panel sand"><div style="overflow-x: auto"><img class="slide-img" style="min-width: 760px" src="img/ps-escalation.jpg" alt="Escalation flow across five stages: identify issue, escalation, troubleshoot, report and respond, with the tools used at each stage"></div><figcaption>Redrawn from our research. Who is involved at each stage, and the tools they use.</figcaption></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-one">
+        <div class="pf-card pf-solo">
+          <p class="pf-tag pf-t2">How escalation works today</p>
+          <div class="pf-scroll"><img style="min-width: 760px" src="img/ps-escalation.jpg" width="2100" height="960" alt="Escalation flow across five stages: identify issue, escalation, troubleshoot, report and respond, with the tools used at each stage" loading="lazy"></div>
+        </div>
+      </div>
+      <figcaption>Redrawn from our research. Who is involved at each stage, and the tools they use.</figcaption>
+    </figure>
+    <style>
+    .pair-flow { margin: 28px 0 0; }
+    .pf-stage { display: grid; align-items: start; padding: clamp(20px, 3.5vw, 40px) clamp(14px, 3vw, 32px); border-radius: 28px; background: var(--panel-sun); border: 1px solid var(--line); overflow: hidden; }
+    .pf-two { grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr); padding-bottom: clamp(30px, 4vw, 48px); }
+    .pf-one { grid-template-columns: minmax(0, 1fr); }
+    .pf-card { position: relative; background: #fff; color: #22201E; border-radius: 14px; padding: 12px; box-shadow: 0 1px 2px rgba(34,32,30,.06), 0 20px 36px -24px rgba(34,32,30,.5); min-width: 0; transition: transform .3s ease; }
+    .pf-l { transform: rotate(-1deg); } .pf-r { transform: rotate(1deg); margin-top: 14px; } .pf-solo { transform: rotate(-.4deg); }
+    .pf-card img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid #E7E5E0; }
+    .pf-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .pf-tag { display: inline-block; margin: 0 0 10px; font-family: var(--mono); font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+    .pf-t1 { background: var(--sunrise); color: #22201E; } .pf-t2 { background: var(--teal); color: #fff; }
+    .pf-sticker { position: absolute; z-index: 2; right: 12px; bottom: -14px; max-width: 82%; font-weight: 700; font-size: .82rem; line-height: 1.25; padding: 8px 14px; border-radius: 18px; background: #fff; border: 2px solid currentColor; box-shadow: 0 8px 16px -10px rgba(34,32,30,.5); text-align: center; }
+    .pf-s1 { color: #8a5a00; transform: rotate(2deg); } .pf-s2 { color: var(--teal); transform: rotate(-2deg); }
+    .pf-arrow { align-self: center; display: grid; place-items: center; color: var(--terracotta); }
+    .pf-arrow svg { width: 100%; height: auto; display: block; }
+    @media (max-width: 860px) {
+      .pf-two { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
+      .pf-r { margin-top: 0; }
+      .pf-arrow { transform: rotate(90deg); width: 40px; justify-self: center; }
+      .pf-sticker { position: static; display: inline-block; margin-top: 10px; transform: none; max-width: none; }
+    }
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) { .pf-card:hover { transform: rotate(0deg) translateY(-4px); } }
+    @media (prefers-reduced-motion: reduce) { .pf-card { transition: none; } }
+    </style>
   </section>
 
   <section class="wrap block" id="insights">
@@ -425,7 +457,15 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
         <h2>We grouped every request type, then mapped constraints and solution ideas</h2>
         <p>Error handling came first: payouts stuck in processing, changing processors, NIBSS batch ID requests, retrying failed payouts and Wema error codes. Other groups included acquirer settlement debt, reversed payouts, oversettlement and status updates.</p>
       </div>
-      <figure><img class="slide-img" src="img/ps-prioritisation.jpg" alt="Prioritisation board with error handling request types, constraints and solution idea sticky notes"></figure>
+      <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-one">
+        <div class="pf-card pf-solo">
+          <p class="pf-tag pf-t2">Prioritisation board</p>
+          <img src="img/ps-prioritisation.jpg" width="1600" height="890" alt="Prioritisation board with error handling request types, constraints and solution idea sticky notes" loading="lazy">
+        </div>
+      </div>
+      
+    </figure>
     </div>
   </section>
 
@@ -442,10 +482,81 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Show decoded errors, a timeline of trials, and the account details that matter</h2>
       <p>Error codes and their meaning now sit in the payout's audit logs. Successful payouts show their session ID. Failed ones show the processor, the error code and the reason.</p>
     </div>
-    <figure class="panel sand"><img class="slide-img" src="img/ps-log-failed.jpg" alt="Logs tab of a failed payout showing processor NIBSS, error code 038 and reason processor downtime"><figcaption>A failed payout now shows the processor, the error code and a plain reason.</figcaption></figure>
-    <figure class="panel sun"><img class="slide-img" src="img/ps-timeline.jpg" alt="Timeline of a payout's events from calculated to initiated, pending, processing, response and action"><figcaption>A timeline of every trial, automatic or manual, so User Ops can tell the merchant exactly where the payout is.</figcaption></figure>
-    <figure class="panel sand"><img class="slide-img" src="img/ps-info-2.jpg" alt="Account tab showing account details and account status"><figcaption>An Account tab shows the account status and whether payouts are on hold.</figcaption></figure>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/ps-trials.jpg" alt="Watchtower settlement page with a failed Wema trial expanded to show the processor, reference, session ID and response code 051, next to a payout split into four trials, some stuck in processing with an Update status button on each"><figcaption>Opening a trial shows what the processor sent back. When a processor can’t take the full amount, the payout is split, and each trial shows its own state.</figcaption></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-one">
+        <div class="pf-card pf-solo">
+          <p class="pf-tag pf-t2">Logs tab · a failed payout</p>
+          <img src="img/ps-log-failed.jpg" width="1800" height="508" alt="Logs tab of a failed payout showing processor NIBSS, error code 038 and reason processor downtime" loading="lazy">
+        </div>
+      </div>
+      <figcaption>A failed payout now shows the processor, the error code and a plain reason.</figcaption>
+    </figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-one">
+        <div class="pf-card pf-solo tl-card">
+          <p class="pf-tag pf-t2">Timeline of a payout</p>
+          <div class="tl-board">
+            <div class="tl-main">
+              <ol class="tl-steps" aria-label="The stages of a payout, each of which updates the timeline"><li class="tl-step"><span class="tl-node">Payout calculated</span><span class="tl-drop" aria-hidden="true"></span></li><li class="tl-step"><span class="tl-node">Payout initiated</span><span class="tl-drop" aria-hidden="true"></span></li><li class="tl-step"><span class="tl-node">Payout pending</span><span class="tl-drop" aria-hidden="true"></span></li><li class="tl-step"><span class="tl-node">Processing</span><span class="tl-drop" aria-hidden="true"></span></li><li class="tl-step"><span class="tl-node">Response</span><span class="tl-drop" aria-hidden="true"></span></li><li class="tl-step tl-last"><span class="tl-node">Action</span><span class="tl-drop" aria-hidden="true"></span></li></ol>
+              <div class="tl-bar">Update timeline</div>
+            </div>
+            <aside class="tl-note" aria-label="Note from the design"><p>All actions are logged in the logs and reflected on the timeline</p><small>Sharon Wangari</small></aside>
+          </div>
+        </div>
+      </div>
+      <figcaption>A timeline of every trial, automatic or manual, so User Ops can tell the merchant exactly where the payout is.</figcaption>
+    </figure>
+    <style>
+    .tl-board { display: grid; grid-template-columns: minmax(0, 1fr) clamp(170px, 18vw, 220px); gap: clamp(16px, 3vw, 32px); align-items: start; padding: clamp(10px, 2vw, 22px) clamp(4px, 1vw, 12px) clamp(6px, 1vw, 12px); }
+    .tl-main { min-width: 0; }
+    .tl-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(14px, 2.2vw, 26px); }
+    .tl-step { position: relative; display: grid; justify-items: center; }
+    .tl-node { width: 100%; text-align: center; font-weight: 700; font-size: clamp(.72rem, 1.05vw, .9rem); line-height: 1.25; padding: 16px 8px; border-radius: 14px; background: var(--sunrise); color: #22201E; box-shadow: 0 10px 18px -14px rgba(34,32,30,.6); }
+    .tl-last .tl-node { background: #fff; border: 2.5px solid var(--sunrise); }
+    .tl-step:not(.tl-last)::after { content: ""; position: absolute; top: 28px; left: calc(100% + 2px); width: calc(clamp(14px, 2.2vw, 26px) - 4px); border-top: 3px dotted var(--terracotta); }
+    .tl-drop { display: block; width: 0; height: 30px; margin-top: 8px; border-left: 3px dotted var(--terracotta); position: relative; }
+    .tl-drop::after { content: ""; position: absolute; left: -7px; bottom: -3px; border: 6px solid transparent; border-top: 8px solid var(--terracotta); border-bottom: 0; }
+    .tl-bar { margin-top: 10px; text-align: center; font-weight: 700; padding: 16px 12px; border-radius: 14px; background: var(--panel-teal); color: var(--teal); border: 1.5px solid color-mix(in srgb, var(--teal) 35%, transparent); }
+    .tl-note { position: relative; transform: rotate(2.5deg); background: #F4B9AA; color: #3A1F18; padding: 18px 16px 14px; min-height: 160px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; border-radius: 4px; box-shadow: 0 16px 24px -16px rgba(34,32,30,.6); }
+    .tl-note::before { content: ""; position: absolute; left: 50%; top: -10px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%; background: var(--teal); border: 2px solid #fff; box-shadow: 0 3px 6px rgba(0,0,0,.25); }
+    .tl-note p { margin: 0; font-weight: 600; font-size: .95rem; line-height: 1.4; }
+    .tl-note small { font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; opacity: .75; }
+    @media (max-width: 860px) {
+      .tl-board { grid-template-columns: minmax(0, 1fr); }
+      .tl-steps { grid-template-columns: minmax(0, 1fr); gap: 0; position: relative; }
+      .tl-step { grid-template-columns: minmax(0, 1fr); padding-bottom: 0; }
+      .tl-node { padding: 12px 10px; }
+      .tl-step:not(.tl-last)::after { display: none; }
+      .tl-drop { height: 22px; margin: 4px 0; }
+      .tl-last .tl-drop { height: 22px; }
+      .tl-note { max-width: 340px; justify-self: start; min-height: 0; }
+    }
+    </style>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-one">
+        <div class="pf-card pf-solo">
+          <p class="pf-tag pf-t2">Account tab</p>
+          <img src="img/ps-info-2.jpg" width="1800" height="834" alt="Account tab showing account details and account status" loading="lazy">
+        </div>
+      </div>
+      <figcaption>An Account tab shows the account status and whether payouts are on hold.</figcaption>
+    </figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-two">
+        <div class="pf-card pf-l">
+          <p class="pf-tag pf-t1">A failed trial, opened up</p>
+          <img src="img/ps-trials-a.jpg" width="867" height="614" alt="Watchtower settlement page with a failed Wema trial expanded to show the processor, reference, session ID and response code 051, next to a payout split into four trials, some stuck in processing with an Update status button on each (first screen)" loading="lazy">
+          <span class="pf-sticker pf-s1">Processor, session ID and response code in one place</span>
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-r">
+          <p class="pf-tag pf-t2">One payout, split into several trials</p>
+          <img src="img/ps-trials-b.jpg" width="867" height="614" alt="Watchtower settlement page with a failed Wema trial expanded to show the processor, reference, session ID and response code 051, next to a payout split into four trials, some stuck in processing with an Update status button on each (second screen)" loading="lazy">
+          <span class="pf-sticker pf-s2">Each stuck trial can be updated on its own</span>
+        </div>
+      </div>
+      <figcaption>Opening a trial shows what the processor sent back. When a processor can’t take the full amount, the payout is split, and each trial shows its own state.</figcaption>
+    </figure>
   </section>
 
   <section class="wrap block">
@@ -454,7 +565,15 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Let User Ops update statuses, retry payouts and apply deductions</h2>
       <p>Three actions cover the requests that used to go to engineers. Each has clear rules, and every action is written to the logs.</p>
     </div>
-    <figure class="panel sand"><img class="slide-img" src="img/ps-actions.jpg" alt="Three action panels: Update status, Apply deductions with amount and reason, and Retry payout with a processor choice"></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-one">
+        <div class="pf-card pf-solo">
+          <p class="pf-tag pf-t2">Three actions</p>
+          <img src="img/ps-actions.jpg" width="1800" height="536" alt="Three action panels: Update status, Apply deductions with amount and reason, and Retry payout with a processor choice" loading="lazy">
+        </div>
+      </div>
+      
+    </figure>
     <div class="roles">
       <div class="role-card"><p class="label">Update payout status</p><p class="sub">When</p><ul class="bullets"><li>Watchtower's status doesn't match Metabase</li><li>A payout shows “success” but was reversed</li><li>A payout is stuck in processing but failed at the processor</li></ul><p class="sub">Rule</p><p>A payout in processing can only be updated once its final state is confirmed with the processor.</p></div>
       <div class="role-card"><p class="label">Retry payout</p><p class="sub">When</p><ul class="bullets"><li>A payout has failed</li><li>A payout has been reversed</li></ul><p class="sub">Rule</p><p>Only failed payouts can be retried. User Ops can keep the current processor or switch, for example from NIBSS to Wema.</p></div>
@@ -469,8 +588,38 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Small forms, clear rules, and a record of every change</h2>
       <p>Updating a status asks only for the new status and a reason. A retry is offered once every trial has failed, after five attempts. If a payout was split, all of its trials must fail first, otherwise it’s escalated. A deduction can’t be applied without a link to the merchant’s consent ticket. It can be cancelled from the audit logs with a reason, unless it has already been processed.</p>
     </div>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/ps-update.jpg" alt="Update status modal with a new status of Failed and the reason Insufficient funds, followed by the settlement marked Failed with a confirmation that the status was updated"><figcaption>Every update is confirmed on screen and written to the payout’s logs.</figcaption></figure>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/ps-deduct.jpg" alt="Apply deduction modal with amount, reason and a link to the merchant consent ticket, followed by the email telling the merchant about the excess payout and the deduction from their next payout"><figcaption>The merchant hears about a deduction before it reaches their payout.</figcaption></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-two">
+        <div class="pf-card pf-l">
+          <p class="pf-tag pf-t1">Update a payout’s status</p>
+          <img src="img/ps-update-a.jpg" width="867" height="614" alt="Update status modal with a new status of Failed and the reason Insufficient funds, followed by the settlement marked Failed with a confirmation that the status was updated (first screen)" loading="lazy">
+          <span class="pf-sticker pf-s1">A new status and a reason, nothing more</span>
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-r">
+          <p class="pf-tag pf-t2">Status updated</p>
+          <img src="img/ps-update-b.jpg" width="867" height="614" alt="Update status modal with a new status of Failed and the reason Insufficient funds, followed by the settlement marked Failed with a confirmation that the status was updated (second screen)" loading="lazy">
+          <span class="pf-sticker pf-s2">Confirmed on screen, and written to the logs</span>
+        </div>
+      </div>
+      <figcaption>Every update is confirmed on screen and written to the payout’s logs.</figcaption>
+    </figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-two">
+        <div class="pf-card pf-l">
+          <p class="pf-tag pf-t1">Apply a deduction</p>
+          <img src="img/ps-deduct-a.jpg" width="867" height="614" alt="Apply deduction modal with amount, reason and a link to the merchant consent ticket, followed by the email telling the merchant about the excess payout and the deduction from their next payout (first screen)" loading="lazy">
+          <span class="pf-sticker pf-s1">A link to the merchant’s consent ticket is required</span>
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-r">
+          <p class="pf-tag pf-t2">The merchant is told straight away</p>
+          <img src="img/ps-deduct-b.jpg" width="867" height="370" alt="Apply deduction modal with amount, reason and a link to the merchant consent ticket, followed by the email telling the merchant about the excess payout and the deduction from their next payout (second screen)" loading="lazy">
+          <span class="pf-sticker pf-s2">The amount, the payout ID and when it’s deducted</span>
+        </div>
+      </div>
+      <figcaption>The merchant hears about a deduction before it reaches their payout.</figcaption>
+    </figure>
   </section>
 
   <section class="wrap block">
