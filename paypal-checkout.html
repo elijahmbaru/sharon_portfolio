@@ -388,7 +388,8 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
     <div class="text">
       <p class="label">Educate first</p>
       <h2>Answer merchants’ questions before they ask them</h2>
-      <p>When a merchant turns on PayPal for the first time, a short series of modals explains what it is, why it’s worth enabling, and what happens next. The content came from the questions merchants raised when we tested early prototypes with them.</p>
+      <p>When a merchant turns on PayPal for the first time, a short series of modals explains what it is, why it’s worth enabling, and what happens next.</p>
+      <p><strong>The value proposition behind them was defined collaboratively by the Paystack × PayPal team.</strong> It was a joint effort across product and design. The content then came from the questions merchants raised when we tested early prototypes with them.</p>
     </div>
     <figure class="demo-video"><div class="video-wrap" id="pp-educate-wrap"><video id="pp-educate-video" class="slide-img" width="1440" height="900" muted playsinline preload="metadata" controls poster="img/pp-educate-poster.jpg" aria-label="Walkthrough: ticking PayPal in payment preferences opens four educational modals, then the PayPal business account step"><source src="img/pp-educate.mp4" type="video/mp4"><img class="slide-img" src="img/pp-educate.jpg" alt="Payment preferences with PayPal unticked, leading to four educational modals: Getting started, Why enable PayPal, Frequently asked questions, and Once activated"></video><button type="button" class="video-play" id="pp-educate-play" aria-label="Replay walkthrough" hidden><svg viewBox="0 0 84 100" aria-hidden="true"><path d="M12.6875 98.6946L79.3905 57.0066C81.8124 55.491 83.2811 52.8347 83.2811 49.9754C83.2811 47.1161 81.8123 44.4598 79.3905 42.9442L12.6875 1.25622C10.1289 -0.337577 6.9102 -0.419577 4.2734 1.03747C1.6406 2.49837 0.0039 5.27577 0 8.28747V91.6625C0.003906 94.6742 1.6406 97.4516 4.2734 98.9125C6.9101 100.369 10.1289 100.288 12.6875 98.6946Z" fill="#fff" fill-opacity="0.85"/></svg></button></div><figcaption>Ticking PayPal in payment preferences opens four short educational modals, then the PayPal business account step. It plays once as you scroll to it; press the play button at the end to watch it again.</figcaption></figure>
     <style>
@@ -427,7 +428,61 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Make the hand-off to PayPal, and the wait, feel clear</h2>
       <p>Merchants need a PayPal business account. They can link one, create one, or upgrade a personal account, and they finish that on PayPal, including KYC, because Paystack doesn’t pass merchant details across. Back on Paystack, the dashboard shows exactly where verification stands. Through the partnership, verification takes days rather than the usual six to eight weeks.</p>
     </div>
-    <figure><div style="overflow-x: auto"><img class="slide-img" style="min-width: 760px" src="img/pp-verify.jpg" alt="PayPal Checkout settings card moving from Awaiting verification, with a checklist of connection, email and identity steps, to Enabled"></div><figcaption>A checklist shows each step, from awaiting verification to enabled.</figcaption></figure>
+    <figure class="verify-flow">
+      <div class="vf-stage">
+        <span class="vf-dot vf-d1" aria-hidden="true"></span><span class="vf-dot vf-d2" aria-hidden="true"></span>
+        <div class="vf-card vf-before">
+          <span class="vf-pin" aria-hidden="true"></span>
+          <p class="vf-tag vf-tag-before">Before · waiting on PayPal</p>
+          <img src="img/pp-verify-awaiting.jpg" width="2000" height="828" alt="PayPal settings tab showing the PayPal Checkout card marked Awaiting verification, with a checklist: account connected, email verified, and identity (CIP) awaiting verification" loading="lazy">
+          <span class="vf-sticker vf-s1">Awaiting verification</span>
+        </div>
+        <div class="vf-link" aria-hidden="true">
+          <svg viewBox="0 0 160 90" class="vf-arrow"><path d="M8 58 C 44 -10, 88 52, 144 36" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 12"/><g transform="translate(144 36) rotate(-15.9)"><path d="M-26 -20 L0 0 L-26 20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+          <span class="vf-sticker vf-s2">Expedited from 6-8 weeks</span>
+        </div>
+        <div class="vf-card vf-after">
+          <span class="vf-pin vf-pin2" aria-hidden="true"></span>
+          <p class="vf-tag vf-tag-after">After · verified</p>
+          <img src="img/pp-verify-enabled.jpg" width="1602" height="580" alt="The same PayPal Checkout card, now marked Enabled, with the connection, email and identity steps listed" loading="lazy">
+          <span class="vf-sticker vf-s3"><i></i>Enabled</span>
+        </div>
+      </div>
+      <figcaption>A checklist shows each step, from awaiting verification to enabled.</figcaption>
+    </figure>
+    <style>
+    .verify-flow { margin: 0; }
+    .vf-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(90px, .32fr) minmax(0, 1fr); align-items: center; gap: 0; padding: clamp(28px, 4.5vw, 52px) clamp(18px, 4vw, 44px); border-radius: 28px; background: var(--panel-sun); border: 1px solid var(--line); overflow: hidden; isolation: isolate; }
+    .vf-dot { position: absolute; border-radius: 50%; z-index: -1; }
+    .vf-d1 { width: 90px; height: 90px; background: var(--sunrise); right: -26px; bottom: -26px; }
+    .vf-d2 { width: 26px; height: 26px; background: var(--terracotta); left: 34%; top: 16px; }
+    .vf-card { position: relative; background: #fff; color: #22201E; border-radius: 16px; padding: 14px; box-shadow: 0 1px 2px rgba(34,32,30,.06), 0 22px 40px -24px rgba(34,32,30,.5); min-width: 0; transition: transform .3s ease; }
+    .vf-before { transform: rotate(-1.6deg); }
+    .vf-after { transform: rotate(1.6deg); }
+    .vf-card img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid #E7E5E0; }
+    .vf-tag { display: inline-block; margin: 0 0 11px; font-family: var(--mono); font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+    .vf-tag-before { background: var(--sunrise); color: #22201E; }
+    .vf-tag-after { background: var(--teal); color: #fff; }
+    .vf-pin { position: absolute; left: 50%; top: -10px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%; background: var(--sunrise); border: 2px solid #fff; box-shadow: 0 3px 6px rgba(0,0,0,.25); }
+    .vf-pin2 { background: var(--teal); }
+    .vf-sticker { position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: .9rem; padding: 8px 15px; border-radius: 999px; white-space: nowrap; box-shadow: 0 8px 16px -10px rgba(34,32,30,.5); }
+    .vf-s1 { right: 18px; top: 46px; background: var(--sunrise); color: #22201E; transform: rotate(4deg); }
+    .vf-s3 { right: 18px; top: 42px; background: #fff; color: #0F5257; border: 2px solid #0F5257; transform: rotate(-4deg); }
+    .vf-s3 i { width: 10px; height: 10px; border-radius: 50%; background: #2CA861; display: block; }
+    .vf-link { position: relative; display: grid; place-items: center; gap: 4px; color: var(--terracotta); min-width: 0; padding: 0 6px; }
+    .vf-arrow { width: 100%; max-width: 120px; height: auto; display: block; }
+    .vf-s2 { position: static; background: var(--terracotta); color: #fff; transform: rotate(-3deg); white-space: normal; text-align: center; line-height: 1.25; font-size: .84rem; box-shadow: none; }
+    @media (max-width: 860px) {
+      .vf-stage { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
+      .vf-link { grid-auto-flow: column; gap: 10px; padding: 4px 0; }
+      .vf-arrow { width: 56px; transform: rotate(90deg); }
+    }
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+      .vf-before:hover { transform: rotate(-0.6deg) translateY(-4px); }
+      .vf-after:hover { transform: rotate(0.6deg) translateY(-4px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .vf-card { transition: none; } }
+    </style>
   </section>
 
   <section class="wrap block" id="insights">
@@ -436,7 +491,25 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>A familiar PayPal sign-in, framed by Paystack</h2>
       <p>Once PayPal is enabled, customers choose it on checkout and sign in to their PayPal account to pay.</p>
     </div>
-    <figure><div style="overflow-x: auto"><img class="slide-img" style="min-width: 760px" src="img/pp-checkout.jpg" alt="Paystack checkout with Pay with PayPal selected, the PayPal sign-in window, and PayPal’s payment confirmation"></div><figcaption>Choosing PayPal, signing in, and confirming the payment.</figcaption></figure>
+    <figure class="demo-video"><div class="video-wrap" id="pp-checkout-wrap"><video id="pp-checkout-video" class="slide-img" width="1440" height="810" muted playsinline preload="metadata" controls poster="img/pp-checkout-poster.jpg" aria-label="Walkthrough: the customer chooses PayPal at checkout, logs in to PayPal, pays with their PayPal balance and sees a payment confirmation"><source src="img/pp-checkout.mp4" type="video/mp4"><img class="slide-img" src="img/pp-checkout.jpg" alt="Paystack checkout with Pay with PayPal selected, the PayPal sign-in window, and PayPal’s payment confirmation"></video><button type="button" class="video-play" id="pp-checkout-play" aria-label="Replay walkthrough" hidden><svg viewBox="0 0 84 100" aria-hidden="true"><path d="M12.6875 98.6946L79.3905 57.0066C81.8124 55.491 83.2811 52.8347 83.2811 49.9754C83.2811 47.1161 81.8123 44.4598 79.3905 42.9442L12.6875 1.25622C10.1289 -0.337577 6.9102 -0.419577 4.2734 1.03747C1.6406 2.49837 0.0039 5.27577 0 8.28747V91.6625C0.003906 94.6742 1.6406 97.4516 4.2734 98.9125C6.9101 100.369 10.1289 100.288 12.6875 98.6946Z" fill="#fff" fill-opacity="0.85"/></svg></button></div><figcaption>Choosing PayPal, signing in, and confirming the payment. It plays once as you scroll to it; press the play button at the end to watch it again.</figcaption></figure>
+    <script>
+    /* Checkout walkthrough: plays once on scroll-in (no loop, no native controls). When it ends, a play button appears to watch it again. */
+    (function () {
+      var v = document.getElementById("pp-checkout-video"), btn = document.getElementById("pp-checkout-play");
+      if (!v || !btn) return;
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      v.loop = false;
+      if (reduce || !("IntersectionObserver" in window)) return; /* keeps native controls, no autoplay */
+      v.controls = false;
+      function start() { var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; btn.hidden = true; }); }
+      btn.addEventListener("click", function () { btn.hidden = true; v.currentTime = 0; start(); });
+      v.addEventListener("ended", function () { btn.hidden = false; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting && e.intersectionRatio >= 0.6) { io.disconnect(); start(); } });
+      }, { threshold: [0.6] });
+      io.observe(v);
+    })();
+    </script>
     <div class="statement">
       <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
       <p>Every hand-off between Paystack and PayPal should feel expected, never surprising.</p>
@@ -464,7 +537,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
     <div class="text">
       <p class="label">The constraint</p>
       <h2>PayPal sets the rules, so the design had to guide merchants through them</h2>
-      <p>PayPal disputes work differently from other disputes on Paystack, and there was little room to change the process. The goal was to help merchants succeed within it, through clear actions, rules and education.</p>
+      <p>PayPal disputes work differently from other disputes on Paystack, and there was little room to change the process. Unlike other disputes, the merchant and customer chat directly and agree. All correspondence and actions are logged for transparency. The goal was to help merchants succeed within it, through clear actions, rules and education.</p>
     </div>
     <div class="roles">
       <div class="role-card"><p class="label">Accept</p><p>Issue a full refund to the customer.</p></div>
@@ -472,7 +545,48 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <div class="role-card"><p class="label">Add tracking</p><p>Allowed once, and only before any other action is taken.</p></div>
       <div class="role-card"><p class="label">Escalate to PayPal</p><p>Hands the case to PayPal. Every other action, including chat, is then closed.</p></div>
     </div>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-offer.jpg" alt="Chargeback actions panel: choosing Return for refund refunds the full amount, Replacement makes a refund optional, and Partial refund lets the seller enter the amount, each followed by its own form and a reason sent to the customer"><figcaption>Each offer type asks only for what it needs.</figcaption></figure>
+    <figure class="offer-flow" style="margin-top: 28px">
+      <div class="of-stage">
+        <div class="of-card of-c1">
+          <p class="of-tag of-t1">Step 1 · Choose the offer type</p>
+          <img src="img/pp-offer-1.jpg" width="940" height="782" alt="Chargeback actions with the Make offer tab open and the offer dropdown listing Partial refund, Return for refund and Replacement" loading="lazy">
+          <span class="of-sticker of-s1">Partial refund</span>
+        </div>
+        <span class="of-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="of-card of-c2">
+          <p class="of-tag of-t2">Step 2 · Fill it in</p>
+          <img src="img/pp-offer-2.jpg" width="940" height="1102" alt="The Make offer form for a partial refund with the refund amount of 10 USD, a reason, a note that the reason is also sent to the customer, and a Make offer button" loading="lazy">
+          <span class="of-sticker of-s2">Reason goes to the customer</span>
+        </div>
+        <span class="of-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="of-card of-c3">
+          <p class="of-tag of-t3">Step 3 · On the timeline</p>
+          <img src="img/pp-offer-3.jpg" width="700" height="560" alt="Chargeback timeline showing the customer’s message, the merchant’s reply, and the latest entry: Offer, Partial refund, refund amount USD 10.00" loading="lazy">
+          <span class="of-sticker of-s3">Wait for the customer to accept or decline</span>
+        </div>
+      </div>
+      <figcaption>Each offer type asks only for what it needs. A partial refund asks for an amount and a reason, then waits for the customer’s answer.</figcaption>
+    </figure>
+    <style>
+    .of-stage { display: grid; grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr) 40px minmax(0, 1fr); align-items: start; gap: 0; padding: clamp(22px, 3.5vw, 40px) clamp(14px, 3vw, 32px); border-radius: 28px; background: var(--panel-sun); border: 1px solid var(--line); overflow: hidden; }
+    .of-card { position: relative; background: #fff; color: #22201E; border-radius: 14px; padding: 12px; box-shadow: 0 1px 2px rgba(34,32,30,.06), 0 20px 36px -24px rgba(34,32,30,.5); min-width: 0; transition: transform .3s ease; }
+    .of-c1 { transform: rotate(-1.2deg); } .of-c2 { transform: rotate(1deg); margin-top: 18px; } .of-c3 { transform: rotate(-1deg); margin-top: 6px; }
+    .of-card img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid #E7E5E0; }
+    .of-tag { display: inline-block; margin: 0 0 10px; font-family: var(--mono); font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+    .of-t1 { background: var(--sunrise); color: #22201E; } .of-t2 { background: var(--terracotta); color: #fff; } .of-t3 { background: var(--teal); color: #fff; }
+    .of-sticker { position: absolute; z-index: 2; right: 12px; bottom: -14px; max-width: 80%; font-weight: 700; font-size: .82rem; line-height: 1.25; padding: 8px 14px; border-radius: 999px; background: #fff; border: 2px solid currentColor; box-shadow: 0 8px 16px -10px rgba(34,32,30,.5); text-align: center; }
+    .of-s1 { color: #8a5a00; transform: rotate(3deg); } .of-s2 { color: var(--terracotta); transform: rotate(-3deg); } .of-s3 { color: var(--teal); transform: rotate(3deg); border-radius: 18px; }
+    .of-arrow { align-self: center; display: grid; place-items: center; color: var(--terracotta); }
+    .of-arrow svg { width: 100%; height: auto; display: block; }
+    @media (max-width: 860px) {
+      .of-stage { grid-template-columns: minmax(0, 1fr); row-gap: 22px; }
+      .of-c1, .of-c2, .of-c3 { margin-top: 0; }
+      .of-arrow { transform: rotate(90deg); width: 40px; justify-self: center; }
+      .of-sticker { position: static; display: inline-block; margin-top: 10px; transform: none; max-width: none; }
+    }
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) { .of-card:hover { transform: rotate(0deg) translateY(-4px); } }
+    @media (prefers-reduced-motion: reduce) { .of-card { transition: none; } }
+    </style>
   </section>
 
   <section class="wrap block">
@@ -481,7 +595,48 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Say what a refund costs before it happens</h2>
       <p>Accepting is the one action that can’t be undone, so the panel states the amount and that it comes out of the next payout. It also points to Make offer for merchants who want to settle for less. Once accepted, the status changes and the timeline records the refund.</p>
     </div>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-accept.jpg" alt="Accept tab with a note that the refund will be deducted from the next payout and a Process refund button, followed by the dispute marked Chargeback Accepted with the refund on the timeline"><figcaption>The note names the amount and the payout it comes from.</figcaption></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-two">
+        <div class="pf-card pf-l">
+          <p class="pf-tag pf-t1">Accept and refund</p>
+          <img src="img/pp-accept-a.jpg" width="867" height="697" alt="Accept tab with a note that the refund will be deducted from the next payout and a Process refund button, followed by the dispute marked Chargeback Accepted with the refund on the timeline (before)" loading="lazy">
+          <span class="pf-sticker pf-s1">Amount and source stated up front</span>
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-r">
+          <p class="pf-tag pf-t2">Chargeback accepted</p>
+          <img src="img/pp-accept-b.jpg" width="857" height="406" alt="Accept tab with a note that the refund will be deducted from the next payout and a Process refund button, followed by the dispute marked Chargeback Accepted with the refund on the timeline (after)" loading="lazy">
+          <span class="pf-sticker pf-s2">Status and timeline update at once</span>
+        </div>
+      </div>
+      <figcaption>The note names the amount and the payout it comes from.</figcaption>
+    </figure>
+    <style>
+    .pair-flow { margin: 28px 0 0; }
+    .pf-stage { display: grid; align-items: start; padding: clamp(20px, 3.5vw, 40px) clamp(14px, 3vw, 32px); border-radius: 28px; background: var(--panel-sun); border: 1px solid var(--line); overflow: hidden; }
+    .pf-stage + .pf-stage { margin-top: 16px; }
+    .pf-two { grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr); }
+    .pf-one { grid-template-columns: minmax(0, 1fr); }
+    .pf-three { grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) 36px minmax(0, 1fr); }
+    .pf-card { position: relative; background: #fff; color: #22201E; border-radius: 14px; padding: 12px; box-shadow: 0 1px 2px rgba(34,32,30,.06), 0 20px 36px -24px rgba(34,32,30,.5); min-width: 0; transition: transform .3s ease; }
+    .pf-l, .pf-m1 { transform: rotate(-1deg); } .pf-r, .pf-m3 { transform: rotate(1deg); margin-top: 14px; } .pf-m2 { transform: rotate(-.6deg); margin-top: 6px; }
+    .pf-card img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid #E7E5E0; }
+    .pf-tag { display: inline-block; margin: 0 0 10px; font-family: var(--mono); font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+    .pf-t1 { background: var(--sunrise); color: #22201E; } .pf-t2 { background: var(--teal); color: #fff; }
+    .pf-sticker { position: absolute; z-index: 2; right: 12px; bottom: -14px; max-width: 82%; font-weight: 700; font-size: .82rem; line-height: 1.25; padding: 8px 14px; border-radius: 18px; background: #fff; border: 2px solid currentColor; box-shadow: 0 8px 16px -10px rgba(34,32,30,.5); text-align: center; }
+    .pf-s1 { color: #8a5a00; transform: rotate(2deg); } .pf-s2 { color: var(--teal); transform: rotate(-2deg); }
+    .pf-arrow { align-self: center; display: grid; place-items: center; color: var(--terracotta); }
+    .pf-arrow svg { width: 100%; height: auto; display: block; }
+    .pf-stage:not(.pf-one) { padding-bottom: clamp(30px, 4vw, 48px); }
+    @media (max-width: 860px) {
+      .pf-two, .pf-three { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
+      .pf-r, .pf-m3, .pf-m2 { margin-top: 0; }
+      .pf-arrow { transform: rotate(90deg); width: 40px; justify-self: center; }
+      .pf-sticker { position: static; display: inline-block; margin-top: 10px; transform: none; max-width: none; }
+    }
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) { .pf-card:hover { transform: rotate(0deg) translateY(-4px); } }
+    @media (prefers-reduced-motion: reduce) { .pf-card { transition: none; } }
+    </style>
   </section>
 
   <section class="wrap block">
@@ -490,7 +645,22 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>A one-time action, flagged before it’s used</h2>
       <p>PayPal accepts tracking details only once, and not after an offer has been made. The form warns merchants up front, and asks for a tracking link only when there is one. After submitting, the details appear on the timeline and the tab explains why it’s locked. Any action other than accepting moves the dispute to In Progress.</p>
     </div>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-tracking.jpg" alt="Tracking information form with a warning that it can only be captured once, fields for tracking number, carrier, tracking link and shipment status, followed by the timeline showing the tracking details and the tab locked"><figcaption>We designed three versions: delivered with no link, in transit with a link, and in transit without one.</figcaption></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-two">
+        <div class="pf-card pf-l">
+          <p class="pf-tag pf-t1">Add tracking information</p>
+          <img src="img/pp-tracking-a.jpg" width="867" height="1129" alt="Tracking information form with a warning that it can only be captured once, fields for tracking number, carrier, tracking link and shipment status, followed by the timeline showing the tracking details and the tab locked (before)" loading="lazy">
+          <span class="pf-sticker pf-s1">A warning: it can only be done once</span>
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-r">
+          <p class="pf-tag pf-t2">Tracking added to the timeline</p>
+          <img src="img/pp-tracking-b.jpg" width="867" height="580" alt="Tracking information form with a warning that it can only be captured once, fields for tracking number, carrier, tracking link and shipment status, followed by the timeline showing the tracking details and the tab locked (after)" loading="lazy">
+          <span class="pf-sticker pf-s2">The tab locks, so it can’t be added twice</span>
+        </div>
+      </div>
+      <figcaption>We designed three versions: delivered with no link, in transit with a link, and in transit without one.</figcaption>
+    </figure>
   </section>
 
   <section class="wrap block">
@@ -499,7 +669,22 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Spell out what escalating gives up</h2>
       <p>Escalating hands the case to PayPal, and the merchant loses the chance to talk to the customer. Before they confirm, the panel lists what changes: chat closes, open offers are cancelled, PayPal reviews what was shared, and a decision can take up to 30 days. Afterwards, every tab shows that the issue is escalated and who escalated it.</p>
     </div>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-escalate.jpg" alt="Escalate tab listing what happens after escalation with a reason field, followed by the Issue already escalated state explaining that the customer escalated and the merchant should wait for PayPal"><figcaption>The escalated state reads differently depending on whether the customer or the merchant escalated.</figcaption></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-two">
+        <div class="pf-card pf-l">
+          <p class="pf-tag pf-t1">Escalate to PayPal</p>
+          <img src="img/pp-escalate-a.jpg" width="867" height="880" alt="Escalate tab listing what happens after escalation with a reason field, followed by the Issue already escalated state explaining that the customer escalated and the merchant should wait for PayPal (before)" loading="lazy">
+          <span class="pf-sticker pf-s1">What changes once the case leaves the merchant’s hands</span>
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-r">
+          <p class="pf-tag pf-t2">Issue already escalated</p>
+          <img src="img/pp-escalate-b.jpg" width="867" height="621" alt="Escalate tab listing what happens after escalation with a reason field, followed by the Issue already escalated state explaining that the customer escalated and the merchant should wait for PayPal (after)" loading="lazy">
+          <span class="pf-sticker pf-s2">Every action tab explains why it’s unavailable</span>
+        </div>
+      </div>
+      <figcaption>The escalated state reads differently depending on whether the customer or the merchant escalated.</figcaption>
+    </figure>
   </section>
 
   <section class="wrap block">
@@ -508,7 +693,31 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
         <h2>Merchants and customers talk directly. Ops can see it all.</h2>
         <p>For PayPal disputes, merchants can chat with customers. The conversation, shared documents and history are logged on Watchtower for the operations team, with the resolve action turned off, since PayPal owns the outcome.</p>
     </div>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-chat.jpg" alt="Watchtower dispute view with the conversation, attachments and evidence, and history, with Resolve dispute disabled; below, the merchant dashboard flow of chatting with the customer, uploading documents and seeing them on the chargeback timeline"><figcaption>On the merchant dashboard, merchants reply and upload documents. Watchtower shows the ops team the same conversation, evidence and history.</figcaption></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-one">
+        <div class="pf-card pf-wide">
+          <p class="pf-tag pf-t2">Watchtower · for the ops team</p>
+          <img src="img/pp-wt.jpg" width="1514" height="617" alt="Watchtower dispute view with the conversation, attachments and evidence, and history, with Resolve dispute disabled" loading="lazy">
+        </div>
+      </div>
+      <div class="pf-stage pf-three">
+        <div class="pf-card pf-m1">
+          <p class="pf-tag pf-t1">Merchant dashboard · 1</p>
+          <img src="img/pp-md-1.jpg" width="448" height="378" alt="Merchant dashboard chat with a link to upload documents with the message" loading="lazy">
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-m2">
+          <p class="pf-tag pf-t1">Merchant dashboard · 2</p>
+          <img src="img/pp-md-2.jpg" width="447" height="378" alt="Uploaded documents, Receipt.pdf and Correspondence.pdf, ready to submit with the message" loading="lazy">
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-m3">
+          <p class="pf-tag pf-t1">Merchant dashboard · 3</p>
+          <img src="img/pp-md-3.jpg" width="447" height="304" alt="Chargeback timeline showing the message and the attached documents" loading="lazy">
+        </div>
+      </div>
+      <figcaption>On the merchant dashboard, merchants reply and upload documents. Watchtower shows the ops team the same conversation, evidence and history.</figcaption>
+    </figure>
   </section>
 
   <section class="wrap block">
@@ -517,7 +726,22 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Bring merchants back at the moments that matter</h2>
       <p>Merchants don’t sit on the dashboard waiting for disputes. An email goes out when a dispute is raised, with the 48 hour deadline and a link to respond. When a customer escalates, a second email tells the merchant that PayPal has the case and nothing more is needed from them.</p>
     </div>
-    <figure style="margin-top: 28px"><img class="slide-img" src="img/pp-emails.jpg" alt="Two Paystack emails: one telling the merchant a dispute was raised and to respond within 48 hours, and one saying the customer escalated and no action is required"><figcaption>One email asks for action. The other says none is needed.</figcaption></figure>
+    <figure class="pair-flow" style="margin-top: 28px">
+      <div class="pf-stage pf-two">
+        <div class="pf-card pf-l">
+          <p class="pf-tag pf-t1">When a dispute is raised</p>
+          <img src="img/pp-emails-a.jpg" width="867" height="542" alt="Two Paystack emails: one telling the merchant a dispute was raised and to respond within 48 hours, and one saying the customer escalated and no action is required (before)" loading="lazy">
+          <span class="pf-sticker pf-s1">A clear deadline and a link to respond</span>
+        </div>
+        <span class="pf-arrow" aria-hidden="true"><svg viewBox="0 0 60 30"><path d="M4 15 H48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M40 5 L54 15 L40 25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="pf-card pf-r">
+          <p class="pf-tag pf-t2">When the customer escalates</p>
+          <img src="img/pp-emails-b.jpg" width="867" height="515" alt="Two Paystack emails: one telling the merchant a dispute was raised and to respond within 48 hours, and one saying the customer escalated and no action is required (after)" loading="lazy">
+          <span class="pf-sticker pf-s2">Reassurance that no action is needed</span>
+        </div>
+      </div>
+      <figcaption>One email asks for action. The other says none is needed.</figcaption>
+    </figure>
   </section>
 
   <div class="wrap"><hr class="divider"></div>
