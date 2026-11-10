@@ -390,7 +390,32 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Sitting with the team as they worked</h2>
       <p>I spent time chatting with and shadowing the operations team as they logged and answered real bulk files, noting every tool, hand-off and workaround. We then mapped the full journey on one board, from the moment a bank or card scheme raises a dispute to the moment a response goes back.</p>
     </div>
-    <figure class="panel sand"><img class="slide-img" src="img/cb-today.jpg" alt="Today’s process step by step. Logging bulk disputes takes eight steps across Zendesk, Google Sheets and Watchtower. Responding starts with eight shared steps in the VPN, chargeback tool and Watchtower, then splits: fraud chargebacks take seven more steps and other chargebacks six, across Sheets, Watchtower, Slack and Zendesk."><figcaption>Today’s process, with each step tagged by the tool it happens in.</figcaption></figure>
+    <style>
+.flow-sum { margin: 0; display: grid; gap: 18px; }
+.fs-card { background: var(--surface, #fff); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+.fs-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 20px; align-items: baseline; margin-bottom: 18px; }
+.fs-head h3 { margin: 0; font-family: var(--display); font-size: 1.3rem; }
+.fs-stats { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: .75rem; letter-spacing: .04em; }
+.fs-stats span { padding: 5px 11px; border-radius: 999px; background: var(--panel-sun); color: var(--fg, #22201E); }
+.fs-stats b { color: var(--primary); }
+.fs-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; counter-reset: fs; }
+.fs-flow.fs-four { grid-template-columns: repeat(4, 1fr); }
+.fs-stage { position: relative; padding-top: 14px; border-top: 3px solid var(--primary); }
+.fs-stage:not(:last-child)::after { content: "→"; position: absolute; right: -12px; top: -17px; width: 20px; text-align: center; color: var(--primary); background: var(--surface, #fff); font-size: .95rem; }
+.fs-n { font-family: var(--mono); font-size: .72rem; color: var(--primary); }
+.fs-stage h4 { margin: 4px 0 4px; font-family: var(--display); font-size: 1.05rem; line-height: 1.25; }
+.fs-tools { margin: 0 0 10px; font-family: var(--mono); font-size: .7rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.fs-stage ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: .88rem; line-height: 1.4; color: var(--muted); }
+.fs-stage ul li { padding-left: 12px; position: relative; }
+.fs-stage ul li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.fs-stage ul b { color: var(--fg, #22201E); font-weight: 600; }
+.flow-sum figcaption { margin: 0; }
+@media (max-width: 860px) { .fs-flow, .fs-flow.fs-four { grid-template-columns: 1fr; } .fs-stage:not(:last-child)::after { display: none; } }
+</style>
+    <figure class="flow-sum" aria-label="Today’s process: logging bulk disputes and responding to chargebacks">
+      <div class="fs-card"><div class="fs-head"><h3>Logging bulk disputes</h3><p class="fs-stats"><span><b>8</b> steps</span><span><b>3</b> tools</span></p></div><ol class="fs-flow"><li class="fs-stage"><span class="fs-n">01</span><h4>Receive the file</h4><p class="fs-tools">Zendesk</p><ul><li>Bank emails a spreadsheet</li><li>Download it by hand</li></ul></li><li class="fs-stage"><span class="fs-n">02</span><h4>Clean it up</h4><p class="fs-tools">Sheets</p><ul><li>Paste into a combined sheet</li><li>Delete extra columns</li><li>Reformat dates for Watchtower</li></ul></li><li class="fs-stage"><span class="fs-n">03</span><h4>Match in Watchtower</h4><p class="fs-tools">Watchtower</p><ul><li>Upload to the bulk uploader</li><li>Pick headers, drop columns</li><li>Click Match</li></ul></li></ol></div>
+      <div class="fs-card"><div class="fs-head"><h3>Responding to chargebacks</h3><p class="fs-stats"><span><b>14</b> steps</span><span><b>6</b> tools</span><span><b>6–12</b> hours</span></p></div><ol class="fs-flow fs-four"><li class="fs-stage"><span class="fs-n">01</span><h4>Get responses</h4><p class="fs-tools">VPN · Chargeback tool · Watchtower</p><ul><li>Log into the VPN and chargeback tool</li><li>Copy the Zendesk ticket ID</li><li>Download the bank’s CSV, upload and process it</li></ul></li><li class="fs-stage"><span class="fs-n">02</span><h4>Match to the bank file</h4><p class="fs-tools">Sheets</p><ul><li>Copy the table into Sheets</li><li>VLOOKUP into the bank’s sheet</li></ul></li><li class="fs-stage"><span class="fs-n">03</span><h4>Get evidence</h4><p class="fs-tools">Slack · Watchtower</p><ul><li><b>Fraud:</b> download the CSV, upload it to Watchtower to make evidence</li><li><b>Other:</b> export the evidence zip to Slack</li><li>Download the CSV from Slack</li></ul></li><li class="fs-stage"><span class="fs-n">04</span><h4>Share with bank</h4><p class="fs-tools">Zendesk</p><ul><li>Attach the CSV and zip to the ticket</li><li>Send the email</li></ul></li></ol></div>
+      <figcaption>Today’s process in brief: the main action at each stage, and the manual steps unique to it. Fraud chargebacks add a few more steps.</figcaption></figure>
   </section>
 
   <section class="wrap block">
@@ -402,59 +427,36 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
   </section>
 
   <section class="wrap block">
-    <div class="persona-block">
-      <div class="text">
-        <p class="label">Route 01 · Accepted</p>
-        <h2>Dispute accepted</h2>
-        <p class="sub">Disputes team · Issuing bank · Merchant</p>
-        <blockquote class="pquote">Keeping track of requests is tedious, and communication gets drowned in the inbox.</blockquote>
-        <div class="driver"><p class="label">How it works</p><ul class="bullets" style="margin-top: 8px"><li>The chargeback is accepted and logged in the chargeback tool</li><li>An Excel file of accepted and declined chargebacks is shared with the issuing bank</li><li>The issuing bank refunds the customer and debits Paystack</li><li>Paystack debits the merchant to recover the funds</li></ul></div>
-        <div class="driver"><p class="label">Challenges and open questions</p><ul class="bullets" style="margin-top: 8px"><li>Dedicated teams handle chargebacks end to end, usually more than one person</li><li>Can one person handle a batch, or should cases be graduated to others?</li><li>Requests are tracked over email, so they get lost</li></ul></div>
-      </div>
-      <figure><div class="route-scroll"><a href="img/cb-route-accepted.jpg" target="_blank" rel="noopener"><img class="slide-img" src="img/cb-route-accepted.jpg" alt="Journey map of an accepted dispute, with who is involved, the tools they use, and insights and challenges"></a></div><figcaption>Select to open the full map.</figcaption></figure>
-    </div>
-  </section>
-
-  <section class="wrap block">
-    <div class="persona-block">
-      <div class="text">
-        <p class="label">Route 02 · Declined</p>
-        <h2>Dispute declined</h2>
-        <p class="sub">Disputes team · Merchant · Issuing bank</p>
-        <blockquote class="pquote">The bank is typically looking for a reason the customer is right, so the evidence has to be compelling.</blockquote>
-        <div class="driver"><p class="label">How it works</p><ul class="bullets" style="margin-top: 8px"><li>Watchtower matches the chargeback and asks the merchant to respond</li><li>The merchant has 16 hours to decline the claim and share evidence</li><li>The team uploads the evidence and shares the response with the bank</li><li>If the evidence holds up, the bank declines the chargeback and tells the customer</li></ul></div>
-        <div class="driver"><p class="label">Challenges and open questions</p><ul class="bullets" style="margin-top: 8px"><li>Resolution time is hard to track, and keeping merchants accountable depends on email</li><li>How should merchant responses reach us, and through which channel?</li><li>Banks don’t nudge merchants; each has its own turnaround times</li><li>Standard evidence such as amount, date and proof of delivery is what wins</li></ul></div>
-      </div>
-      <figure><div class="route-scroll"><a href="img/cb-route-declined.jpg" target="_blank" rel="noopener"><img class="slide-img" src="img/cb-route-declined.jpg" alt="Journey map of a declined dispute, with who is involved, the tools they use, and insights and challenges"></a></div><figcaption>Select to open the full map.</figcaption></figure>
-    </div>
-  </section>
-
-  <section class="wrap block">
-    <div class="persona-block">
-      <div class="text">
-        <p class="label">Route 03 · Pre-arbitration</p>
-        <h2>Pre-arbitration</h2>
-        <p class="sub">Issuing bank · Paystack · Merchant</p>
-        <blockquote class="pquote">There’s no resolution timeline, so banks can come back months later with a pre-arbitration claim.</blockquote>
-        <div class="driver"><p class="label">How it works</p><ul class="bullets" style="margin-top: 8px"><li>The customer, bank or card scheme re-raises a declined chargeback</li><li>Paystack receives the pre-arbitration request</li><li>If the evidence isn’t compelling, Paystack accepts the claim and bears liability</li><li>The issuing bank debits Paystack, and Paystack recovers funds from the merchant</li></ul></div>
-        <div class="driver"><p class="label">Challenges and open questions</p><ul class="bullets" style="margin-top: 8px"><li>A claim’s history is spread across files and email threads</li><li>The bank’s decision isn’t shared with the merchant</li><li>Some bank evidence must be converted from PDF to JPG under 200KB by hand</li></ul></div>
-      </div>
-      <figure><div class="route-scroll"><a href="img/cb-route-prearb.jpg" target="_blank" rel="noopener"><img class="slide-img" src="img/cb-route-prearb.jpg" alt="Journey map of pre-arbitration, with who is involved, the tools they use, and insights and challenges"></a></div><figcaption>Select to open the full map.</figcaption></figure>
-    </div>
-  </section>
-
-  <section class="wrap block">
-    <div class="persona-block">
-      <div class="text">
-        <p class="label">Route 04 · Fraud</p>
-        <h2>Raising fraud claims</h2>
-        <p class="sub">Disputes team · Issuing bank · Merchant</p>
-        <blockquote class="pquote">Banks sometimes send fraud claims in bulk through the wrong channel, which makes them hard to handle.</blockquote>
-        <div class="driver"><p class="label">How it works</p><ul class="bullets" style="margin-top: 8px"><li>Fraud claims are checked one by one on Watchtower, since there’s no bulk upload</li><li>The team decides whether each claim is accepted or declined</li><li>Bulk claims from banks are uploaded together instead of case by case</li><li>A response is generated for each claim</li></ul></div>
-        <div class="driver"><p class="label">Challenges and open questions</p><ul class="bullets" style="margin-top: 8px"><li>Bulk fraud files arrive as zip folders attached to emails</li><li>A claim’s history is hard to piece together across files and threads</li><li>Merchants need enough evidence to show the customer isn’t right</li></ul></div>
-      </div>
-      <figure><div class="route-scroll"><a href="img/cb-route-fraud.jpg" target="_blank" rel="noopener"><img class="slide-img" src="img/cb-route-fraud.jpg" alt="Journey map of raising fraud claims, with who is involved, the tools they use, and insights and challenges"></a></div><figcaption>Select to open the full map.</figcaption></figure>
-    </div>
+    <style>
+.routes { display: grid; gap: 22px; margin-top: 28px; }
+.rt-card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+.rt-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.rt-head > div { flex: 1; min-width: 180px; }
+.rt-num { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--primary); color: #fff; font-family: var(--mono); font-size: .85rem; }
+.rt-head h3 { margin: 0; font-family: var(--display); font-size: 1.35rem; }
+.rt-trig { margin: 2px 0 0; font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.rt-stats { margin: 0; display: flex; gap: 8px; font-family: var(--mono); font-size: .75rem; }
+.rt-stats span { padding: 5px 11px; border-radius: 999px; background: var(--panel-sun); color: var(--fg); }
+.rt-stats b { color: var(--primary); }
+.rt-quote { margin: 16px 0 0; font-family: var(--display); font-size: 1.05rem; line-height: 1.4; padding-left: 14px; border-left: 3px solid var(--accent); }
+.rt-flow { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.rt-step { position: relative; padding: 12px 13px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line); font-size: .86rem; line-height: 1.4; }
+.rt-k { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary); }
+.rt-dec { background: var(--panel-sun); border-color: var(--accent); }
+.rt-end { background: var(--teal); border-color: var(--teal); color: #fff; }
+.rt-end .rt-k { color: var(--accent); }
+.rt-note { margin: 14px 0 0; padding: 10px 14px; border-radius: 10px; background: var(--panel-teal); font-size: .86rem; line-height: 1.45; }
+.rt-whos { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.rt-who { border-top: 3px solid var(--secondary); padding-top: 12px; display: grid; gap: 8px; align-content: start; }
+.rt-who h4 { margin: 0; font-family: var(--display); font-size: 1rem; }
+.rt-tools { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.rt-tools span { font-family: var(--mono); font-size: .68rem; padding: 3px 9px; border-radius: 999px; background: var(--panel-teal); color: var(--fg); }
+.rt-in { margin: 0; padding: 10px 12px; border-radius: 10px; font-size: .84rem; line-height: 1.4; color: #22201E; }
+.rt-in b { display: block; margin-bottom: 2px; font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; }
+.rt-challenge { background: #F8C4B6; } .rt-insight { background: #FBE08A; } .rt-open-question, .rt-inferred { background: #E2D2FA; }
+@media (max-width: 860px) { .rt-whos { grid-template-columns: 1fr; } .rt-card { padding: 18px; } }
+</style>
+    <div class="routes"><article class="rt-card"><header class="rt-head"><span class="rt-num">01</span><div><h3>Dispute accepted</h3><p class="rt-trig">Chargeback is accepted</p></div><p class="rt-stats"><span><b>5</b> steps</span><span><b>3</b> players</span></p></header><p class="rt-quote">Keeping track of requests is tedious, and communication gets drowned in the inbox.</p><ol class="rt-flow"><li class="rt-step"><span class="rt-k">Step 1</span>Excel file is downloaded from the chargeback tool with accepted and declined chargebacks</li><li class="rt-step"><span class="rt-k">Step 2</span>Accepted and declined chargebacks are shared with the issuing bank</li><li class="rt-step"><span class="rt-k">Step 3</span>Issuing bank processes refund to customer</li><li class="rt-step"><span class="rt-k">Step 4</span>Issuing bank debits Paystack</li><li class="rt-step"><span class="rt-k">Step 5</span>Paystack debits the merchant and recovers the funds</li><li class="rt-step rt-end"><span class="rt-k">End</span>Resolved</li></ol><p class="rt-note"><b>Also:</b> the merchant can accept the claim, then the issuing bank refunds the customer, debits Paystack, and Paystack debits the merchant.</p><div class="rt-whos"><div class="rt-who"><h4>Disputes team</h4><p class="rt-tools"><span>Chargeback tool</span></p><p class="rt-in rt-insight"><b>Insight</b>Dedicated teams handle chargebacks end to end; a team is typically more than one person.</p><p class="rt-in rt-open-question"><b>Open question</b>Can one dedicated person handle a single or batched case, or can cases be graduated to multiple people?</p></div><div class="rt-who"><h4>Issuing bank</h4><p class="rt-tools"><span>Email</span><span>Google Sheets</span></p><p class="rt-in rt-insight"><b>Insight</b>The issuing bank can track the status of a dispute once it is submitted to the acquiring bank.</p></div><div class="rt-who"><h4>Paystack · Merchant</h4><p class="rt-tools"><span>Chargeback tool</span><span>Slack</span></p><p class="rt-in rt-challenge"><b>Challenge</b>Keeping track of requests is tedious; communication gets drowned in the inbox.</p></div></div></article><article class="rt-card"><header class="rt-head"><span class="rt-num">02</span><div><h3>Dispute declined</h3><p class="rt-trig">Matched on Watchtower</p></div><p class="rt-stats"><span><b>6</b> steps</span><span><b>3</b> players</span></p></header><p class="rt-quote">The bank is typically looking for a reason the customer is right, so the evidence has to be compelling.</p><ol class="rt-flow"><li class="rt-step"><span class="rt-k">Step 1</span>Matched chargebacks on Watchtower automatically send a request to the merchant to action the chargeback</li><li class="rt-step"><span class="rt-k">Step 2</span>Merchant has 16 hours to respond to the chargeback</li><li class="rt-step"><span class="rt-k">Step 3</span>Merchant declines the claim and shares evidence</li><li class="rt-step"><span class="rt-k">Step 4</span>How does Paystack receive this evidence and share it?</li><li class="rt-step"><span class="rt-k">Step 5</span>Share the response on the dashboard and upload the evidence</li><li class="rt-step rt-dec"><span class="rt-k">Decision</span>Is the evidence compelling?</li><li class="rt-step"><span class="rt-k">Step 6</span>If the evidence is compelling, Paystack declines the chargeback; the issuing bank shares feedback with the customer</li><li class="rt-step rt-end"><span class="rt-k">End</span>Closed</li></ol><p class="rt-note"><b>Also:</b> if the bank does not respond, this is taken as an acknowledgement of a resolved claim. Banks may not route claims through the right medium, so bulk uploads are used in place of case-by-case handling.</p><div class="rt-whos"><div class="rt-who"><h4>Disputes team</h4><p class="rt-tools"><span>Watchtower</span><span>Google Sheets</span></p><p class="rt-in rt-challenge"><b>Challenge</b>Hard to track resolution time and keep the merchant accountable; this depends on leveraging emails.</p><p class="rt-in rt-open-question"><b>Open question</b>How do we get responses from the merchant, and what medium is used?</p></div><div class="rt-who"><h4>Merchant</h4><p class="rt-tools"><span>Merchant dashboard</span><span>Email</span></p><p class="rt-in rt-insight"><b>Insight</b>Banks typically don’t nudge the merchant or acquiring bank to action disputes. Hypothesis: each has a TAT and accountability system, so no nudge is needed.</p></div><div class="rt-who"><h4>Issuing bank · Paystack</h4><p class="rt-tools"><span>Watchtower</span><span>Email</span><span>Local folder</span></p><p class="rt-in rt-challenge"><b>Challenge</b>The bank is typically looking for a reason the customer is right; sufficient evidence is needed to absolve the merchant.</p><p class="rt-in rt-inferred"><b>Inferred</b>Refuting claims depends on available evidence. Standardised evidence (amount, date, proof of shipping and arrival) is what is needed.</p></div></div></article><article class="rt-card"><header class="rt-head"><span class="rt-num">03</span><div><h3>Pre-arbitration</h3><p class="rt-trig">Customer re-raises claim</p></div><p class="rt-stats"><span><b>4</b> steps</span><span><b>3</b> players</span></p></header><p class="rt-quote">There’s no resolution timeline, so banks can come back months later with a pre-arbitration claim.</p><ol class="rt-flow"><li class="rt-step"><span class="rt-k">Step 1</span>Customer raises a claim against a declined chargeback (can be re-raised by the customer or by card processors)</li><li class="rt-step"><span class="rt-k">Step 2</span>Paystack receives the pre-arb request</li><li class="rt-step rt-dec"><span class="rt-k">Decision</span>Is the evidence compelling?</li><li class="rt-step"><span class="rt-k">Step 3</span>If the evidence is not compelling, Paystack accepts the claim and bears liability</li><li class="rt-step"><span class="rt-k">Step 4</span>Issuing bank debits Paystack</li><li class="rt-step rt-end"><span class="rt-k">End</span>Paystack recovers funds from the merchant</li></ol><p class="rt-note"><b>Note:</b> there is no resolution timeline tracking. Banks can come back months later and bring disputes back as pre-arbs, raised by the bank, Mastercard or Visa.</p><div class="rt-whos"><div class="rt-who"><h4>Issuing bank · Paystack</h4><p class="rt-tools"><span>Chargeback tool</span><span>Email</span></p><p class="rt-in rt-challenge"><b>Challenge</b>Historical data on a claim is hard to track; the history is spread across multiple files and email threads.</p></div><div class="rt-who"><h4>Paystack</h4><p class="rt-tools"><span>Email</span><span>Google Sheets</span></p><p class="rt-in rt-challenge"><b>Challenge</b>A decision on a claim within the bank is not shared with the merchant today.</p></div><div class="rt-who"><h4>Merchant</h4><p class="rt-tools"><span>Merchant dashboard</span></p><p class="rt-in rt-insight"><b>Insight</b>For ISW chargeback evidence in PDF format, files must be converted to JPG/JPEG and compressed to ≤200KB. This is time-consuming and only needed for files that don’t conform to the standard.</p></div></div></article><article class="rt-card"><header class="rt-head"><span class="rt-num">04</span><div><h3>Raising fraud claims</h3><p class="rt-trig">Checked individually on Watchtower</p></div><p class="rt-stats"><span><b>2</b> steps</span><span><b>3</b> players</span></p></header><ol class="rt-flow"><li class="rt-step"><span class="rt-k">Step 1</span>Check individually for a response on Watchtower, because there is no bulk upload</li><li class="rt-step rt-dec"><span class="rt-k">Decision</span>Has the claim been accepted or declined?</li><li class="rt-step"><span class="rt-k">Step 2</span>Some fraud claims are sent in bulk by banks and routed through the wrong medium, so they are uploaded as a bulk upload instead of case by case</li><li class="rt-step rt-end"><span class="rt-k">End</span>Response generated accordingly</li></ol><p class="rt-note"><b>Note:</b> bulk uploads are only necessary where there are multiple claims. Otherwise, claims can be searched for individually on Watchtower and responses generated accordingly.</p><div class="rt-whos"><div class="rt-who"><h4>Disputes team</h4><p class="rt-tools"><span>Watchtower</span><span>Google Sheets</span></p><p class="rt-in rt-challenge"><b>Challenge</b>Banks will sometimes send fraud claims in bulk, which makes them difficult to handle.</p></div><div class="rt-who"><h4>Issuing bank</h4><p class="rt-tools"><span>Email</span><span>Zip folder on email</span></p><p class="rt-in rt-challenge"><b>Challenge</b>Keeping historical data on a claim is hard; the history sits across multiple files and email threads.</p></div><div class="rt-who"><h4>Merchant</h4><p class="rt-tools"><span>Email</span><span>Google Sheets</span></p><p class="rt-in rt-insight"><b>Insight</b>Banks typically look for the customer to be right. Sufficient evidence is needed to absolve the merchant.</p></div></div></article></div>
   </section>
 
   <div class="wrap"><hr class="divider"></div>

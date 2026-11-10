@@ -390,9 +390,33 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Answer merchants’ questions before they ask them</h2>
       <p>When a merchant turns on PayPal for the first time, a short series of modals explains what it is, why it’s worth enabling, and what happens next.</p>
       <p><strong>The value proposition behind them was defined collaboratively by the Paystack × PayPal team.</strong> It was a joint effort across product and design. The content then came from the questions merchants raised when we tested early prototypes with them.</p>
+      <aside class="ob-note" aria-label="Why PayPal onboarding is different">
+        <p class="ob-tag">The one exception</p>
+        <p class="ob-lead">For Paystack merchants, activating a new payment method requires <strong>zero extra onboarding</strong>, with one exception: PayPal. To accept PayPal payments, merchants must connect a verified PayPal business account.</p>
+        <p class="ob-sub">When we tested our first iteration, three questions kept coming up:</p>
+        <ul class="ob-qs">
+          <li class="ob-q"><span class="ob-n">01</span>Why do I need a separate PayPal account?</li>
+          <li class="ob-q"><span class="ob-n">02</span>How will I get settled, through Paystack or PayPal?</li>
+          <li class="ob-q"><span class="ob-n">03</span>How do I ensure my funds aren’t withheld?</li>
+        </ul>
+        <div class="ob-ans"><p class="ob-ans-tag">The short answer</p>
+          <p>Merchants are still settled directly through Paystack. PayPal simply serves as the collection channel, meaning Paystack’s standard rules and safeguards apply.</p>
+          <p>However, connecting a verified PayPal business account is still required to establish recognition within the PayPal ecosystem and validate regulatory compliance.</p></div>
+      </aside>
     </div>
     <figure class="demo-video"><div class="video-wrap" id="pp-educate-wrap"><video id="pp-educate-video" class="slide-img" width="1440" height="900" muted playsinline preload="metadata" controls poster="img/pp-educate-poster.jpg" aria-label="Walkthrough: ticking PayPal in payment preferences opens four educational modals, then the PayPal business account step"><source src="img/pp-educate.mp4" type="video/mp4"><img class="slide-img" src="img/pp-educate.jpg" alt="Payment preferences with PayPal unticked, leading to four educational modals: Getting started, Why enable PayPal, Frequently asked questions, and Once activated"></video><button type="button" class="video-play" id="pp-educate-play" aria-label="Replay walkthrough" hidden><svg viewBox="0 0 84 100" aria-hidden="true"><path d="M12.6875 98.6946L79.3905 57.0066C81.8124 55.491 83.2811 52.8347 83.2811 49.9754C83.2811 47.1161 81.8123 44.4598 79.3905 42.9442L12.6875 1.25622C10.1289 -0.337577 6.9102 -0.419577 4.2734 1.03747C1.6406 2.49837 0.0039 5.27577 0 8.28747V91.6625C0.003906 94.6742 1.6406 97.4516 4.2734 98.9125C6.9101 100.369 10.1289 100.288 12.6875 98.6946Z" fill="#fff" fill-opacity="0.85"/></svg></button></div><figcaption>Ticking PayPal in payment preferences opens four short educational modals, then the PayPal business account step. It plays once as you scroll to it; press the play button at the end to watch it again.</figcaption></figure>
     <style>
+    .ob-note { margin-top: 28px; margin-bottom: 48px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .ob-note p { margin: 0; }
+    .ob-tag, .ob-ans-tag { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--primary); }
+    .ob-lead { margin-top: 10px !important; font-family: var(--display); font-size: 1.2rem; line-height: 1.4; }
+    .ob-sub { margin-top: 22px !important; color: var(--muted); }
+    .ob-qs { list-style: none; margin: 8px 0 0; padding: 0; counter-reset: q; }
+    .ob-q { display: flex; gap: 14px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .ob-n { flex: none; font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+    .ob-ans { margin-top: 22px; padding-left: 16px; border-left: 2px solid var(--primary); }
+    .ob-ans-tag { margin-bottom: 6px; }
+    .ob-ans p + p { margin-top: 10px; }
     .video-wrap { position: relative; border-radius: 16px; overflow: hidden; }
     .video-wrap video { display: block; width: 100%; height: auto; }
     .video-play { position: absolute; left: 50%; top: 50%; width: clamp(48px, 8vw, 72px); aspect-ratio: 84 / 100; transform: translate(-50%, -50%); display: grid; place-items: center; padding: 0; border: 0; background: none; cursor: pointer; transition: transform .2s ease, opacity .25s ease; }
