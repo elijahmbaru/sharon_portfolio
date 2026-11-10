@@ -390,7 +390,27 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>Answer merchants’ questions before they ask them</h2>
       <p>When a merchant turns on PayPal for the first time, a short series of modals explains what it is, why it’s worth enabling, and what happens next. The content came from the questions merchants raised when we tested early prototypes with them.</p>
     </div>
-    <figure><div style="overflow-x: auto"><img class="slide-img" style="min-width: 760px" src="img/pp-educate.jpg" alt="Payment preferences with PayPal unticked, leading to four educational modals: Getting started, Why enable PayPal, Frequently asked questions, and Once activated"></div><figcaption>Ticking PayPal in payment preferences opens four short educational modals.</figcaption></figure>
+    <figure class="demo-video"><video id="pp-educate-video" class="slide-img" width="1440" height="810" muted playsinline preload="metadata" controls poster="img/pp-educate-poster.jpg" aria-label="Walkthrough: ticking PayPal in payment preferences opens four educational modals, then the PayPal business account step"><source src="img/pp-educate.mp4" type="video/mp4"><img class="slide-img" src="img/pp-educate.jpg" alt="Payment preferences with PayPal unticked, leading to four educational modals: Getting started, Why enable PayPal, Frequently asked questions, and Once activated"></video><figcaption>Ticking PayPal in payment preferences opens four short educational modals, then the PayPal business account step. Plays once as you scroll to it.</figcaption></figure>
+    <script>
+    /* Plays the walkthrough once when it scrolls into view. No controls and no loop when scripting and motion are allowed. */
+    (function () {
+      var v = document.getElementById("pp-educate-video");
+      if (!v) return;
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce || !("IntersectionObserver" in window)) return; /* keeps native controls */
+      v.controls = false; v.loop = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting && e.intersectionRatio >= 0.6) {
+            io.disconnect();
+            var p = v.play();
+            if (p && p.catch) p.catch(function () { v.controls = true; });
+          }
+        });
+      }, { threshold: [0.6] });
+      io.observe(v);
+    })();
+    </script>
   </section>
 
   <section class="wrap block">
