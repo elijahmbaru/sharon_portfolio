@@ -140,10 +140,13 @@ figure { margin: 0; }
 figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 12px; }
 
 /* Stats */
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.stat { background: var(--bg); border-radius: 18px; padding: 22px; border: 1px solid var(--line); min-width: 0; }
+.stats { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.stat { background: var(--bg); border-radius: 18px; padding: 22px 26px; border: 1px solid var(--line); min-width: 0; display: flex; align-items: center; gap: 12px 26px; flex-wrap: wrap; }
+.stat b { flex: 0 0 clamp(7.5rem, 17vw, 11rem); }
 .stat b { display: block; font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; letter-spacing: -0.04em; color: var(--primary); font-variant-numeric: tabular-nums; }
-.stat span { display: block; margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
+.stat.solo { background: transparent; border: 0; padding: 4px 6px; align-items: flex-end; }
+.stat.solo b { flex: 0 0 auto; min-width: 0; }
+.stat span { display: block; flex: 1 1 240px; min-width: 0; margin-top: 0; color: var(--muted); font-size: 1rem; }
 .split { display: flex; height: 14px; border-radius: 999px; overflow: hidden; margin-top: 22px; }
 .split i:first-child { width: 20%; background: var(--secondary); }
 .split i:last-child { width: 80%; background: var(--primary); }
@@ -406,9 +409,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
     </div>
     <div class="panel teal" style="margin-top: 28px">
       <div class="stats">
-        <div class="stat"><b>15</b><span>one-on-one interviews about content, engineering decisions and communities</span></div>
-        <div class="stat"><b>194</b><span>survey responses from developers in Nigeria, Kenya, Ghana and South Africa</span></div>
-        <div class="stat"><b>54%</b><span>of respondents weren’t in any developer community, but wanted to be</span></div>
+        <div class="stat solo"><b>15</b><span>one-on-one interviews, plus a developer survey and a synthesis workshop with the DevRel team</span></div>
       </div>
     </div>
   </section>
@@ -479,7 +480,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
     <div class="text">
       <p class="label">Synthesis</p>
       <h2>From interviews to archetypes, checked against the survey</h2>
-      <p>We built three personas from the interviews and validated them with the survey data. Nearly half of respondents (46%) had up to three years’ experience, so the junior developer needed as much attention as the CTO. With the DevRel team, we then mapped where DevRel was winning, where it wasn’t, and the opportunities in between.</p>
+      <p>We built three personas from the interviews and validated them with the survey data. Nearly half of respondents had up to three years’ experience, so the junior developer needed as much attention as the CTO. With the DevRel team, we then mapped where DevRel was winning, where it wasn’t, and the opportunities in between.</p>
     </div>
   </section>
 
