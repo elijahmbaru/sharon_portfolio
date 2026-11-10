@@ -454,14 +454,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <div class="driver"><p class="label">Driver 02</p><p>Use mediums that every seller can reach, on mobile and on web.</p></div>
       <div class="driver"><p class="label">Driver 03</p><p>Reduce cognitive load. The seller focuses on confirming the order, nothing else.</p></div>
     </div>
-    <div class="panel teal">
-      <p class="label">What we tested, quick and scrappy</p>
-      <div class="screens">
-        <figure><div class="phone"><img src="img/wa-order.jpg" alt="WhatsApp message from Sendy Supply with a link to confirm an order"></div><figcaption>Seller gets the order on WhatsApp</figcaption></figure>
-        <figure><div class="phone"><img src="img/form-confirm.jpg" alt="Web form listing order items with quantities to confirm"></div><figcaption>Confirms what's available</figcaption></figure>
-        <figure><div class="phone"><img src="img/form-done.jpg" alt="Confirmation screen thanking the seller"></div><figcaption>Availability confirmed</figcaption></figure>
-      </div>
-    </div>
+    <figure class="demo-video"><div class="video-wrap"><video class="slide-img" width="1440" height="810" muted playsinline preload="metadata" controls poster="img/sendy-order-poster.jpg" aria-label="Walkthrough: the seller gets an order on WhatsApp, opens the link, confirms what is available and sees that availability is confirmed"><source src="img/sendy-order.mp4" type="video/mp4"><img src="img/wa-order.jpg" alt="WhatsApp message from Sendy Supply with a link to confirm an order" style="max-width: 190px"><img src="img/form-confirm.jpg" alt="Web form listing order items with quantities to confirm" style="max-width: 190px"><img src="img/form-done.jpg" alt="Confirmation screen thanking the seller" style="max-width: 190px"></video><button type="button" class="video-play" aria-label="Replay walkthrough" hidden><svg viewBox="0 0 84 100" aria-hidden="true"><path d="M12.6875 98.6946L79.3905 57.0066C81.8124 55.491 83.2811 52.8347 83.2811 49.9754C83.2811 47.1161 81.8123 44.4598 79.3905 42.9442L12.6875 1.25622C10.1289 -0.337577 6.9102 -0.419577 4.2734 1.03747C1.6406 2.49837 0.0039 5.27577 0 8.28747V91.6625C0.003906 94.6742 1.6406 97.4516 4.2734 98.9125C6.9101 100.369 10.1289 100.288 12.6875 98.6946Z" fill="#fff" fill-opacity="0.85"/></svg></button></div><figcaption>What we tested, quick and scrappy: the seller gets the order on WhatsApp, confirms what’s available, and sees availability confirmed. It plays once as you scroll to it; press the play button at the end to watch it again.</figcaption></figure>
     <div class="panel sand">
       <div class="two-col">
         <div class="text">
@@ -516,14 +509,39 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <div class="driver"><p class="label">Driver 02</p><p>Use shared market data to get the prices that feed the pricing engine.</p></div>
       <div class="driver"><p class="label">Driver 03</p><p>Work on the devices sellers already have, desktop and mobile.</p></div>
     </div>
-    <div class="panel teal">
-      <p class="label">Tested Figma low-fis across mobile and web</p>
-      <div class="screens">
-        <figure><div class="phone"><img src="img/wa-pricing.jpg" alt="WhatsApp chat where a seller checks and updates sugar prices"></div><figcaption>Update prices in WhatsApp</figcaption></figure>
-        <figure><div class="phone"><img src="img/price-search.jpg" alt="Product search to choose which price to update"></div><figcaption>Pick a product</figcaption></figure>
-        <figure><div class="phone"><img src="img/price-update.jpg" alt="Update price screen showing seller price KES 5,200 and market price KES 5,150"></div><figcaption>Compare with the market</figcaption></figure>
-      </div>
-    </div>
+    <figure class="demo-video"><div class="video-wrap"><video class="slide-img" width="1440" height="810" muted playsinline preload="metadata" controls poster="img/sendy-pricing-poster.jpg" aria-label="Walkthrough: the seller starts in WhatsApp, picks a product and compares their selling price with the market price"><source src="img/sendy-pricing.mp4" type="video/mp4"><img src="img/wa-pricing.jpg" alt="WhatsApp chat where a seller checks and updates sugar prices" style="max-width: 190px"><img src="img/price-search.jpg" alt="Product search to choose which price to update" style="max-width: 190px"><img src="img/price-update.jpg" alt="Update price screen showing seller price KES 5,200 and market price KES 5,150" style="max-width: 190px"></video><button type="button" class="video-play" aria-label="Replay walkthrough" hidden><svg viewBox="0 0 84 100" aria-hidden="true"><path d="M12.6875 98.6946L79.3905 57.0066C81.8124 55.491 83.2811 52.8347 83.2811 49.9754C83.2811 47.1161 81.8123 44.4598 79.3905 42.9442L12.6875 1.25622C10.1289 -0.337577 6.9102 -0.419577 4.2734 1.03747C1.6406 2.49837 0.0039 5.27577 0 8.28747V91.6625C0.003906 94.6742 1.6406 97.4516 4.2734 98.9125C6.9101 100.369 10.1289 100.288 12.6875 98.6946Z" fill="#fff" fill-opacity="0.85"/></svg></button></div><figcaption>Tested Figma low-fis across mobile and web: update prices in WhatsApp, pick a product, and compare with the market. It plays once as you scroll to it; press the play button at the end to watch it again.</figcaption></figure>
+    <style>
+    .demo-video { margin: 28px 0 0; }
+    .video-wrap { position: relative; border-radius: 16px; overflow: hidden; }
+    .video-wrap video { display: block; width: 100%; height: auto; }
+    .video-play { position: absolute; left: 50%; top: 50%; width: clamp(48px, 8vw, 72px); aspect-ratio: 84 / 100; transform: translate(-50%, -50%); display: grid; place-items: center; padding: 0; border: 0; background: none; cursor: pointer; transition: transform .2s ease, opacity .25s ease; }
+    .video-play[hidden] { display: none; }
+    .video-play svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 6px 20px rgba(0,0,0,.26)); }
+    .video-play:hover { transform: translate(-50%, -50%) scale(1.08); }
+    .video-play:focus-visible { outline: 3px solid #fff; outline-offset: 6px; border-radius: 12px; }
+    @media (prefers-reduced-motion: reduce) { .video-play { transition: none; } }
+    </style>
+    <script>
+    /* Walkthrough videos: each plays once on scroll-in (no loop, no native controls). When one ends, a play button appears to watch it again. */
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var figs = document.querySelectorAll(".demo-video");
+      Array.prototype.forEach.call(figs, function (fig) {
+        var v = fig.querySelector("video"), btn = fig.querySelector(".video-play");
+        if (!v || !btn) return;
+        v.loop = false;
+        if (reduce || !("IntersectionObserver" in window)) return; /* keeps native controls, no autoplay */
+        v.controls = false;
+        function start() { var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; btn.hidden = true; }); }
+        btn.addEventListener("click", function () { btn.hidden = true; v.currentTime = 0; start(); });
+        v.addEventListener("ended", function () { btn.hidden = false; });
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting && e.intersectionRatio >= 0.6) { io.disconnect(); start(); } });
+        }, { threshold: [0.6] });
+        io.observe(v);
+      });
+    })();
+    </script>
     <div class="panel sand">
       <div class="two-col">
         <figure><img class="wide-img" src="img/competitors.jpg" alt="Line chart comparing a seller's sales performance with competitors, with tips to beat the competition"></figure>
