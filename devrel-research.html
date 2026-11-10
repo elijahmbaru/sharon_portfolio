@@ -254,6 +254,8 @@ figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 12px; }
 .next { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-block: 64px; }
 .next h2 { margin: 0; }
 .pill { display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; font-weight: 700; text-decoration: none; background: var(--primary); color: var(--white); }
+.pill.pill-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); transition: background .2s ease, color .2s ease; }
+.pill.pill-outline:hover { background: var(--primary); color: var(--white); }
 footer { border-top: 1px solid var(--line); }
 footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -565,7 +567,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <div class="need"><h3>Community</h3><p>Meetups in Accra, Lagos and Nairobi, and sponsorship of DevConf ZA and the GirlCode ZA hackathon.</p></div>
       <div class="need"><h3>Persona-led events</h3><p>A CTO roundtable in Lagos with AWS, designed for the Manager, on scaling infrastructure while keeping costs down.</p></div>
     </div>
-    <p style="margin-top: 24px"><a class="pill" href="https://paystack.com/blog/engineering-design/developer-experience" target="_blank" rel="noopener">Read Paystack’s write-up</a></p>
+    <p style="margin-top: 24px"><a class="pill pill-outline" href="https://paystack.com/blog/engineering-design/developer-experience" target="_blank" rel="noopener">Read Paystack’s write-up</a></p>
   </section>
 
   <div class="wrap"><hr class="divider"></div>
