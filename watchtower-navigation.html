@@ -391,7 +391,41 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>A new information architecture for the nav</h2>
       <p>Five top-level groups (Merchants, Collections, Disbursements, Treasury and Admin) each open into second and third levels, so new modules have a home without adding to the bar.</p>
     </div>
-    <figure class="panel sand"><div style="overflow-x: auto"><img class="slide-img" style="min-width: 900px" src="img/wt-ia.jpg" alt="Information architecture tree: Watchtower splits into Merchants, Collections, Disbursements, TREVI and Admin, each with grouped sub-items, plus a user profile menu"></div><figcaption>The information architecture behind the new nav.</figcaption></figure>
+    <style>
+.ia { margin: 28px 0 0; }
+.ia figcaption { margin-top: 12px; }
+.tt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 26px 20px 28px; }
+.tt { min-width: 1060px; display: flex; flex-direction: column; align-items: center; }
+.t { padding: 8px 12px; border-radius: 10px; font-size: .82rem; line-height: 1.3; border: 1.5px solid transparent; }
+.t em { display: block; font-style: normal; font-family: var(--mono); font-size: .6rem; letter-spacing: .04em; opacity: .7; margin-top: 2px; }
+.t-root { background: var(--teal); color: #fff; font-family: var(--display); font-weight: 700; font-size: 1.15rem; padding: 12px 40px; border-radius: 14px; position: relative; margin-bottom: 26px; }
+.t-root::after { content: ""; position: absolute; left: 50%; top: 100%; height: 26px; border-left: 2px solid #A9A39A; }
+.t-top { background: var(--c); color: #22201E; font-family: var(--display); font-weight: 700; font-size: .95rem; text-align: center; padding: 10px 12px; }
+.t-grp { background: #fff; border-color: var(--c); color: #22201E; font-weight: 600; }
+.t-leaf { background: var(--ct); border-color: transparent; color: #22201E; }
+.t-hot { background: #E8927A; color: #22201E; font-weight: 600; }
+.tt-col { --c: #F6C3B4; --ct: #FCE6DF; }
+.tt-cols { width: 100%; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.tt-col { position: relative; padding-top: 26px; }
+.tt-col::before { content: ""; position: absolute; top: 0; left: -7px; right: -7px; border-top: 2px solid #A9A39A; }
+.tt-col:first-child::before { left: 50%; } .tt-col:last-child::before { right: 50%; }
+.tt-col::after { content: ""; position: absolute; top: 0; left: 50%; height: 26px; border-left: 2px solid #A9A39A; }
+.tt ul { list-style: none; margin: 0; padding: 0; }
+.tt-col > ul { margin-left: 14px; }
+.tt li ul { margin-left: 14px; }
+.tt li { position: relative; padding: 5px 0 5px 16px; }
+.tt li::before { content: ""; position: absolute; left: 0; top: 22px; width: 14px; border-top: 2px solid #CBC6BE; }
+.tt li::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; border-left: 2px solid #CBC6BE; }
+.tt li:last-child::after { bottom: auto; height: 23px; }
+@media (max-width: 700px) {
+  .tt { min-width: 0; }
+  .tt-cols { grid-template-columns: 1fr; gap: 20px; padding-left: 14px; border-left: 2px solid #A9A39A; }
+  .tt-col { padding-top: 0; } .tt-col::before, .tt-col::after { display: none; }
+  .t-root::after { display: none; }
+  .t-root { margin-bottom: 18px; }
+}
+</style>
+    <figure class="ia" aria-label="Information architecture: Watchtower splits into Merchants, Collections, Disbursements, Treasury and Admin, each with grouped sub-items, plus a profile menu"><div class="tt-scroll"><div class="tt"><div class="t t-root">Watchtower</div><div class="tt-cols"><div class="tt-col"><div class="t t-top">Merchants</div><ul><li><div class="t t-grp">Integrations</div></li><li><div class="t t-grp">Reviews</div><ul><li><div class="t t-leaf">Compliance</div></li><li><div class="t t-leaf">Go Live Requests</div></li><li><div class="t t-leaf">Payouts on Hold</div></li><li><div class="t t-leaf t-hot">MCC Completion</div></li><li><div class="t t-leaf t-hot">Business Upgrade</div></li></ul></li></ul></div><div class="tt-col"><div class="t t-top">Collections</div><ul><li><div class="t t-grp">Transactions</div><ul><li><div class="t t-leaf">All</div></li><li><div class="t t-leaf">Debit orders</div></li><li><div class="t t-leaf">Refunds</div></li></ul></li><li><div class="t t-grp">Terminal</div><ul><li><div class="t t-leaf">Terminals</div></li><li><div class="t t-leaf">Devices</div></li><li><div class="t t-leaf">Requests</div></li></ul></li><li><div class="t t-grp">Disputes</div><ul><li><div class="t t-leaf">Disputes</div></li><li><div class="t t-leaf">Bulk upload</div></li><li><div class="t t-leaf">Payout details</div></li><li><div class="t t-leaf">Batches</div></li><li><div class="t t-leaf">Receipts</div></li></ul></li></ul></div><div class="tt-col"><div class="t t-top">Disbursements</div><ul><li><div class="t t-grp">Transfers</div></li><li><div class="t t-grp">Settlements</div><ul><li><div class="t t-leaf">Settlements</div></li><li><div class="t t-leaf">Run Payouts</div></li></ul></li></ul></div><div class="tt-col"><div class="t t-top">Treasury</div><ul><li><div class="t t-grp">Accounts</div></li><li><div class="t t-grp">Sweeps</div></li><li><div class="t t-grp">Create Sweep</div></li></ul></div><div class="tt-col"><div class="t t-top">Admin</div><ul><li><div class="t t-grp">Users</div><ul><li><div class="t t-leaf">All Users</div></li><li><div class="t t-leaf">Organisations</div></li><li><div class="t t-leaf">Audit Logs</div></li></ul></li><li><div class="t t-grp">Collections</div><ul><li><div class="t t-leaf">Card Bins</div></li><li><div class="t t-leaf">Transaction Whitelist</div></li><li><div class="t t-leaf">Interswitch Config</div></li></ul></li></ul></div><div class="tt-col tt-prof"><div class="t t-top">Profile menu</div><ul><li><div class="t t-grp">Full name</div></li><li><div class="t t-grp">Email</div></li><li><div class="t t-grp">Edit profile</div></li><li><div class="t t-grp">Change password</div></li><li><div class="t t-grp">Logout</div></li></ul></div></div></div></div><figcaption>The information architecture behind the new nav.</figcaption></figure>
     <div class="statement">
       <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
       <p>Group the nav so it can grow without breaking.</p>
