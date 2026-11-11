@@ -394,9 +394,9 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
     <style>
 .ia { margin: 28px 0 0; }
 .ia figcaption { margin-top: 12px; }
-.tt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 26px 20px 28px; }
-.tt { min-width: 1060px; display: flex; flex-direction: column; align-items: center; }
-.t { padding: 8px 12px; border-radius: 10px; font-size: .82rem; line-height: 1.3; border: 1.5px solid transparent; }
+.tt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px 14px 26px; }
+.tt { min-width: 900px; display: flex; flex-direction: column; align-items: center; }
+.t { padding: 7px 10px; border-radius: 10px; font-size: .8rem; overflow-wrap: anywhere; line-height: 1.3; border: 1.5px solid transparent; }
 .t em { display: block; font-style: normal; font-family: var(--mono); font-size: .6rem; letter-spacing: .04em; opacity: .7; margin-top: 2px; }
 .t-root { background: var(--teal); color: #fff; font-family: var(--display); font-weight: 700; font-size: 1.15rem; padding: 12px 40px; border-radius: 14px; position: relative; margin-bottom: 26px; }
 .t-root::after { content: ""; position: absolute; left: 50%; top: 100%; height: 26px; border-left: 2px solid #A9A39A; }
@@ -405,16 +405,16 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 .t-leaf { background: var(--ct); border-color: transparent; color: #22201E; }
 .t-hot { background: #E8927A; color: #22201E; font-weight: 600; }
 .tt-col { --c: #F6C3B4; --ct: #FCE6DF; }
-.tt-cols { width: 100%; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.tt-cols { width: 100%; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
 .tt-col { position: relative; padding-top: 26px; }
-.tt-col::before { content: ""; position: absolute; top: 0; left: -7px; right: -7px; border-top: 2px solid #A9A39A; }
+.tt-col::before { content: ""; position: absolute; top: 0; left: -5px; right: -5px; border-top: 2px solid #A9A39A; }
 .tt-col:first-child::before { left: 50%; } .tt-col:last-child::before { right: 50%; }
 .tt-col::after { content: ""; position: absolute; top: 0; left: 50%; height: 26px; border-left: 2px solid #A9A39A; }
 .tt ul { list-style: none; margin: 0; padding: 0; }
-.tt-col > ul { margin-left: 14px; }
-.tt li ul { margin-left: 14px; }
-.tt li { position: relative; padding: 5px 0 5px 16px; }
-.tt li::before { content: ""; position: absolute; left: 0; top: 22px; width: 14px; border-top: 2px solid #CBC6BE; }
+.tt-col > ul { margin-left: 10px; }
+.tt li ul { margin-left: 10px; }
+.tt li { position: relative; padding: 5px 0 5px 12px; }
+.tt li::before { content: ""; position: absolute; left: 0; top: 21px; width: 10px; border-top: 2px solid #CBC6BE; }
 .tt li::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; border-left: 2px solid #CBC6BE; }
 .tt li:last-child::after { bottom: auto; height: 23px; }
 @media (max-width: 700px) {
