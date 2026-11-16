@@ -111,6 +111,7 @@ a { color: inherit; }
 /* Intro + meta */
 .intro { padding-block: 56px 16px; }
 h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 36px; max-width: 22ch; text-wrap: balance; }
+.scope { margin: -18px 0 32px; max-width: 70ch; font-size: 0.98rem; line-height: 1.55; color: var(--muted); padding-left: 14px; border-left: 3px solid var(--accent); }
 .meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-bottom: 8px; }
 @media (max-width: 720px) { .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .label { font-family: var(--mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin: 0 0 6px; }
@@ -349,6 +350,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 
   <section class="wrap intro">
     <h1>Building DART: one tool to resolve chargebacks in bulk, without the risk of costly errors</h1>
+    <p class="scope">2022 · Product design lead · PM, engineers and Operations · Replaced a 9 to 16 step manual process with one platform; rolled out in phases through H1 2023, with full adoption by September. Targets were met.</p>
     <div class="meta"><div><p class="label">Company</p><p>Paystack<br>with the Disputes team</p></div><div><p class="label">Role</p><p>Product design lead<br>with a PM, engineers &amp; Operations</p></div><div><p class="label">Users</p><p>Disputes team<br>Banks &amp; card schemes</p></div><div><p class="label">Methods</p><p>Shadowing &amp; interviews<br>Journey mapping<br>Ideation workshop<br>Prototype &amp; test</p></div></div>
     <div class="tags"><span class="tag">Fintech</span><span class="tag">Payments</span><span class="tag">Internal tools</span></div>
   </section>
@@ -587,7 +589,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <p>DART rolled out in phases through the first half of 2023, and by September the disputes team had moved onto it completely. Evidence is now formatted to each bank’s and card scheme’s rules, with PDFs merged and Paystack receipts pulled from Watchtower. Failed evidence generation can be retried, Interswitch fraud chargebacks are sorted with no manual work, and proof of authentication is shown alongside each dispute.</p>
     </div>
     <div class="panel teal" style="margin-top: 28px">
-      <p class="label" style="margin-bottom: 14px">Success metrics we set</p>
+      <p class="label" style="margin-bottom: 14px">Results against the success metrics we set</p>
       <div class="stats">
         <div class="stat"><b>50%</b><span>less time spent responding to bulk disputes</span></div>
         <div class="stat"><b>70%</b><span>of chargebacks processed through DART</span></div>

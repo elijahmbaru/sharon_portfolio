@@ -111,6 +111,7 @@ a { color: inherit; }
 /* Intro + meta */
 .intro { padding-block: 56px 16px; }
 h1 { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 36px; max-width: 22ch; text-wrap: balance; }
+.scope { margin: -18px 0 32px; max-width: 70ch; font-size: 0.98rem; line-height: 1.55; color: var(--muted); padding-left: 14px; border-left: 3px solid var(--accent); }
 .meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-bottom: 8px; }
 @media (max-width: 720px) { .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .label { font-family: var(--mono); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin: 0 0 6px; }
@@ -349,6 +350,7 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
 
   <section class="wrap intro">
     <h1>Redesigning an internal tool’s navigation for scale</h1>
+    <p class="scope">2024 · Product designer and UX researcher · Reviews, User Ops, and Refunds and Disputes teams · Replaced an overflowing top nav with five groups and typed search; adopted by the teams. Search rated 4 to 5 out of 5 by 6 participants.</p>
     <div class="meta"><div><p class="label">Company</p><p>Paystack<br>Internal admin tool</p></div><div><p class="label">Role</p><p>Product designer<br>UX researcher</p></div><div><p class="label">Users</p><p>Reviews, User Ops,<br>Refunds &amp; Disputes teams</p></div><div><p class="label">Methods</p><p>Discovery research<br>Information architecture<br>Prototype usability tests<br>Moderated interviews</p></div></div>
     <div class="tags"><span class="tag">Fintech</span><span class="tag">Internal tools</span><span class="tag">Information architecture</span></div>
   </section>
@@ -493,6 +495,16 @@ footer .wrap { padding-block: 24px 32px; color: var(--muted); font-size: 0.9rem;
       <h2>The grouping worked. Two things needed another look.</h2>
     </div>
     <div class="findings"><div class="finding"><p>They rarely search by transaction ID. To find a transaction, they start from card details or an email, and only learn the ID afterwards.</p></div><div class="finding"><p>Renaming “Transactions” to “Collections” may not land. The team is used to a Transactions bar, and adjusting would be a struggle.</p></div><div class="finding"><p>I like the idea of navigating straight to a merchant’s compliance page using their ID.</p></div></div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap block">
+    <div class="text">
+      <p class="label">Outcome</p>
+      <h2>The new navigation was adopted by the teams.</h2>
+      <p>The five groups and typed search replaced the overflowing top nav, and the Reviews, User Ops, and Refunds and Disputes teams now use it. In testing, six participants rated search 4 to 5 out of 5.</p>
+    </div>
   </section>
 
   <div class="wrap"><hr class="divider"></div>

@@ -278,6 +278,15 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
 .chip .dot { width: 0.55em; height: 0.55em; border-radius: 50%; background: #B4492A; position: absolute; top: -0.15em; right: -0.15em; box-shadow: 0 0 0 2px #fff; }
 @media (hover: hover) { a.tile:hover .chip { transform: translateY(-4px); } }
 @media (prefers-reduced-motion: reduce) { .chip { transition: none; } a.tile:hover .chip { transform: none; } }
+/* How I work */
+.how { padding-block: 0 clamp(56px, 8vw, 96px); }
+.how h2 { margin-bottom: 36px; }
+.how-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px clamp(20px, 3vw, 40px); }
+@media (max-width: 560px) { .how-list { grid-template-columns: 1fr; } }
+.how-list li { border-top: 2px solid var(--line); padding-top: 16px; }
+.hw-n { display: block; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; color: var(--primary); margin-bottom: 8px; }
+.how-list h3 { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; line-height: 1.2; margin: 0 0 8px; }
+.how-list p { margin: 0; color: var(--muted); font-size: 0.98rem; }
 </style>
 </head>
 <body>
@@ -338,6 +347,16 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
       try { localStorage.setItem(key, JSON.stringify(shown)); } catch (e) {}
     })();
     </script>
+  </section>
+
+  <section class="wrap how" id="how" aria-labelledby="how-title">
+    <h2 id="how-title">How I work</h2>
+    <ol class="how-list">
+        <li><span class="hw-n" aria-hidden="true">01</span><h3>Start where the work actually happens.</h3><p>I shadow users in their real environments, whether that’s in a shop, a savings group, or on the job, before I draw a single screen.</p></li>
+        <li><span class="hw-n" aria-hidden="true">02</span><h3>Make the invisible visible.</h3><p>Translating complex user behaviors and hidden friction into clear visual stories shows a team the real problem, so decisions rest on evidence.</p></li>
+        <li><span class="hw-n" aria-hidden="true">03</span><h3>Design with the people who use it.</h3><p>I bring users into the process early, testing rough prototypes in their own language to make sure the solution actually fits their reality before engineering begins.</p></li>
+        <li><span class="hw-n" aria-hidden="true">04</span><h3>Fit the system, not just the screen.</h3><p>Great products don’t exist in a vacuum; I design for the entire ecosystem, accounting for the external stakeholders, offline workflows, and operational hand-offs that make the experience actually work.</p></li>
+    </ol>
   </section>
 
   <section class="projects" id="work" aria-labelledby="work-title">
