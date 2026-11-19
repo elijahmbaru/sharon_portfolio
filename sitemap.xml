@@ -8,6 +8,6 @@
   <url><loc>https://swangari.bytespot.org/paypal-checkout</loc></url>
   <url><loc>https://swangari.bytespot.org/paystack-settlements</loc></url>
   <url><loc>https://swangari.bytespot.org/sendy-supply</loc></url>
-  <url><loc>https://swangari.bytespot.org/watchtower-navigation</loc></url>
-  <url><loc>https://swangari.bytespot.org/zambia-vsla</loc></url>
+  <!-- hidden 2026-11-19 <url><loc>https://swangari.bytespot.org/watchtower-navigation</loc></url> -->
+  <!-- hidden 2026-11-19 <url><loc>https://swangari.bytespot.org/zambia-vsla</loc></url> -->
 </urlset>
