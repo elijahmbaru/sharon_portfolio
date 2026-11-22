@@ -26,7 +26,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://swangari.bytespot.org/#sharon", "name": "Sharon Wangari", "jobTitle": "Product designer and UX researcher", "url": "https://swangari.bytespot.org/", "image": "https://swangari.bytespot.org/img/og-cover.jpg", "email": "sharonwangari.w@gmail.com", "sameAs": ["https://www.linkedin.com/in/sharon-wangari-b3b47591/"], "knowsAbout": ["Product design", "UX research", "Fintech", "Logistics", "FMCG", "Digital finance", "Payments"]}, {"@type": "WebSite", "@id": "https://swangari.bytespot.org/#site", "url": "https://swangari.bytespot.org/", "name": "Sharon Wangari", "description": "Product designer and UX researcher in fintech, AgriFin, FMCG and logistics. Case studies on payments, chargebacks, farmer finance and seller tools across Africa.", "inLanguage": "en", "publisher": {"@id": "https://swangari.bytespot.org/#sharon"}}, {"@type": "ProfilePage", "url": "https://swangari.bytespot.org/", "name": "Sharon Wangari, product designer and UX researcher", "mainEntity": {"@id": "https://swangari.bytespot.org/#sharon"}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: one centred column; a warm hero with industry pills, then a staggered two-column work section on an off-white band. */
 :root {
@@ -246,6 +246,94 @@ a.tile:hover .tile-img > .art { transform: scale(1.03); }
 .pb-contact .copy-email b, .pb-contact .copy-email:hover { color: var(--pb-fg); }
 .actions { align-items: center; }
 
+/* Route the rider: a quiet sunrise band under the hero; the game opens inline on request */
+.rr [hidden] { display: none !important; }
+.rr { background: var(--fn-ground, var(--surface)); }
+.rr .wrap { padding-block: 8px clamp(28px, 4vw, 44px); }
+.rr-teaser { position: relative; overflow: hidden; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; min-height: 150px; box-sizing: border-box; padding: 24px clamp(20px, 2.4vw, 28px) 24px clamp(20px, 3vw, 40px); border-radius: 22px; background: var(--arch); }
+.rr-road { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+@media (max-width: 720px) { .rr-road .rr-jam, .rr-road .rr-dot { display: none; } }
+.rr-copy { position: relative; flex: 1 1 300px; min-width: 0; display: grid; gap: 2px; }
+.rr-copy b { font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.05; }
+.rr-copy span { font-size: .94rem; line-height: 1.4; color: var(--muted); }
+.rr-toggle { position: relative; flex: none; margin-left: auto; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: var(--radius-pill); border: 2px solid var(--primary); background: var(--bg); color: var(--primary); font: inherit; font-weight: 700; font-size: .95rem; white-space: nowrap; cursor: pointer; transition: background .15s ease, color .15s ease; }
+.rr-toggle:hover, .rr-toggle[aria-expanded="true"] { background: var(--primary); color: var(--primary-fg); }
+.rr-toggle svg { width: 12px; height: 12px; }
+.rr-panel { margin-top: 12px; display: grid; gap: 20px; padding: clamp(14px, 2.6vw, 24px); border: 1.5px solid var(--line); border-radius: 22px; background: var(--bg); }
+@media (min-width: 900px) { .rr-panel { grid-template-columns: minmax(0, 1.4fr) minmax(0, .6fr); gap: 32px; align-items: start; } }
+.rr-board { display: grid; gap: 12px; min-width: 0; }
+.rr-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 14px; }
+.rr-job { font-family: var(--display); font-weight: 700; font-size: 1.05rem; line-height: 1.25; }
+.rr-job small { display: block; font-family: var(--mono); font-weight: 500; font-size: .7rem; letter-spacing: .1em; color: var(--primary); }
+.rr-clock { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); font-size: .9rem; }
+.rr-clock b { color: var(--fg); font-size: 1.2rem; font-weight: 500; }
+.rr-city { position: relative; touch-action: none; user-select: none; -webkit-user-select: none; }
+.rr-grid { display: grid; grid-template-columns: repeat(var(--rr-cols), minmax(0, 1fr)); gap: 4px; }
+.rr-cell { aspect-ratio: 1; border: 0; padding: 0; border-radius: 8px; background: var(--bg); box-shadow: inset 0 0 0 1.5px var(--line); cursor: pointer; display: grid; place-items: center; font-family: var(--mono); font-size: clamp(9px, 1.4vw, 11px); color: var(--fg); }
+.rr-cell.b { background: var(--surface); box-shadow: none; cursor: default; }
+.rr-cell.b::after { content: ""; width: 44%; height: 44%; border-radius: 4px; background: var(--line); }
+.rr-cell.j { background: repeating-linear-gradient(135deg, rgba(242,165,65,.28) 0 6px, transparent 6px 11px), var(--bg); box-shadow: inset 0 0 0 1.5px var(--accent); }
+.rr-cell.j::after { content: "+3"; opacity: .7; }
+.rr-cell.pin { box-shadow: none; color: #FFFFFF; font-family: var(--display); font-weight: 700; font-size: clamp(10px, 1.8vw, 14px); }
+.rr-cell.H { background: #57534E; }
+.rr-cell.P { background: #B4492A; }
+.rr-cell.D { background: #0F5257; }
+.rr-cell.on:not(.pin) { background: var(--arch); }
+.rr-cell.next { box-shadow: inset 0 0 0 2px var(--primary); }
+.rr-cell.got { outline: 3px solid var(--accent); outline-offset: -3px; }
+.rr-city svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.rr-city polyline { fill: none; stroke: var(--primary); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
+.rr-city polyline.best { stroke: var(--secondary); stroke-width: 3; stroke-dasharray: 2 7; opacity: 1; }
+.rr-rider { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: var(--accent); border: 3px solid #FFFFFF; box-shadow: 0 3px 8px rgba(0,0,0,.3); pointer-events: none; transition: left .12s linear, top .12s linear; }
+.rr-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; color: var(--muted); }
+.rr-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.rr-legend i { width: 12px; height: 12px; border-radius: 3px; display: block; }
+.rr-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.rr-btn { min-height: 40px; padding: 0 16px; border-radius: var(--radius-pill); border: 2px solid var(--secondary); background: transparent; color: var(--secondary); font: inherit; font-weight: 700; font-size: .9rem; cursor: pointer; }
+.rr-btn.primary { background: var(--primary); border-color: var(--primary); color: var(--primary-fg); }
+.rr-btn[disabled] { opacity: .4; cursor: default; }
+.rr-side { display: grid; gap: 14px; min-width: 0; font-size: .93rem; color: var(--muted); }
+.rr-side ol { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.rr-result { display: grid; gap: 10px; padding: 16px 18px; border: 1.5px solid var(--primary); border-radius: 18px; }
+.rr-score { font-family: var(--display); font-weight: 800; font-size: 1.9rem; line-height: 1; color: var(--fg); letter-spacing: -.02em; }
+.rr-score span { color: var(--primary); }
+.rr-side a { color: var(--primary); font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .rr-rider, .rr-toggle { transition: none; } }
+
+/* Field notes hero: the statement on a lined notebook page, with handwritten design notes pinned around it. Replaces the pin-board cards. */
+:root { --fn-ground: #FAFAF8; --fn-dots: #DAD6CF; --fn-paper: #FFFFFF; --fn-rule: #E4ECEE; --fn-margin: #F2B8A6; --fn-ink: #22201E; --fn-sub: #4F4B46; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fn-ground: #1A1918; --fn-dots: #3A3835; --fn-paper: #26241F; --fn-rule: #33403F; --fn-margin: #6B3A2C; --fn-ink: #FAFAF8; --fn-sub: #C9C5BF; } }
+:root[data-theme="dark"] { --fn-ground: #1A1918; --fn-dots: #3A3835; --fn-paper: #26241F; --fn-rule: #33403F; --fn-margin: #6B3A2C; --fn-ink: #FAFAF8; --fn-sub: #C9C5BF; }
+.fn { background-color: var(--fn-ground); background-image: radial-gradient(var(--fn-dots) 1.2px, transparent 1.4px); background-size: 22px 22px; overflow-x: clip; }
+.fn .wrap { padding-block: clamp(28px, 5vw, 56px) clamp(48px, 7vw, 88px); display: grid; gap: clamp(28px, 4vw, 40px); }
+.fn-stage { position: relative; display: grid; gap: 22px; }
+.fn-page { position: relative; width: min(100%, 800px); margin-inline: auto; box-sizing: border-box; padding: clamp(36px, 6vw, 64px) clamp(24px, 6vw, 72px) clamp(32px, 5vw, 56px) clamp(52px, 9vw, 110px); background-color: var(--fn-paper); background-image: repeating-linear-gradient(180deg, transparent 0 51px, var(--fn-rule) 51px 52px); border-radius: 6px; box-shadow: 0 30px 60px -30px rgba(34,32,30,.35), 0 2px 6px rgba(34,32,30,.08); transform: rotate(-1.5deg); display: grid; gap: 24px; color: var(--fn-ink); }
+.fn-page::before { content: ""; position: absolute; left: clamp(36px, 6.5vw, 80px); top: 0; bottom: 0; width: 2px; background: var(--fn-margin); }
+.fn-page h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 6.4vw, 5rem); line-height: 1.06; letter-spacing: -0.02em; text-wrap: balance; }
+.fn-circle { position: relative; display: inline-block; }
+.fn-circle::before { content: ""; position: absolute; inset: .06em -.17em -.07em; border: .04em solid var(--terracotta); border-radius: 50%; transform: rotate(-4deg); }
+.fn-mark { font-style: italic; background: linear-gradient(180deg, transparent 58%, rgba(242,165,65,.6) 58%, rgba(242,165,65,.6) 92%, transparent 92%); }
+.fn-page p { margin: 0; max-width: 30em; font-size: clamp(1rem, 1.6vw, 1.12rem); line-height: 1.6; color: var(--fn-sub); }
+.fn-name { font-family: var(--mono); font-size: .74rem; letter-spacing: .14em; color: var(--secondary); }
+.fn-notes { list-style: none; margin: 0; padding: 12px 6px 18px; display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; }
+.fn-notes li { flex: none; scroll-snap-align: start; }
+.fn-note { width: min(62vw, 220px); box-sizing: border-box; padding: 18px 20px; color: #22201E; font-family: "Caveat", "Segoe Print", cursive; font-size: 1.75rem; line-height: 1.05; box-shadow: 0 14px 30px -16px rgba(34,32,30,.35); }
+.fn-note.n1 { background: #FCEFD9; transform: rotate(3deg); }
+.fn-note.n2 { background: #FFFFFF; border: 1.5px solid #E7E5E0; transform: rotate(-2.5deg); }
+.fn-note.n3 { background: #DCEBE9; transform: rotate(-4deg); }
+@media (min-width: 1040px) {
+  .fn-stage { min-height: 600px; align-content: center; }
+  .fn-page { margin-inline: 0 auto; margin-left: 9%; }
+  .fn-notes { display: block; padding: 0; overflow: visible; }
+  .fn-note { position: absolute; }
+  .fn-note.n1 { right: 2%; top: 0; }
+  .fn-note.n2 { right: 0; top: 250px; }
+  .fn-note.n3 { left: -2%; top: 380px; width: 200px; }
+}
+.fn .actions { justify-content: center; align-items: center; }
+.fn-tags { font-family: "Caveat", "Segoe Print", cursive; font-size: 1.6rem; color: var(--muted); }
+@media (min-width: 1040px) { .fn .actions { justify-content: flex-start; padding-left: calc(9% + 40px); } }
+
 /* Footer */
 footer { background: var(--surface); }
 footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 0.92rem; }
@@ -302,52 +390,28 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
 </header>
 
 <main id="top">
-  <section class="wrap hero" id="about">
-    <div class="hero-text">
-    <h1><span class="name">Sharon Wangari</span><span class="role">Product designer &amp; UX researcher</span></h1>
-    <p class="lede">I research how people really work, then design products that fit. My work spans money, movement and the goods on everyday shelves.</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#work">View projects</a>
-      <a class="btn btn-outline" href="mailto:sharonwangari.w@gmail.com?subject=Hello%20Sharon">Get in touch</a>
-      <button class="copy-email" type="button" data-email="sharonwangari.w@gmail.com">or copy <b>sharonwangari.w@gmail.com</b></button>
+  <section class="fn" id="about">
+    <div class="wrap">
+      <div class="fn-stage">
+        <div class="fn-page">
+          <span class="fn-name">SHARON WANGARI · PRODUCT DESIGNER &amp; UX RESEARCHER</span>
+          <h1><span class="fn-circle">Solve</span> real problems, make life <span class="fn-mark">easier</span>.</h1>
+          <p>I sit with people where the work happens, then design products that fit how they already live and work.</p>
+        </div>
+        <ul class="fn-notes" aria-label="Notes on how I work">
+          <li class="fn-note n1">Watch what people do, not just what they say.</li>
+          <li class="fn-note n2">Design for intuition, not re-education.</li>
+          <li class="fn-note n3">Start where people already are.</li>
+        </ul>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="#work">Read the case studies</a>
+        <a class="btn btn-outline" href="mailto:sharonwangari.w@gmail.com?subject=Hello%20Sharon">Get in touch</a>
+        <span class="fn-tags">Fintech · AgriFin · FMCG · Logistics</span>
+      </div>
     </div>
-    </div>
-    <div class="board">
-      <span class="arch" aria-hidden="true"></span>
-      <span class="dot t" aria-hidden="true"></span>
-      <span class="dot s" aria-hidden="true"></span>
-      <a class="card c1" href="paystack-settlements.html"><span class="pin" aria-hidden="true"></span><img src="img/ps-hero-payout.jpg" style="object-position:center" alt="How a payout issue is escalated today"><span class="k">INTERNAL TOOLS · PAYSTACK</span><span class="n">Handling settlement issues</span></a>
-      <a class="card c2" href="devrel-research.html"><span class="pin" aria-hidden="true"></span><img src="img/dr-learner.jpg" style="object-position:left center" alt="Developer persona card for the Learner"><span class="k">DEVELOPER EXPERIENCE · PAYSTACK</span><span class="n">Developer personas</span></a>
-      <a class="card c3" href="sendy-supply.html"><span class="pin" aria-hidden="true"></span><img src="img/hero-sendy-chart.jpg" style="object-position:center top" alt="Sendy Supply seller dashboard comparing sales with competitors"><span class="k">LOGISTICS · SENDY SUPPLY</span><span class="n">The seller experience</span></a>
-    </div>
-    <script>
-    /* Pick three case-study cards at random on each visit, avoiding the ones shown last time. */
-    (function () {
-      var pool = [
-        ["paystack-settlements.html", "ps-hero-payout.jpg", "center", "How a payout issue is escalated today", "INTERNAL TOOLS · PAYSTACK", "Handling settlement issues"],
-        ["devrel-research.html", "dr-learner.jpg", "left center", "Developer persona card for the Learner", "DEVELOPER EXPERIENCE · PAYSTACK", "Developer personas"],
-        ["sendy-supply.html", "hero-sendy-chart.jpg", "center top", "Sendy Supply seller dashboard comparing sales with competitors", "LOGISTICS · SENDY SUPPLY", "The seller experience"],
-        ["chargebacks-dart.html", "hero-dart-flow.jpg", "12% center", "How responses reach the bank through DART, by email, the ISW portal or Zendesk", "CHARGEBACKS · PAYSTACK", "Building DART"],
-        ["paypal-checkout.html", "pp-hero-enabled.jpg", "center", "PayPal re-enabled confirmation on Paystack", "PAYMENTS · PAYSTACK × PAYPAL", "PayPal on checkout"],
-        ["mhm-kenya.html", "mhm-hero-game.jpg", "center", "The Bursting Myths game guide", "IMPACT DESIGN · KENYA", "Teaching menstrual hygiene"],
-        ["agri-finance.html", "nmb-season.jpg", "62% center", "Seasonal calendar of farmer income and expenses across the year", "DIGITAL FINANCE · TANZANIA", "Agribusiness finance roadmap"]
-      ];
-      var key = "sw-hero-last", last = [];
-      try { last = JSON.parse(localStorage.getItem(key) || "[]"); } catch (e) {}
-      for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
-      pool.sort(function (a, b) { return (last.indexOf(a[0]) > -1) - (last.indexOf(b[0]) > -1); });
-      var cards = document.querySelectorAll(".board .card"), shown = [];
-      for (var c = 0; c < cards.length && c < pool.length; c++) {
-        var d = pool[c], el = cards[c], img = el.querySelector("img");
-        el.href = d[0]; img.src = "img/" + d[1];
-        if (d[2] === "contain") { img.style.objectFit = "contain"; img.style.background = "#FEFDF9"; } else { img.style.objectPosition = d[2]; } img.alt = d[3];
-        el.querySelector(".k").textContent = d[4]; el.querySelector(".n").textContent = d[5];
-        shown.push(d[0]);
-      }
-      try { localStorage.setItem(key, JSON.stringify(shown)); } catch (e) {}
-    })();
-    </script>
   </section>
+
 
   <section class="wrap how" id="how" aria-labelledby="how-title">
     <h2 id="how-title">How I work</h2>
@@ -359,6 +423,37 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
     </ol>
   </section>
 
+  <section class="rr" aria-label="Route the rider, a one-minute game">
+    <div class="wrap">
+      <div class="rr-teaser">
+        <svg class="rr-road" aria-hidden="true" viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid slice"><path d="M-10 136 C 180 136, 260 128, 480 132 S 760 140, 880 100 S 980 30, 1210 26" fill="none" stroke="rgba(180,73,42,.35)" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 12" vector-effect="non-scaling-stroke"/><rect class="rr-jam" x="900" y="62" width="30" height="30" rx="7" fill="rgba(242,165,65,.35)" stroke="#F2A541" stroke-width="2"/><circle class="rr-dot" cx="990" cy="40" r="11" fill="#F2A541" stroke="#FFFFFF" stroke-width="3.5"/></svg>
+        <span class="rr-copy"><b>Got a minute? Route a rider across Nairobi.</b><span>A mini-game born from field research. Beat the traffic and get the stock to the shop.</span></span>
+        <button class="rr-toggle" id="rr-toggle" type="button" aria-expanded="false" aria-controls="rr-panel"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5l7 4.5-7 4.5z" fill="currentColor"/></svg><span class="rr-tl">Play · 1 min</span></button>
+      </div>
+      <div class="rr-panel" id="rr-panel" hidden>
+        <div class="rr-board">
+          <div class="rr-top"><div class="rr-job" id="rr-job"></div><div class="rr-clock"><b id="rr-mins">0</b> min</div></div>
+          <div class="rr-city" id="rr-city">
+            <div class="rr-grid" id="rr-grid"></div>
+            <svg aria-hidden="true"><polyline class="best" id="rr-best" points=""></polyline><polyline id="rr-path" points=""></polyline></svg>
+            <div class="rr-rider" id="rr-rider" aria-hidden="true"></div>
+          </div>
+          <div class="rr-legend"><span><i style="background:#57534E"></i>Hub</span><span><i style="background:#B4492A"></i>Seller</span><span><i style="background:#0F5257"></i>Shop</span><span><i style="background:rgba(242,165,65,.35);box-shadow:inset 0 0 0 1.5px #F2A541"></i>Jam, +3 min</span></div>
+          <div class="rr-row"><button class="rr-btn" id="rr-undo" type="button">Undo</button><button class="rr-btn" id="rr-clear" type="button">Clear route</button></div>
+        </div>
+        <div class="rr-side">
+          <ol><li>Drag from the hub, or tap the squares next to the rider.</li><li>Collect from the seller first, then reach the shop.</li><li>Each block is 1 minute. A jam is 3.</li></ol>
+          <div class="rr-result" id="rr-result" hidden>
+            <div class="rr-score" id="rr-score"></div>
+            <p id="rr-verdict" style="margin:0"></p>
+            <div class="rr-row"><button class="rr-btn primary" id="rr-next" type="button">Next delivery</button><button class="rr-btn" id="rr-show" type="button">Show fastest</button></div>
+          </div>
+          <p style="margin:0">Sellers we interviewed confirm orders on WhatsApp while on the move. <a href="sendy-supply.html">Read the Sendy Supply case study</a></p>
+          <div class="rr-row"><button class="rr-btn" id="rr-close" type="button">Close game</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="projects" id="work" aria-labelledby="work-title">
     <div class="wrap">
       <div class="section-head">
@@ -480,5 +575,125 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
     });
   })();
 </script>
+<script>
+  /* Route the rider: built only when the visitor opens it */
+  (function () {
+    var toggle = document.getElementById('rr-toggle'), panel = document.getElementById('rr-panel');
+    if (!toggle || !panel) return;
+    var started = false;
+    function setOpen(open) {
+      panel.hidden = !open; toggle.setAttribute('aria-expanded', open);
+      toggle.querySelector('.rr-tl').textContent = open ? 'Hide game' : 'Play · 1 min';
+      if (open && !started) { started = true; start(); }
+    }
+    toggle.addEventListener('click', function () { setOpen(panel.hidden); });
+    document.getElementById('rr-close').addEventListener('click', function () { setOpen(false); toggle.focus(); });
+
+    function start() {
+      // . road (1 min)  j jam (3 min)  # no road  H hub  P seller  D shop
+      var LEVELS = [
+        { job: '50 kg rice: Eastleigh distributor to a duka in Kilimani', map: ['H..#....P', '.#.#.jj#.', '.#...#...', '..j#.#.#j', '#.j..j.#.', 'D..#...j.'] },
+        { job: 'Cooking oil: Babadogo seller to a school in Karen', map: ['P..j.#..#', '.#.#...#.', '.j...#j..', '..##.#.#H', '#.j..j...', 'D..#.#.j.'] },
+        { job: 'Sugar: Gikomba distributor to a kiosk in Westlands', map: ['D.j..#...', '#.#.j..#.', '..#.##.j.', '.j..P..#.', '.##.#j.#.', '...j...jH'] }
+      ];
+      var $ = function (id) { return document.getElementById(id); };
+      var grid = $('rr-grid'), city = $('rr-city'), pathEl = $('rr-path'), bestEl = $('rr-best'), dot = $('rr-rider');
+      var narrow = window.matchMedia('(max-width: 600px)');
+      var map, cols, rows, cells, path, done, level = 0, scores = [], bests = [], best, bestPath;
+      var cost = function (ch) { return ch === 'j' ? 3 : 1; };
+      function at(i) { return map[Math.floor(i / cols)][i % cols]; }
+      function nbrs(i) {
+        var r = Math.floor(i / cols), c = i % cols, o = [];
+        if (r > 0) o.push(i - cols); if (r < rows - 1) o.push(i + cols); if (c > 0) o.push(i - 1); if (c < cols - 1) o.push(i + 1);
+        return o.filter(function (n) { return at(n) !== '#'; });
+      }
+      function find(ch) { for (var i = 0; i < cols * rows; i++) if (at(i) === ch) return i; }
+      function route(from, to) {
+        var N = cols * rows, dist = [], prev = [], seen = [], i;
+        for (i = 0; i < N; i++) { dist[i] = Infinity; prev[i] = -1; seen[i] = false; }
+        dist[from] = 0;
+        for (;;) {
+          var u = -1;
+          for (i = 0; i < N; i++) if (!seen[i] && dist[i] < Infinity && (u < 0 || dist[i] < dist[u])) u = i;
+          if (u < 0 || u === to) break;
+          seen[u] = true;
+          nbrs(u).forEach(function (v) { var d = dist[u] + cost(at(v)); if (d < dist[v]) { dist[v] = d; prev[v] = u; } });
+        }
+        var p = []; for (var x = to; x !== -1; x = prev[x]) p.unshift(x);
+        return { d: dist[to], p: p };
+      }
+      function load(n) {
+        level = n;
+        var m = LEVELS[n].map;
+        // Phones get the same city turned on its side: 6 wide, 9 tall, so each square is big enough to tap.
+        map = narrow.matches ? m[0].split('').map(function (_, c) { return m.map(function (row) { return row[c]; }).join(''); }) : m;
+        rows = map.length; cols = map[0].length;
+        grid.style.setProperty('--rr-cols', cols);
+        $('rr-job').innerHTML = '<small>DELIVERY ' + (n + 1) + ' OF ' + LEVELS.length + '</small>' + LEVELS[n].job;
+        grid.innerHTML = ''; cells = [];
+        for (var i = 0; i < cols * rows; i++) {
+          var ch = at(i), b = document.createElement('button');
+          b.type = 'button'; b.className = 'rr-cell'; b.dataset.i = i;
+          if (ch === '#') { b.className += ' b'; b.disabled = true; b.setAttribute('aria-label', 'No road'); }
+          else if (ch === 'j') { b.className += ' j'; b.setAttribute('aria-label', 'Traffic jam, 3 minutes'); }
+          else if (ch === 'H' || ch === 'P' || ch === 'D') { b.className += ' pin ' + ch; b.textContent = ch === 'H' ? 'Hub' : ch === 'P' ? 'Pick' : 'Drop'; b.setAttribute('aria-label', ch === 'H' ? 'Hub' : ch === 'P' ? 'Seller pickup' : 'Shop drop-off'); }
+          else b.setAttribute('aria-label', 'Road, 1 minute');
+          grid.appendChild(b); cells.push(b);
+        }
+        var a = route(find('H'), find('P')), z = route(find('P'), find('D'));
+        best = a.d + z.d; bestPath = a.p.concat(z.p.slice(1));
+        clear();
+      }
+      function clear() { path = [find('H')]; done = false; $('rr-result').hidden = true; bestEl.setAttribute('points', ''); $('rr-show').disabled = false; render(); }
+      function centre(i) { var g = city.getBoundingClientRect(), r = cells[i].getBoundingClientRect(); return [r.left - g.left + r.width / 2, r.top - g.top + r.height / 2]; }
+      function pts(p) { return p.map(function (i) { return centre(i).join(','); }).join(' '); }
+      function minutes() { return path.slice(1).reduce(function (s, i) { return s + cost(at(i)); }, 0); }
+      function render() {
+        var P = find('P'), last = path[path.length - 1];
+        cells.forEach(function (c) { c.classList.remove('on', 'next', 'got'); });
+        path.forEach(function (i) { cells[i].classList.add('on'); });
+        if (path.indexOf(P) > -1) cells[P].classList.add('got');
+        if (!done) nbrs(last).forEach(function (n) { cells[n].classList.add('next'); });
+        pathEl.setAttribute('points', pts(path));
+        var c = centre(last); dot.style.left = c[0] + 'px'; dot.style.top = c[1] + 'px';
+        $('rr-mins').textContent = minutes();
+        $('rr-undo').disabled = path.length < 2 || done;
+      }
+      function step(i) {
+        if (done || at(i) === '#') return;
+        var last = path[path.length - 1];
+        // Stepping back onto the previous square undoes it, except right after the pickup, where turning back is a real move.
+        if (path.length > 1 && i === path[path.length - 2] && at(last) !== 'P') { path.pop(); render(); return; }
+        if (nbrs(last).indexOf(i) < 0) return;
+        path.push(i); render();
+        if (at(i) === 'D' && path.indexOf(find('P')) > -1) finish();
+      }
+      function finish() {
+        done = true; render();
+        var m = minutes(), extra = m - best, lastLevel = level === LEVELS.length - 1;
+        scores[level] = m; bests[level] = best;
+        $('rr-score').innerHTML = m + ' min <span>/ ' + best + '</span>';
+        var v = extra <= 0 ? 'The fastest route. The shop gets its stock on time.' : extra + ' min slower than the fastest route.';
+        if (lastLevel) v += ' All three delivered in ' + scores.reduce(function (a, b) { return a + b; }, 0) + ' min (fastest possible ' + bests.reduce(function (a, b) { return a + b; }, 0) + ').';
+        $('rr-verdict').textContent = v;
+        $('rr-next').textContent = lastLevel ? 'Play again' : 'Next delivery';
+        $('rr-result').hidden = false;
+      }
+      $('rr-next').addEventListener('click', function () { if (level === LEVELS.length - 1) { scores = []; bests = []; } load((level + 1) % LEVELS.length); });
+      $('rr-show').addEventListener('click', function () { bestEl.setAttribute('points', pts(bestPath)); this.disabled = true; });
+      $('rr-undo').addEventListener('click', function () { if (path.length > 1 && !done) { path.pop(); render(); } });
+      $('rr-clear').addEventListener('click', clear);
+      var dragging = false;
+      function cellAt(e) { var el = document.elementFromPoint(e.clientX, e.clientY); return el && el.classList.contains('rr-cell') ? +el.dataset.i : null; }
+      city.addEventListener('pointerdown', function (e) { var i = cellAt(e); if (i === null) return; dragging = true; if (i !== path[path.length - 1]) step(i); });
+      window.addEventListener('pointermove', function (e) { if (!dragging) return; var i = cellAt(e); if (i !== null && i !== path[path.length - 1]) step(i); });
+      window.addEventListener('pointerup', function () { dragging = false; });
+      window.addEventListener('resize', function () { if (!panel.hidden) { render(); if (bestEl.getAttribute('points')) bestEl.setAttribute('points', pts(bestPath)); } });
+      if (narrow.addEventListener) narrow.addEventListener('change', function () { load(level); });
+      load(0);
+    }
+  })();
+</script>
+
 </body>
 </html>
