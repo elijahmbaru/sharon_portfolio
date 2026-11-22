@@ -367,7 +367,7 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
 @media (hover: hover) { a.tile:hover .chip { transform: translateY(-4px); } }
 @media (prefers-reduced-motion: reduce) { .chip { transition: none; } a.tile:hover .chip { transform: none; } }
 /* How I work */
-.how { padding-block: 0 clamp(56px, 8vw, 96px); }
+.how { padding-block: clamp(56px, 8vw, 96px); }
 .how h2 { margin-bottom: 36px; }
 .how-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px clamp(20px, 3vw, 40px); }
 @media (max-width: 560px) { .how-list { grid-template-columns: 1fr; } }
