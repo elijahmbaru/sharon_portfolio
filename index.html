@@ -334,6 +334,18 @@ a.tile:hover .tile-img > .art { transform: scale(1.03); }
 .fn-tags { font-family: "Caveat", "Segoe Print", cursive; font-size: 1.6rem; color: var(--muted); }
 @media (min-width: 1040px) { .fn .actions { justify-content: flex-start; padding-left: calc(9% + 40px); } }
 
+/* Experience: brief career timeline after Selected work */
+.xp { background: var(--surface); }
+.xp .wrap { padding-block: 0 clamp(56px, 8vw, 96px); }
+.xp-list { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--line); }
+.xp-row { display: grid; gap: 4px 32px; padding: 20px 0; border-bottom: 1.5px solid var(--line); }
+@media (min-width: 820px) { .xp-row { grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1.25fr); align-items: baseline; } }
+.xp-when { font-family: var(--mono); font-size: .8rem; letter-spacing: .06em; color: var(--primary); font-variant-numeric: tabular-nums; }
+.xp-role { font-family: var(--serif); font-size: 1.3rem; line-height: 1.25; color: var(--fg); }
+.xp-role span { display: block; font-family: inherit; font-size: .95rem; color: var(--muted); }
+@media (min-width: 820px) { .xp-role span { display: inline; } .xp-role span::before { content: " · "; } }
+.xp-what { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--muted); }
+
 /* Footer */
 footer { background: var(--surface); }
 footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 0.92rem; }
@@ -524,6 +536,23 @@ footer .wrap { border-top: 1px solid var(--line); padding-block: 28px 36px; disp
         </a>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="xp" id="experience" aria-labelledby="xp-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="xp-title">Experience</h2>
+        <p>Ten years of research-led design across fintech, logistics, agriculture and health.</p>
+      </div>
+      <ol class="xp-list">
+        <li class="xp-row"><span class="xp-when">2026 – PRESENT</span><span class="xp-role">Design Owner <span>Evyanna</span></span><p class="xp-what">Owning end-to-end design for a SaaS product ahead of launch, from user profiles to the design system and prototypes.</p></li>
+        <li class="xp-row"><span class="xp-when">2022 – 2026</span><span class="xp-role">Product Design Lead <span>Paystack</span></span><p class="xp-what">Internal tools, the merchant experience and the PayPal integration. Cut dispute processing from six hours to about 45 minutes.</p></li>
+        <li class="xp-row"><span class="xp-when">2019 – 2022</span><span class="xp-role">Senior UX Designer &amp; Chapter Lead <span>Sendy</span></span><p class="xp-what">FMCG research that shaped Sendy Supply, plus credit and freight journeys. Led the design chapter and its process.</p></li>
+        <li class="xp-row"><span class="xp-when">2018 – 2019</span><span class="xp-role">Senior Designer &amp; Design Manager <span>Nairobi Design Institute</span></span><p class="xp-what">Workshops in Kenya and Malawi on HIV treatment adherence for young people. Mentored design students.</p></li>
+        <li class="xp-row"><span class="xp-when">2017 – 2018</span><span class="xp-role">Design Fellow <span>Dalberg Design</span></span><p class="xp-what">Financial services for smallholder farmers and traders in Tanzania and Zambia.</p></li>
+        <li class="xp-row"><span class="xp-when">2017 – 2018</span><span class="xp-role">Design Fellow <span>Nairobi Design Institute</span></span><p class="xp-what">Human-centred design in health and agriculture, including a menstrual hygiene delivery toolkit.</p></li>
+        <li class="xp-row"><span class="xp-when">2015 – 2016</span><span class="xp-role">UX Design Researcher <span>iHub UX Lab</span></span><p class="xp-what">User research for digital products, including a shared-screen learning experience with Swansea University.</p></li>
+      </ol>
     </div>
   </section>
   <section class="probono" id="contact" aria-labelledby="pb-title">
